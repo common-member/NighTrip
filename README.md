@@ -73,8 +73,8 @@
 - レーティング機能<br>
   Ratyを使用した星5でのレビュー機能<br>
 - Admin機能<br>
-	不適切なコンテンツを管理者側で容易に管理できるため。<br>
-	過去のチーム開発の経験からMVPまでの必要性を痛感した。<br>
+  不適切なコンテンツを管理者側で容易に管理できるため。<br>
+  過去のチーム開発の経験からMVPまでの必要性を痛感した。<br>
 - プライバシーポリシー・利用規約<br>
   KIYACなどを使用することで、法的な知識がなくても文書を作成できるため利用を検討。<br>
 - 好みの夜景スポット診断及び提案機能<br>
@@ -90,5 +90,5 @@
 - LINE Messaging APIによる情報提供<br>
   プッシュ通知にて推しスポットの天気情報を通知する。<br>
   天気情報APIにて取得した天気情報をLINE Messaging APIにて通知する。<br>
-- 地図情報について
-	Google Places APIのPlaces Autocomplete機能などで撮影地についての入力を補完したり、診断結果ページで地図を表示するために、Google Maps JavaScript APIを使用することを検討しています。<br>
+- 地図情報について<br>
+  Google Places APIのPlaces Autocomplete機能などで撮影地についての入力を補完したり、診断結果ページで地図を表示するために、Google Maps JavaScript APIを使用することを検討しています。<br>

@@ -95,6 +95,9 @@
 ## 画面遷移図（Figma）
 [Figma](https://www.figma.com/design/wJfx2YGnGh29NnKSyHBQgr/NighTrip?node-id=0-1&t=vJGRuuSqfAuQPLD2-1)で記載しています。
 
+## ER図（dbdiagram.io）
+[dbdiagram.io](https://dbdiagram.io/d/NighTrip-6785ce446b7fa355c3c7cc11)
+
 ### 【講師の方へ】
 本アプリは、卒業制作のNighTripを新しく作り直したものになっております。
 現在は、[proto-NighTrip](https://github.com/common-member/proto-NighTrip)として切り分けて保存しております。

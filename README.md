@@ -92,6 +92,9 @@
 - 地図情報について<br>
 	Google Places APIのPlaces Autocomplete機能などで撮影地についての入力を補完したり、診断結果ページで地図を表示するために、Google Maps JavaScript APIを使用することを検討。<br>
 
+## 画面遷移図（Figma）
+[Figma](https://www.figma.com/design/wJfx2YGnGh29NnKSyHBQgr/NighTrip?node-id=0-1&t=vJGRuuSqfAuQPLD2-1)で記載しています。
+
 ### 【講師の方へ】
 本アプリは、卒業制作のNighTripを新しく作り直したものになっております。
 現在は、[proto-NighTrip](https://github.com/common-member/proto-NighTrip)として切り分けて保存しております。

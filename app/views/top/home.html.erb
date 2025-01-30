@@ -11,44 +11,41 @@
   </div>
 </div>
 
-<!-- config about container -->
-<div class="container mx-auto p-8">
+<div class="my-8">
+  <!-- first content -->
+  <div class="flex items-center mb-8">
+    <%= image_tag 'top/search.png', class: "w-1/5 mr-6" %>
+    <div>
+      <h1 class="text-2xl font-bold">1. 夜景検索</h1>
+      <p>
+        キーワードやエリア、カテゴリーで簡単に夜景スポットを探せる機能です。
+        検索結果から興味のある投稿の詳細な情報を確認することができます。
+      </p>
+    </div>
+  </div>
 
-      <!-- first content -->
-      <div class="flex items-center mb-8">
-        <%= image_tag 'top/search.png', class: "w-1/5 mr-6" %>
-        <div>
-          <h1 class="text-2xl font-bold">1. 夜景検索</h1>
-          <p>
-            キーワードやエリア、カテゴリーで簡単に夜景スポットを探せる機能です。
-            検索結果から興味のある投稿の詳細な情報を確認することができます。
-          </p>
-        </div>
-      </div>
+  <!-- second content -->
+  <div class="flex items-center mb-8">
+    <%= image_tag 'top/diagnosis.png', class: "w-1/5 mr-6" %>
+    <div>
+      <h1 class="text-2xl font-bold">2. 診断機能</h1>
+      <p>
+        設問に解答することで、その内容に沿ったオススメの夜景スポットが判定されます。
+        自分の知らなかった夜景と出会えるかも？
+      </p>
+    </div>
+  </div>
 
-      <!-- second content -->
-      <div class="flex items-center mb-8">
-        <%= image_tag 'top/diagnosis.png', class: "w-1/5 mr-6" %>
-        <div>
-          <h1 class="text-2xl font-bold">2. 診断機能</h1>
-          <p>
-            設問に解答することで、その内容に沿ったオススメの夜景スポットが判定されます。
-            自分の知らなかった夜景と出会えるかも？
-          </p>
-        </div>
-      </div>
-
-      <!-- third content -->
-      <div class="flex items-center mb-8">
-        <%= image_tag 'top/ranking.png', class: "w-1/5 mr-6" %>
-        <div>
-          <h1 class="text-2xl font-bold">3. ランキング機能</h1>
-          <p>
-            人気の夜景スポットや注目のユーザーがひと目で分かる！お気に入りの夜景スポットをレビューして、ランキング上位を目指そう！
-          </p>
-        </div>
-      </div>
-
+  <!-- third content -->
+  <div class="flex items-center mb-8">
+    <%= image_tag 'top/ranking.png', class: "w-1/5 mr-6" %>
+    <div>
+      <h1 class="text-2xl font-bold">3. ランキング機能</h1>
+      <p>
+        人気の夜景スポットや注目のユーザーがひと目で分かる！お気に入りの夜景スポットをレビューして、ランキング上位を目指そう！
+      </p>
+    </div>
+  </div>
 </div>
 
 <!-- registration and login container -->
@@ -56,12 +53,12 @@
   <div class="flex w-3/5 flex-col border-opacity-50">
     <!-- button for user registration -->
     <div class="card bg-base-300 rounded-box grid place-items-center">
-      <button class="btn btn-primary w-full">新規会員登録</button>
+      <%= link_to "新規会員登録", new_user_registration_path, class: "btn btn-primary w-full" %>
     </div>
     <div class="divider">OR</div>
     <!-- button for login -->
     <div class="card bg-base-300 rounded-box grid place-items-center">
-      <button class="btn btn-primary w-full">ログイン</button>
+      <%= link_to "ログイン", new_user_session_path, class: "btn btn-primary w-full" %>
     </div>
   </div>
 </div>

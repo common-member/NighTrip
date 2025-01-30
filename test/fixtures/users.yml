@@ -1,0 +1,9 @@
+one:
+  email: "user1@example.com"
+  name: "User One"
+  # 他のカラムも必要に応じて追加
+
+two:
+  email: "user2@example.com"
+  name: "User Two"
+  # 他のカラムも必要に応じて追加

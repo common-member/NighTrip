@@ -1,2 +1,71 @@
-<h1>Top#home</h1>
-<p>Find me in app/views/top/home.html.erb</p>
+<!-- service image -->
+<div
+  class="hero min-h-screen"
+  style="background-image: url(https://img.daisyui.com/images/stock/photo-1507358522600-9f71e620c44e.webp);">
+  <div class="hero-overlay bg-opacity-60"></div>
+  <div class="hero-content text-neutral-content text-center">
+    <div class="max-w-3xl">
+      <h1 class="mb-5 text-5xl font-bold">心に残る夜景を、ここで見つけよう</h1>
+      <button class="btn btn-primary">夜景スポットを探す</button>
+    </div>
+  </div>
+</div>
+
+<!-- config about container -->
+<div class="container mx-auto my-10">
+  <div class="hero bg-base-200 min-h-screen ">
+    <!-- about class config for all contents -->
+    <div class="flex-col lg:flex-row">
+      <!-- first content -->
+      <div class="flex items-center my-8">
+        <%= image_tag 'top/search.png', class: "w-2/15 ms-8" %>
+        <div class="w-4/5 mx-8">
+          <h1 class="text-3xl font-bold">1. 夜景検索</h1>
+          <p class="py-6">
+            キーワードやエリア、カテゴリーで簡単に夜景スポットを探せる機能です。
+            検索結果から興味のある投稿の詳細な情報を確認することができます。
+          </p>
+        </div>
+      </div>
+
+      <!-- second content -->
+      <div class="flex items-center my-8">
+        <%= image_tag 'top/diagnosis.png', class: "w-2/15 ms-8" %>
+        <div class="w-4/5 mx-8">
+          <h1 class="text-3xl font-bold">2. 診断機能</h1>
+          <p class="py-6">
+            設問に解答することで、その内容に沿ったオススメの夜景スポットが判定されます。
+            自分の知らなかった夜景と出会えるかも？
+          </p>
+        </div>
+      </div>
+
+      <!-- third content -->
+      <div class="flex items-center my-8">
+        <%= image_tag 'top/ranking.png', class: "w-2/15 ms-8" %>
+        <div class="w-4/5 mx-8">
+          <h1 class="text-3xl font-bold">3. ランキング機能</h1>
+          <p class="py-6">
+            人気の夜景スポットや注目のユーザーがひと目で分かる！お気に入りの夜景スポットをレビューして、ランキング上位を目指そう！
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- registration and login container -->
+<div class="hero-content flex-col lg:flex-row-reverse my-9 mx-auto">
+  <div class="flex w-3/5 flex-col border-opacity-50">
+    <!-- button for user registration -->
+    <div class="card bg-base-300 rounded-box grid place-items-center">
+      <button class="btn btn-primary w-full">新規会員登録</button>
+    </div>
+    <div class="divider">OR</div>
+    <!-- button for login -->
+    <div class="card bg-base-300 rounded-box grid place-items-center">
+      <button class="btn btn-primary w-full">ログイン</button>
+    </div>
+  </div>
+</div>

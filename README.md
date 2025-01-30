@@ -99,8 +99,8 @@
 [dbdiagram.io](https://dbdiagram.io/d/NighTrip-6785ce446b7fa355c3c7cc11)
 
 ### 【講師の方へ】
-本アプリは、卒業制作のNighTripを新しく作り直したものになっております。
-現在は、[proto-NighTrip](https://github.com/common-member/proto-NighTrip)として切り分けて保存しております。
-ご了承ください。
-なお、本件につきましては、富田講師にご相談させていただきました。
+本アプリは、卒業制作のNighTripを新しく作り直したものになっております。<br>
+現在は、[proto-NighTrip](https://github.com/common-member/proto-NighTrip)として切り分けて保存しております。<br>
+ご了承ください。<br>
+なお、本件につきましては、富田講師にご相談させていただきました。<br>
 富田講師、ご対応いただきありがとうございました。🙇🙇🙇

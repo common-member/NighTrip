@@ -1,1 +1,32 @@
-test
+<div class="hero bg-base-200 min-h-screen">
+  <div class="hero-content flex-col w-full">
+    <div class="text-center lg:text-left mb-5">
+      <h1 class="text-5xl font-bold">パスワードをお忘れですか？</h1>
+    </div>
+
+    <div class="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
+      <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+        <div class="card-body">
+          <%= render "devise/shared/error_messages", resource: resource %>
+
+          <!-- メールアドレスフィールド -->
+          <div class="form-control">
+            <label class="label">
+              <span class="label-text">メールアドレス</span>
+            </label>
+            <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "input input-bordered" %>
+          </div>
+
+          <!-- パスワードリセット送信ボタン -->
+          <div class="form-control mt-6">
+            <%= f.submit "パスワードリセットの案内を送信", class: "btn btn-primary w-full" %>
+          </div>
+
+          <div class="card bg-base-300 rounded-box grid place-items-center mt-5">
+            <%= link_to "ログインページに戻る", new_user_session_path, class: "btn btn-primary w-full" %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

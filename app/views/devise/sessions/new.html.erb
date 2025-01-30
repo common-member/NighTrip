@@ -1,11 +1,11 @@
 <div class="hero bg-base-200 min-h-screen">
-  <div class="hero-content flex-col w-full">
+  <div class="hero-content flex-col lg:flex-row-reverse w-full">
     <div class="text-center lg:text-left mb-5">
-      <h1 class="text-5xl font-bold">パスワードをお忘れですか？</h1>
+      <h1 class="text-5xl font-bold">ログイン</h1>
     </div>
 
     <div class="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
-      <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
         <div class="card-body">
           <%= render "devise/shared/error_messages", resource: resource %>
 
@@ -17,16 +17,37 @@
             <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "input input-bordered" %>
           </div>
 
-          <!-- パスワードリセット送信ボタン -->
-          <div class="form-control mt-6">
-            <%= f.submit "パスワードリセットの案内を送信", class: "btn btn-primary w-full" %>
+          <!-- パスワードフィールド -->
+          <div class="form-control">
+            <label class="label">
+              <span class="label-text">パスワード</span>
+            </label>
+            <%= f.password_field :password, autocomplete: "current-password", class: "input input-bordered" %>
           </div>
 
-          <div class="card bg-base-300 rounded-box grid place-items-center mt-5">
-            <%= link_to "ログインページに戻る", new_user_session_path, class: "btn btn-primary w-full" %>
+          <!-- ログイン状態を保持するためのチェックボックス -->
+          <% if devise_mapping.rememberable? %>
+            <div class="form-control">
+              <label class="label cursor-pointer">
+                <%= f.check_box :remember_me, class: "checkbox" %>
+                <span class="label-text">ログイン状態を保持する</span>
+              </label>
+            </div>
+          <% end %>
+
+          <!-- ログインボタン -->
+          <div class="form-control mt-6">
+            <%= f.submit "ログイン", class: "btn btn-primary w-full" %>
           </div>
+
+          <!-- パスワードを忘れた場合のリンク -->
+          <div class="card bg-base-300 rounded-box grid place-items-center mt-5">
+            <%= link_to "パスワードを忘れた場合", new_user_password_path, class: "btn btn-primary w-full" %>
+          </div>
+
         </div>
       <% end %>
+
     </div>
   </div>
 </div>

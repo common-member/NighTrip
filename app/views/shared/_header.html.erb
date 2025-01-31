@@ -4,8 +4,24 @@
   </div>
   <div class="flex-none">
     <ul class="menu menu-horizontal px-1">
-      <li><a href="#">新規投稿</a></li>
-      <li><a href="#">検索する</a></li>
+      <% if user_signed_in? %>
+        <li>
+          <%= button_to "ログアウト", destroy_user_session_path, method: :delete %>
+        </li>
+      <% else %>
+        <li>
+          <%= link_to "サインアップ", new_user_registration_path %>
+        </li>
+        <li>
+          <%= link_to "ログイン", new_user_session_path %>
+        </li>
+      <% end %>
+      <li>
+        <%= link_to "新規投稿", "#" %>
+      </li>
+      <li>
+        <%= link_to "検索する", "#" %>
+      </li>
     </ul>
   </div>
 </div>

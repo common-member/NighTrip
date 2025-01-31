@@ -1,5 +1,5 @@
 <div class="hero bg-base-200 min-h-screen">
-  <div class="hero-content flex-col lg:flex-row-reverse w-full">
+  <div class="hero-content flex-col w-full">
     <div class="text-center lg:text-left mb-5">
       <h1 class="text-5xl font-bold">ログイン</h1>
     </div>
@@ -35,9 +35,17 @@
             </div>
           <% end %>
 
-          <!-- ログインボタン -->
-          <div class="form-control mt-6">
-            <%= f.submit "ログイン", class: "btn btn-primary w-full" %>
+          <div class="flex w-full flex-col border-opacity-50">
+            <div class="card bg-base-300 rounded-box grid place-items-center">
+              <!-- ログインボタン -->
+              <div class="form-control w-full">
+                <%= f.submit "ログイン", class: "btn btn-primary w-full" %>
+              </div>
+            </div>
+            <div class="divider">OR</div>
+            <div class="card bg-base-300 rounded-box grid place-items-center">
+              <%= link_to "新規会員登録の場合", new_user_registration_path, class: "btn btn-primary w-full" %>
+            </div>
           </div>
 
           <!-- パスワードを忘れた場合のリンク -->

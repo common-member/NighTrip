@@ -1,0 +1,234 @@
+hokkaido:
+  id: 1
+  name: "北海道"
+  region: 0
+
+aomori:
+  id: 2
+  name: "青森県"
+  region: 1
+
+iwate:
+  id: 3
+  name: "岩手県"
+  region: 1
+
+miyagi:
+  id: 4
+  name: "宮城県"
+  region: 1
+
+akita:
+  id: 5
+  name: "秋田県"
+  region: 1
+
+yamagata:
+  id: 6
+  name: "山形県"
+  region: 1
+
+fukushima:
+  id: 7
+  name: "福島県"
+  region: 1
+
+ibaraki:
+  id: 8
+  name: "茨城県"
+  region: 2
+
+tochigi:
+  id: 9
+  name: "栃木県"
+  region: 2
+
+gunma:
+  id: 10
+  name: "群馬県"
+  region: 2
+
+saitama:
+  id: 11
+  name: "埼玉県"
+  region: 2
+
+chiba:
+  id: 12
+  name: "千葉県"
+  region: 2
+
+tokyo:
+  id: 13
+  name: "東京都"
+  region: 2
+
+kanagawa:
+  id: 14
+  name: "神奈川県"
+  region: 2
+
+niigata:
+  id: 15
+  name: "新潟県"
+  region: 3
+
+toyama:
+  id: 16
+  name: "富山県"
+  region: 3
+
+ishikawa:
+  id: 17
+  name: "石川県"
+  region: 3
+
+fukui:
+  id: 18
+  name: "福井県"
+  region: 3
+
+yamanashi:
+  id: 19
+  name: "山梨県"
+  region: 4
+
+nagano:
+  id: 20
+  name: "長野県"
+  region: 4
+
+gifu:
+  id: 21
+  name: "岐阜県"
+  region: 5
+
+shizuoka:
+  id: 22
+  name: "静岡県"
+  region: 5
+
+aichi:
+  id: 23
+  name: "愛知県"
+  region: 5
+
+mie:
+  id: 24
+  name: "三重県"
+  region: 5
+
+shiga:
+  id: 25
+  name: "滋賀県"
+  region: 6
+
+kyoto:
+  id: 26
+  name: "京都府"
+  region: 6
+
+osaka:
+  id: 27
+  name: "大阪府"
+  region: 6
+
+hyogo:
+  id: 28
+  name: "兵庫県"
+  region: 6
+
+nara:
+  id: 29
+  name: "奈良県"
+  region: 6
+
+wakayama:
+  id: 30
+  name: "和歌山県"
+  region: 6
+
+tottori:
+  id: 31
+  name: "鳥取県"
+  region: 7
+
+shimane:
+  id: 32
+  name: "島根県"
+  region: 7
+
+okayama:
+  id: 33
+  name: "岡山県"
+  region: 7
+
+hiroshima:
+  id: 34
+  name: "広島県"
+  region: 7
+
+yamaguchi:
+  id: 35
+  name: "山口県"
+  region: 7
+
+tokushima:
+  id: 36
+  name: "徳島県"
+  region: 8
+
+kagawa:
+  id: 37
+  name: "香川県"
+  region: 8
+
+ehime:
+  id: 38
+  name: "愛媛県"
+  region: 8
+
+kochi:
+  id: 39
+  name: "高知県"
+  region: 8
+
+fukuoka:
+  id: 40
+  name: "福岡県"
+  region: 9
+
+saga:
+  id: 41
+  name: "佐賀県"
+  region: 9
+
+nagasaki:
+  id: 42
+  name: "長崎県"
+  region: 9
+
+kumamoto:
+  id: 43
+  name: "熊本県"
+  region: 9
+
+oita:
+  id: 44
+  name: "大分県"
+  region: 9
+
+miyazaki:
+  id: 45
+  name: "宮崎県"
+  region: 9
+
+kagoshima:
+  id: 46
+  name: "鹿児島県"
+  region: 9
+
+okinawa:
+  id: 47
+  name: "沖縄県"
+  region: 9

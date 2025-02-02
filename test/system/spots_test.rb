@@ -12,7 +12,7 @@ class SpotsTest < ApplicationSystemTestCase
 
   test "should create spot" do
     visit spots_url
-    click_on "New spot"
+    click_on "新規投稿"
 
     fill_in "Address", with: @spot.address
     fill_in "Body", with: @spot.body
@@ -30,12 +30,12 @@ class SpotsTest < ApplicationSystemTestCase
     visit spot_url(@spot)
     click_on "Edit this spot", match: :first
 
-    fill_in "Address", with: @spot.address
-    fill_in "Body", with: @spot.body
-    fill_in "Name", with: @spot.name
-    fill_in "Prefecture", with: @spot.prefecture_id
-    fill_in "Url", with: @spot.url
-    fill_in "User", with: @spot.user_id
+    fill_in "spot_address", with: @spot.address
+    fill_in "spot_body", with: @spot.body
+    fill_in "spot_name", with: @spot.name
+    select @spot.prefecture.name, from: "spot[prefecture_id]"
+    fill_in "spot_url", with: @spot.url
+    # select @spot.user.name, from: "spot[user_id]"
     click_on "Update Spot"
 
     assert_text "Spot was successfully updated"
@@ -43,8 +43,13 @@ class SpotsTest < ApplicationSystemTestCase
   end
 
   test "should destroy Spot" do
+    sign_in @user
+
     visit spot_url(@spot)
-    click_on "Destroy this spot", match: :first
+
+    accept_confirm do # 確認ダイアログ（JavaScript の confirm）が表示された際にキャンセルされる可能性があるため必要
+      click_on "Destroy this spot", match: :first
+    end
 
     assert_text "Spot was successfully destroyed"
   end

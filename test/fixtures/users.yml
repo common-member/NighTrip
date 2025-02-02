@@ -1,9 +1,6 @@
-one:
-  email: "user1@example.com"
-  name: "User One"
-  # 他のカラムも必要に応じて追加
-
-two:
-  email: "user2@example.com"
-  name: "User Two"
-  # 他のカラムも必要に応じて追加
+<% 10.times do |n| %>
+user_<%= n %>:
+  email: <%= "user#{n}@example.com" %>
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
+  name: <%= "user#{n}" %>
+<% end %>

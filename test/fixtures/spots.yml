@@ -1,0 +1,7 @@
+one:
+  name: "Test Spot"
+  prefecture_id: 1
+  address: "Test Address"
+  url: "http://example.com"
+  body: "Test Body"
+  user: user_0

@@ -1,4 +1,4 @@
-<div class="navbar bg-base-100">
+<div class="navbar bg-base-100 mb-5">
   <div class="flex-1">
     <%= link_to 'NighTrip', root_path, class: 'btn btn-ghost text-xl' %>
   </div>
@@ -17,10 +17,10 @@
         </li>
       <% end %>
       <li>
-        <%= link_to "新規投稿", "#" %>
+        <%= link_to "新規投稿", new_spot_path %>
       </li>
       <li>
-        <%= link_to "検索する", "#" %>
+        <%= link_to "検索する", spots_path %>
       </li>
     </ul>
   </div>

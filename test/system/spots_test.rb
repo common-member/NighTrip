@@ -49,9 +49,7 @@ class SpotsTest < ApplicationSystemTestCase
   test "should destroy Spot" do
     visit spot_url(@spot)
 
-    accept_confirm do # 確認ダイアログ（JavaScript の confirm）が表示された際にキャンセルされる可能性があるため必要
-      click_on "Destroy this spot", match: :first
-    end
+    click_on "Destroy this spot", match: :first
 
     assert_text "Spot was successfully destroyed"
   end

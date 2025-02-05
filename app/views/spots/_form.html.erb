@@ -36,6 +36,11 @@
     <%= form.text_area :body, rows: 4, class: ["block shadow rounded-md border outline-none px-3 py-2 mt-2 w-full", {"border-gray-400 focus:outline-blue-600": spot.errors[:body].none?, "border-red-400 focus:outline-red-600": spot.errors[:body].any?}] %>
   </div>
 
+  <div class="my-5">
+    <%= form.label :image, class: "label" %>
+    <%= form.file_field :image, class: ["file-input file-input-bordered file-input-primary w-full mt-2", {"border-gray-400": spot.errors[:image].none?, "border-red-400": spot.errors[:image].any?}] %>
+  </div>
+
   <div class="inline">
     <%= form.submit class: "rounded-md px-3.5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white inline-block font-medium cursor-pointer" %>
   </div>

@@ -23,4 +23,8 @@
     <strong class="block font-medium mb-1">User:</strong>
     <%= spot.user_id %>
   </p>
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Image:</strong>
+    <%= image_tag spot.image.variant(resize_to_limit: [300, 300]) if spot.image.attached? %>
+  </p>
 </div>

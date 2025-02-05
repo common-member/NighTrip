@@ -4,7 +4,7 @@ class SpotsController < ApplicationController
 
   # GET /spots or /spots.json
   def index
-    @spots = Spot.all
+    @spots = Spot.includes(:user, :prefecture)
   end
 
   # GET /spots/1 or /spots/1.json
@@ -66,6 +66,6 @@ class SpotsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def spot_params
-      params.require(:spot).permit(:name, :prefecture_id, :address, :url, :body)
+      params.require(:spot).permit(:name, :prefecture_id, :address, :url, :body, :image)
     end
 end

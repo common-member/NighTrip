@@ -5,5 +5,5 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   validates :name, presence: true, length: { maximum: 100 }
-  has_many :spots
+  has_many :spots, dependent: :destroy
 end

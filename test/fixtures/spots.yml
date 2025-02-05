@@ -1,7 +1,8 @@
 one:
   name: "Test Spot"
-  prefecture_id: 1
   address: "Test Address"
-  url: "http://example.com"
   body: "Test Body"
+  prefecture_id: 1
+  url: "http://example.com"
   user: user_0
+  image: <%= Rails.root.join("test/fixtures/files/test_image.png") %>

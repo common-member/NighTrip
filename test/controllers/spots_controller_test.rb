@@ -12,7 +12,7 @@ class SpotsControllerTest < ActionDispatch::IntegrationTest
     )
 
     sign_in @user  # ログイン処理
-    @spot = Spot.create(name: "Test Spot", address: "Test Address", body: "Test Body", prefecture_id: 1, url: "http://example.com", user_id: @user.id)
+    @spot = Spot.create(name: "Test Spot", address: "Test Address", body: "Test Body", prefecture_id: 1, url: "http://example.com", user_id: @user.id, image: fixture_file_upload("test/fixtures/files/test_image.png", "image/png"))
   end
 
   test "should get index" do
@@ -27,7 +27,7 @@ class SpotsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create spot" do
     assert_difference("Spot.count") do
-      post spots_url, params: { spot: { address: @spot.address, body: @spot.body, name: @spot.name, prefecture_id: @spot.prefecture_id, url: @spot.url, user_id: @user.id } }
+      post spots_url, params: { spot: { address: @spot.address, body: @spot.body, name: @spot.name, prefecture_id: @spot.prefecture_id, url: @spot.url, image: fixture_file_upload("test/fixtures/files/test_image.png", "image/png") } }
     end
 
     assert_redirected_to spot_url(Spot.last)
@@ -44,7 +44,7 @@ class SpotsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update spot" do
-    patch spot_url(@spot), params: { spot: { address: @spot.address, body: @spot.body, name: @spot.name, prefecture_id: @spot.prefecture_id, url: @spot.url } }
+    patch spot_url(@spot), params: { spot: { address: @spot.address, body: @spot.body, name: @spot.name, prefecture_id: @spot.prefecture_id, url: @spot.url, image: fixture_file_upload("test/fixtures/files/test_image.png", "image/png") } }
     assert_redirected_to spot_url(@spot)
   end
 

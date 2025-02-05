@@ -51,5 +51,7 @@ prefectures = [
 ]
 
 prefectures.each do |prefecture|
-  Prefecture.create(name: prefecture[:name], region: prefecture[:region])
+  Prefecture.find_or_create_by(name: prefecture[:name]) do |p|
+    p.region = prefecture[:region]
+  end
 end

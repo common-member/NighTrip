@@ -23,7 +23,7 @@ class SpotsTest < ApplicationSystemTestCase
     fill_in "spot_name", with: @spot.name
     select @spot.prefecture.name, from: "spot[prefecture_id]"
     fill_in "spot_url", with: @spot.url
-    # fill_in "User", with: @spot.user_id
+    attach_file "spot_image", Rails.root.join("test/fixtures/files/test_image.png")
     click_on "Create Spot"
 
     assert_text "Spot was successfully created"
@@ -39,7 +39,7 @@ class SpotsTest < ApplicationSystemTestCase
     fill_in "spot_name", with: @spot.name
     select @spot.prefecture.name, from: "spot[prefecture_id]"
     fill_in "spot_url", with: @spot.url
-    # select @spot.user.name, from: "spot[user_id]"
+    attach_file "spot_image", Rails.root.join("test/fixtures/files/test_image.png")
     click_on "Update Spot"
 
     assert_text "Spot was successfully updated"

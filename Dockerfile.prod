@@ -27,9 +27,10 @@ RUN yarn install --production
 
 COPY . /myapp
 
-RUN bundle exec rails assets:precompiles
-
-RUN bin/render-build.sh
+RUN RAILS_ENV=production bundle exec rails assets:precompile \
+    && RAILS_ENV=production bundle exec rails assets:clean \
+    && RAILS_ENV=production bundle exec rails db:migrate \
+    && RAILS_ENV=production bundle exec rails db:seed
 
 EXPOSE 3000
 

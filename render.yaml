@@ -2,6 +2,7 @@ services:
   - type: web
     name: myapp
     env: ruby
+    dockerfilePath: ./Dockerfile.prod
     buildCommand: "./bin/render-build.sh"
     startCommand: "bundle exec puma -C config/puma.rb"
     envVars:

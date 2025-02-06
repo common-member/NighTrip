@@ -1,5 +1,5 @@
 class SpotsController < ApplicationController
-  before_action :set_spot, only: %i[ show edit update destroy ]
+  before_action :set_spot, only: %i[ edit update destroy ]
   skip_before_action :authenticate_user!, only: %i[ index show ]
 
   # GET /spots or /spots.json
@@ -9,6 +9,7 @@ class SpotsController < ApplicationController
 
   # GET /spots/1 or /spots/1.json
   def show
+    @spot = Spot.find(params[:id])
   end
 
   # GET /spots/new
@@ -61,7 +62,7 @@ class SpotsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_spot
-      @spot = Spot.find(params[:id])
+      @spot = current_user.spots.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.

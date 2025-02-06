@@ -5,6 +5,15 @@
 
   <%= render "form", spot: @spot %>
 
-  <%= link_to "Show this spot", @spot, class: "ml-2 rounded-md px-3.5 py-2.5 bg-gray-100 hover:bg-gray-50 inline-block font-medium" %>
-  <%= link_to "Back to spots", spots_path, class: "ml-2 rounded-md px-3.5 py-2.5 bg-gray-100 hover:bg-gray-50 inline-block font-medium" %>
+  <div class="flex w-3/5 flex-col border-opacity-50 mx-auto">
+    <div class="divider">OR</div>
+    <!-- button to show a spot -->
+    <div class="card bg-base-300 rounded-box grid place-items-center mb-5">
+      <%= link_to "投稿詳細", @spot, class: "btn btn-primary w-full" %>
+    </div>
+    <div class="card bg-base-300 rounded-box grid place-items-center">
+      <%= link_to "投稿一覧に戻る", spots_path, class: "btn btn-primary w-full" %>
+    </div>
+  </div>
+
 </div>

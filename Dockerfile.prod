@@ -27,7 +27,9 @@ RUN yarn install --production
 
 COPY . /myapp
 
-RUN bundle exec rails assets:precompile
+RUN bundle exec rails assets:precompiles
+
+RUN bin/render-build.sh
 
 EXPOSE 3000
 

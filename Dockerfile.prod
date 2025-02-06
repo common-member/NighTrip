@@ -27,7 +27,7 @@ RUN yarn install --production
 
 COPY . /myapp
 
-RUN bundle exec rails assets:precompile && bundle exec rails assets:clean
+RUN bundle exec rails assets:precompile && bundle exec rails assets:clean && bundle exec rails db:migrate && bundle exec rails db:seed
 
 EXPOSE 3000
 

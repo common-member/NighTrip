@@ -27,12 +27,12 @@ class SpotsTest < ApplicationSystemTestCase
     click_on "Create Spot"
 
     assert_text "Spot was successfully created"
-    click_on "Back"
+    click_on "投稿一覧に戻る"
   end
 
   test "should update Spot" do
     visit spot_url(@spot)
-    click_on "Edit this spot", match: :first
+    click_on "投稿を編集", match: :first
 
     fill_in "spot_address", with: @spot.address
     fill_in "spot_body", with: @spot.body
@@ -43,13 +43,13 @@ class SpotsTest < ApplicationSystemTestCase
     click_on "Update Spot"
 
     assert_text "Spot was successfully updated"
-    click_on "Back"
+    click_on "投稿一覧に戻る"
   end
 
   test "should destroy Spot" do
     visit spot_url(@spot)
 
-    click_on "Destroy this spot", match: :first
+    click_on "投稿を削除", match: :first
 
     assert_text "Spot was successfully destroyed"
   end

@@ -4,9 +4,24 @@ class SpotsTest < ApplicationSystemTestCase
   include Devise::Test::IntegrationHelpers
 
   setup do
-    @user = User.create!(email: "user@example.com", password: "password", name: "Test User") # @user の作成
+    @user = User.create!(
+      email: "user@example.com",
+      password: "password",
+      name: "Test User"
+    )
+
     sign_in @user  # ログイン処理
-    @spot = spots(:one) # 既存のスポットデータを使用
+
+    prefecture = Prefecture.find_by(name: "東京都") || Prefecture.create!(name: "東京都", region: 2)
+
+    @spot = Spot.create!(
+      name: "テストスポット",
+      address: "東京都新宿区",
+      url: "https://example.com",
+      body: "テスト用のスポットです。",
+      prefecture_id: prefecture.id,
+      image: fixture_file_upload(Rails.root.join("test", "fixtures", "files", "test_image.png"), "image/png")
+    )
   end
 
   test "visiting the index" do

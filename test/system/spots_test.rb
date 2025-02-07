@@ -15,6 +15,7 @@ class SpotsTest < ApplicationSystemTestCase
   end
 
   test "should create spot" do
+    sign_in @user
     visit spots_url
     click_on "新規投稿"
 
@@ -31,6 +32,7 @@ class SpotsTest < ApplicationSystemTestCase
   end
 
   test "should update Spot" do
+    sign_in @user
     visit spot_url(@spot)
     click_on "投稿を編集", match: :first
 
@@ -47,6 +49,7 @@ class SpotsTest < ApplicationSystemTestCase
   end
 
   test "should destroy Spot" do
+    sign_in @user
     visit spot_url(@spot)
 
     click_on "投稿を削除", match: :first

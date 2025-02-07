@@ -20,6 +20,7 @@ class SpotsTest < ApplicationSystemTestCase
       url: "https://example.com",
       body: "テスト用のスポットです。",
       prefecture_id: prefecture.id,
+      user: @user,
       image: Rack::Test::UploadedFile.new(Rails.root.join("test/fixtures/files/test_image.png"), "image/png")
     )
   end

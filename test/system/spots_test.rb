@@ -65,7 +65,9 @@ class SpotsTest < ApplicationSystemTestCase
   test "should destroy Spot" do
     visit spot_url(@spot)
 
-    click_on "投稿を削除", match: :first
+    accept_alert do
+      click_on "投稿を削除", match: :first
+    end
 
     assert_text "Spot was successfully destroyed"
   end

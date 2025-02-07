@@ -4,9 +4,25 @@ class SpotsTest < ApplicationSystemTestCase
   include Devise::Test::IntegrationHelpers
 
   setup do
-    @user = User.create!(email: "user@example.com", password: "password", name: "Test User") # @user の作成
+    @user = User.create!(
+      email: "user@example.com",
+      password: "password",
+      name: "Test User"
+    )
+
     sign_in @user  # ログイン処理
-    @spot = spots(:one) # 既存のスポットデータを使用
+
+    prefecture = Prefecture.find_by(name: "東京都") || Prefecture.create!(name: "東京都", region: 2)
+
+    @spot = Spot.create!(
+      name: "テストスポット",
+      address: "東京都新宿区",
+      url: "https://example.com",
+      body: "テスト用のスポットです。",
+      prefecture_id: prefecture.id,
+      user: @user,
+      image: Rack::Test::UploadedFile.new(Rails.root.join("test/fixtures/files/test_image.png"), "image/png")
+    )
   end
 
   test "visiting the index" do
@@ -27,12 +43,12 @@ class SpotsTest < ApplicationSystemTestCase
     click_on "Create Spot"
 
     assert_text "Spot was successfully created"
-    click_on "Back"
+    click_on "投稿一覧に戻る"
   end
 
   test "should update Spot" do
     visit spot_url(@spot)
-    click_on "Edit this spot", match: :first
+    click_on "投稿を編集", match: :first
 
     fill_in "spot_address", with: @spot.address
     fill_in "spot_body", with: @spot.body
@@ -43,13 +59,15 @@ class SpotsTest < ApplicationSystemTestCase
     click_on "Update Spot"
 
     assert_text "Spot was successfully updated"
-    click_on "Back"
+    click_on "投稿一覧に戻る"
   end
 
   test "should destroy Spot" do
     visit spot_url(@spot)
 
-    click_on "Destroy this spot", match: :first
+    accept_alert do
+      click_on "投稿を削除", match: :first
+    end
 
     assert_text "Spot was successfully destroyed"
   end

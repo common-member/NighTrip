@@ -1,31 +1,29 @@
-<% content_for :title, "Showing spot" %>
+<% content_for :title, @spot.name %>
 
-<div class="md:w-2/3 w-full">
-  <% if notice.present? %>
-    <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-md inline-block" id="notice"><%= notice %></p>
+<!-- daisyUIのデフォルト通知
+<% if notice.present? %>
+  <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-md inline-block" id="notice"><%= notice %></p>
+<% end %>
+-->
+
+<h1 class="font-bold text-4xl p-4"><%= @spot.name%></h1>
+
+<%= render @spot %>
+
+<div class="flex w-3/5 flex-col border-opacity-50 mx-auto mt-5">
+  <% if current_user.own?(@spot) %>
+    <!-- button to edit a spot -->
+    <div class="card bg-base-content rounded-box grid place-items-center mb-5">
+      <%= link_to "投稿を編集", edit_spot_path(@spot), class: "btn btn-primary w-full" %>
+    </div>
+    <!-- button to delete a spot -->
+    <div class="card bg-base-content rounded-box grid place-items-center">
+      <%= link_to "投稿を削除", @spot, data: { turbo_method: :delete, turbo_confirm: "本当に削除しますか？" }, class: "btn btn-error w-full" %>
+    </div>
+    <div class="divider">OR</div>
   <% end %>
 
-  <h1 class="font-bold text-4xl">Showing spot</h1>
-
-  <%= render @spot %>
-
-  <div class="flex w-3/5 flex-col border-opacity-50 mx-auto">
-    <% if current_user.own?(@spot) %>
-      <!-- button to edit a spot -->
-      <div class="card bg-base-300 rounded-box grid place-items-center mb-5">
-        <%= link_to "投稿を編集", edit_spot_path(@spot), class: "btn btn-primary w-full" %>
-      </div>
-      <!-- button to delete a spot -->
-      <div class="card bg-base-300 rounded-box grid place-items-center">
-        <%= link_to "投稿を削除", @spot, data: { turbo_method: :delete, turbo_confirm: "本当に削除しますか？" }, class: "btn btn-error w-full" %>
-      </div>
-      <div class="divider">OR</div>
-    <% end %>
-
-    <div class="card bg-base-300 rounded-box grid place-items-center">
-      <%= link_to "投稿一覧に戻る", spots_path, class: "btn btn-primary w-full" %>
-    </div>
+  <div class="card bg-base-content rounded-box grid place-items-center">
+    <%= link_to "投稿一覧に戻る", spots_path, class: "btn btn-primary w-full" %>
   </div>
-
-
 </div>

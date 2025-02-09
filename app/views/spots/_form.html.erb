@@ -12,32 +12,32 @@
   <% end %>
 
   <div class="my-5">
-    <%= form.label :name %>
-    <%= form.text_field :name, class: ["block shadow rounded-md border outline-none px-3 py-2 mt-2 w-full", {"border-gray-400 focus:outline-blue-600": spot.errors[:name].none?, "border-red-400 focus:outline-red-600": spot.errors[:name].any?}] %>
+    <%= form.label :name, "スポット名" %>
+    <%= form.text_field :name, placeholder: "例: 東京タワー", class: ["block shadow rounded-md border outline-none px-3 py-2 mt-2 w-full", {"border-gray-400 focus:outline-blue-600": spot.errors[:name].none?, "border-red-400 focus:outline-red-600": spot.errors[:name].any?}] %>
   </div>
 
   <div class="my-5">
-    <%= form.label :prefecture_id %>
+    <%= form.label :prefecture_id, "都道府県" %>
     <%= form.select :prefecture_id, Prefecture.all.collect { |p| [p.name, p.id] }, { include_blank: "選択してください" }, class: ["block shadow rounded-md border outline-none px-3 py-2 mt-2 w-full", {"border-gray-400 focus:outline-blue-600": spot.errors[:prefecture_id].none?, "border-red-400 focus:outline-red-600": spot.errors[:prefecture_id].any?}] %>
   </div>
 
   <div class="my-5">
-    <%= form.label :address %>
-    <%= form.text_field :address, class: ["block shadow rounded-md border outline-none px-3 py-2 mt-2 w-full", {"border-gray-400 focus:outline-blue-600": spot.errors[:address].none?, "border-red-400 focus:outline-red-600": spot.errors[:address].any?}] %>
+    <%= form.label :address, "市区町村番地" %>
+    <%= form.text_field :address, placeholder: "例: 港区芝公園4-2-8", class: ["block shadow rounded-md border outline-none px-3 py-2 mt-2 w-full", {"border-gray-400 focus:outline-blue-600": spot.errors[:address].none?, "border-red-400 focus:outline-red-600": spot.errors[:address].any?}] %>
   </div>
 
   <div class="my-5">
-    <%= form.label :url %>
-    <%= form.text_field :url, class: ["block shadow rounded-md border outline-none px-3 py-2 mt-2 w-full", {"border-gray-400 focus:outline-blue-600": spot.errors[:url].none?, "border-red-400 focus:outline-red-600": spot.errors[:url].any?}] %>
+    <%= form.label :url, "サイトURL" %>
+    <%= form.text_field :url, placeholder: "例: https://example.com", class: ["block shadow rounded-md border outline-none px-3 py-2 mt-2 w-full", {"border-gray-400 focus:outline-blue-600": spot.errors[:url].none?, "border-red-400 focus:outline-red-600": spot.errors[:url].any?}] %>
   </div>
 
   <div class="my-5">
-    <%= form.label :body %>
-    <%= form.text_area :body, rows: 4, class: ["block shadow rounded-md border outline-none px-3 py-2 mt-2 w-full", {"border-gray-400 focus:outline-blue-600": spot.errors[:body].none?, "border-red-400 focus:outline-red-600": spot.errors[:body].any?}] %>
+    <%= form.label :body, "説明" %>
+    <%= form.text_area :body, rows: 4, placeholder: "スポットの特徴や魅力を記入してください", class: ["block shadow rounded-md border outline-none px-3 py-2 mt-2 w-full", {"border-gray-400 focus:outline-blue-600": spot.errors[:body].none?, "border-red-400 focus:outline-red-600": spot.errors[:body].any?}] %>
   </div>
 
   <div class="my-5">
-    <%= form.label :image, class: "label" %>
+    <%= form.label :image, "画像", class: "label" %>
     <%= form.file_field :image, class: ["file-input file-input-bordered file-input-primary w-full mt-2", {"border-gray-400": spot.errors[:image].none?, "border-red-400": spot.errors[:image].any?}] %>
 
     <% if spot.image.attached? %>

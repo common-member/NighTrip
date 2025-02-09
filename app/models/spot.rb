@@ -7,6 +7,13 @@ class Spot < ApplicationRecord
   validates :name, presence: true
   validates :address, presence: true
   validates :url, format: { with: URI.regexp(%w[http https]), message: "は有効なURL形式でなければなりません" }, allow_blank: true
+  validates :url, presence: true, if: :url_present?
   validates :body, length: { maximum: 5000 }
   validates :image, presence: true
+
+  private
+
+  def url_present?
+    url.present?
+  end
 end

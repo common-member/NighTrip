@@ -16,7 +16,7 @@
     <h1 class="bg-info text-info-content p-4 text-xl">基本情報</h1>
 
     <div class="py-5 mx-5">
-      <div class="divider divider-info text-info-content-0 text-lg">位置情報</div>
+      <div class="divider divider-info text-xl">位置情報</div>
       <div class="text-lg">
         <%= @spot.prefecture.name %><%= @spot.address %>
       </div>
@@ -37,12 +37,19 @@
       <div class="divider divider-info text-xl">公式サイト</div>
       <div class="text-lg text-primary">
         <% if @spot.url.present? %>
-          <div class="overflow-x-auto">
-            <%= link_to nil, Spot.find(params[:id]).url.to_s, target: "_blank", class: "break-words" %>
+          <div class="overflow-x-auto break-words max-h-12">
+            <%= link_to nil, Spot.find(params[:id]).url.to_s, target: "_blank" %>
           </div>
         <% else %>
           <p class="text-base-content">情報がありません</p>
         <% end %>
+      </div>
+    </div>
+
+    <div class="py-5 mx-5">
+      <div class="divider divider-info text-xl">投稿者</div>
+      <div class="text-lg">
+        <%= @spot.user.name %>
       </div>
     </div>
 

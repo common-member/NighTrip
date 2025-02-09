@@ -55,3 +55,124 @@ prefectures.each do |prefecture|
     p.region = prefecture[:region]
   end
 end
+
+# 初期ユーザー
+user = User.create!(
+  email: "hisa@example.com",
+  password: "hogehoge",
+  password_confirmation: "hogehoge",
+  name: "hisa"
+)
+
+# Spot投稿に関するデータ
+spots = [
+  {
+    name: "函館山展望台",
+    prefecture_id: Prefecture.find_by(name: "北海道").id,
+    address: "函館市函館山",
+    url: "https://www.hakobura.jp/charm-tags/1",
+    body: "函館の夜景が一望できる展望台。ロープウェイや車でアクセス可能。",
+    user_id: user.id,
+    image: "hakodateyama.jpg"
+  },
+  {
+    name: "横浜ランドマークタワー スカイガーデン",
+    prefecture_id: Prefecture.find_by(name: "神奈川県").id,
+    address: "横浜市西区みなとみらい2-2-1",
+    url: "https://www.yokohama-landmark.jp/skygarden/",
+    body: "横浜のシンボル的存在である展望台。みなとみらいの夜景が美しい。",
+    user_id: user.id,
+    image: "skygarden.jpg"
+  },
+  {
+    name: "東京タワー",
+    prefecture_id: Prefecture.find_by(name: "東京都").id,
+    address: "港区芝公園4丁目2-8",
+    url: "https://www.tokyotower.co.jp/",
+    body: "東京を代表するランドマーク。夜景スポットとしても有名。",
+    user_id: user.id,
+    image: "tokyotower.jpg"
+  },
+  {
+    name: "東京スカイツリー",
+    prefecture_id: Prefecture.find_by(name: "東京都").id,
+    address: "墨田区押上一丁目1番2号",
+    url: "https://www.tokyo-skytree.jp/",
+    body: "世界一高い自立式電波塔。展望台からの眺めが魅力。",
+    user_id: user.id,
+    image: "skytree.jpg"
+  },
+  {
+    name: "梅田スカイビル 空中庭園展望台",
+    prefecture_id: Prefecture.find_by(name: "大阪府").id,
+    address: "大阪市北区大淀中1-1-88",
+    url: "https://www.skybldg.co.jp/",
+    body: "大阪のパノラマ夜景を楽しめる展望台。空中庭園が特徴的。",
+    user_id: user.id,
+    image: "skybuilding.jpg"
+  },
+  {
+    name: "城山公園",
+    prefecture_id: Prefecture.find_by(name: "鹿児島県").id,
+    address: "鹿児島市城山町",
+    url: "",
+    body: "鹿児島市内を一望できる景観スポット。夜景も美しい。",
+    user_id: user.id,
+    image: "shiroyama.jpg"
+  },
+  {
+    name: "ビーナスブリッジ",
+    prefecture_id: Prefecture.find_by(name: "兵庫県").id,
+    address: "神戸市中央区諏訪山公園展望台",
+    url: "",
+    body: "神戸の夜景が一望できるスポット。特に恋人たちに人気。",
+    user_id: user.id,
+    image: "venusbridge.jpg"
+  },
+  {
+    name: "摩耶山掬星台",
+    prefecture_id: Prefecture.find_by(name: "兵庫県").id,
+    address: "神戸市灘区摩耶山",
+    url: "https://www.kobe-park.or.jp/maya/",
+    body: "神戸の夜景を楽しめる展望台。天気が良ければ遠くの山々も一望できる。",
+    user_id: user.id,
+    image: "kikuseidai.jpg"
+  },
+  {
+    name: "福岡タワー",
+    prefecture_id: Prefecture.find_by(name: "福岡県").id,
+    address: "福岡市早良区百道浜2丁目3-26",
+    url: "https://www.fukuokatower.co.jp/",
+    body: "福岡市のシンボル的なタワーで、展望台からは博多湾や市内の夜景を楽しめる。",
+    user_id: user.id,
+    image: "fukuokatower.jpg"
+  },
+  {
+    name: "高松シンボルタワー",
+    prefecture_id: Prefecture.find_by(name: "香川県").id,
+    address: "高松市サンポート2-1",
+    url: "https://www.symboltower.com/",
+    body: "高松市のシンボルタワーで、展望台からは瀬戸内海と高松市内の夜景を楽しめる。",
+    user_id: user.id,
+    image: "symboltower.jpg"
+  }
+]
+
+spots.each do |spot|
+  spot_record = Spot.create(
+    name: spot[:name],
+    prefecture_id: spot[:prefecture_id],
+    address: spot[:address],
+    url: spot[:url],
+    body: spot[:body],
+    user_id: spot[:user_id]
+  )
+
+  image_path = Rails.root.join("db", "seeds", "images", "spots", spot[:image])
+
+  if File.exist?(image_path)
+    spot_record.image.attach(io: File.open(image_path), filename: spot[:image])
+  else
+    puts "画像ファイルが見つかりません: #{image_path}"
+  end
+end

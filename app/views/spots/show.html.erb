@@ -38,7 +38,7 @@
       <div class="text-lg text-primary">
         <% if @spot.url.present? %>
           <div class="overflow-x-auto">
-            <%= link_to @spot.url, @spot.url, target: "_blank", class: "break-words" %>
+            <%= link_to sanitize(@spot.url), sanitize(@spot.url), target: "_blank", class: "break-words" %>
           </div>
         <% else %>
           <p class="text-base-content">情報がありません</p>

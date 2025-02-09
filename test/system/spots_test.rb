@@ -27,7 +27,7 @@ class SpotsTest < ApplicationSystemTestCase
 
   test "visiting the index" do
     visit spots_url
-    assert_selector "h1", text: "Spots"
+    assert_selector "h2", text: "Spots"
   end
 
   test "should create spot" do

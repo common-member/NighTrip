@@ -1,37 +1,17 @@
-<div id="<%= dom_id spot %>">
-  <!-- 画像部分 -->
-  <div>
-    <% if spot.image.attached? %>
-      <%= image_tag spot.image, class: "w-full" %>
-    <% end %>
-  </div>
+<div id="<%= dom_id spot %>" class="card col-span-1 bg-base-100 shadow-xl">
 
-  <!-- 基本情報部分 -->
-  <div class="m-4 base-content bg-neutral">
-    <h2 class="bg-info text-info-content p-2">基本情報</h2>
-    <div class="ps-2">
-      <p class="my-5">
-        <strong class="block font-medium mb-1 text-base-content">位置情報</strong>
-        <%= spot.prefecture.name %> <%= spot.address %>
-      </p>
+  <!-- カバー写真部分 -->
+  <figure>
+    <%= image_tag spot.image, class: "object-cover" %>
+  </figure>
 
-      <p class="my-5">
-        <strong class="block font-medium mb-1 text-base-content">URL</strong>
-        <%= link_to spot.url, spot.url, target: "_blank", class: "text-primary underline" %>
-      </p>
-
-      <p class="my-5">
-        <strong class="block font-medium mb-1 text-base-content">投稿者名</strong>
-        <%= spot.user.name %>
-      </p>
-
-      <div class="mt-5">
-        <strong class="block font-medium mb-1 text-base-content sticky top-0">その他</strong>
-      </div>
-      <div class="overflow-y-auto max-h-48">
-        <%= simple_format(spot.body) %>
-      </div>
-
+  <!-- 本文部分 -->
+  <div class="card-body">
+    <h2 class="card-title"><%= spot.name %></h2>
+    <p><%= spot.prefecture.name %><%= spot.address %></p>
+    <div class="card-actions justify-end">
+      <%= link_to "詳細", spot, class: "btn btn-primary" %>
     </div>
   </div>
+
 </div>

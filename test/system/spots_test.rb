@@ -12,14 +12,14 @@ class SpotsTest < ApplicationSystemTestCase
 
     sign_in @user  # ログイン処理
 
-    prefecture = Prefecture.find_by(name: "東京都") || Prefecture.create!(name: "東京都", region: 2)
+    # prefecture = Prefecture.find_by(name: "東京都") || Prefecture.create!(name: "東京都", region: 2)
 
     @spot = Spot.create!(
       name: "テストスポット",
-      address: "東京都新宿区",
+      address: "新宿区内藤町１１",
       url: "https://example.com",
       body: "テスト用のスポットです。",
-      prefecture_id: prefecture.id,
+      prefecture_id: 13,
       user: @user,
       image: Rack::Test::UploadedFile.new(Rails.root.join("test/fixtures/files/test_image.png"), "image/png")
     )

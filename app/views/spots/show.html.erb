@@ -57,7 +57,7 @@
 </div>
 
 <div class="flex w-3/5 flex-col border-opacity-50 mx-auto mt-5">
-  <% if current_user.own?(@spot) %>
+  <% if current_user&.own?(@spot) %>
     <!-- button to edit a spot -->
     <div class="card bg-base-content rounded-box grid place-items-center mb-5">
       <%= link_to "投稿を編集", edit_spot_path(@spot), class: "btn btn-primary w-full" %>

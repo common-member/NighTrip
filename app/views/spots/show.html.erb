@@ -6,9 +6,48 @@
 <% end %>
 -->
 
-<h1 class="font-bold text-4xl p-4"><%= @spot.name%></h1>
+<h1 class="font-bold text-4xl p-3"><%= @spot.name%></h1>
+<div class="grid sm:grid-cols-3">
+  <figure class="sm:col-span-2 mb-3">
+    <%= image_tag @spot.image %>
+  </figure>
 
-<%= render @spot %>
+  <div class="bg-neutral sm:g sm:mx-4 w-full">
+    <h1 class="bg-info text-info-content p-4 text-xl">基本情報</h1>
+
+    <div class="py-5 mx-5">
+      <div class="divider divider-info text-info-content-0 text-lg">位置情報</div>
+      <div class="text-lg">
+        <%= @spot.prefecture.name %><%= @spot.address %>
+      </div>
+    </div>
+
+    <div class="py-5 mx-5">
+      <div class="divider divider-info text-xl">その他</div>
+      <% if @spot.body.present? %>
+        <div class="overflow-x-auto break-words max-h-48">
+          <%= simple_format(@spot.body) %>
+        </div>
+      <% else %>
+        <p class="text-base-content">情報がありません</p>
+      <% end %>
+    </div>
+
+    <div class="py-5 mx-5">
+      <div class="divider divider-info text-xl">公式サイト</div>
+      <div class="text-lg text-primary">
+        <% if @spot.url.present? %>
+          <div class="overflow-x-auto">
+            <%= link_to nil, Spot.find(params[:id]).url.to_s, target: "_blank", class: "break-words" %>
+          </div>
+        <% else %>
+          <p class="text-base-content">情報がありません</p>
+        <% end %>
+      </div>
+    </div>
+
+  </div>
+</div>
 
 <div class="flex w-3/5 flex-col border-opacity-50 mx-auto mt-5">
   <% if current_user.own?(@spot) %>

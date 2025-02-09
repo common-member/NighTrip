@@ -1,17 +1,18 @@
-one:
-  name: "Test Spot"
-  address: "Test Address"
-  body: "Test Body"
-  prefecture_id: 1
-  url: "http://example.com"
-  user: user_0
-  image: <%= Rails.root.join("test/fixtures/files/test_image.png") %>
+# testにて直接生成する形式にへんこうしたためコメントアウト
+# one:
+#   name: "Test Spot"
+#   address: "Test Address"
+#   body: "Test Body"
+#   prefecture_id: 1
+#   url: "http://example.com"
+#   user: user_0
+#   image: <%= Rails.root.join("test/fixtures/files/test_image.png") %>
 
-two:
-  name: "Another Spot"
-  address: "Another Address"
-  body: "Another Body"
-  prefecture_id: 1
-  url: "http://example.com"
-  user: user_1
-  image: <%= Rails.root.join("test/fixtures/files/test_image.png") %>
+# two:
+#   name: "Another Spot"
+#   address: "Another Address"
+#   body: "Another Body"
+#   prefecture_id: 1
+#   url: "http://example.com"
+#   user: user_1
+#   image: <%= Rails.root.join("test/fixtures/files/test_image.png") %>

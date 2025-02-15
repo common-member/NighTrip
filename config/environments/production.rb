@@ -104,4 +104,5 @@ Rails.application.configure do
   # config.host_authorization = { exclude: ->(request) { request.path == "/up" } }
 
   config.hosts << "www.nightrip.net"
+  config.hosts << "nightrip.net"
 end

@@ -31,6 +31,10 @@
     </div>
   </nav>
   <aside>
-    <p>Copyright © <%= Time.now.year %> - All right reserved by NighTrip</p>
+    <% if Time.current.year == 2025 %>
+      <p>© <%= Time.current.year %> NighTrip. All rights reserved.</p>
+    <% else %>
+      <p>© 2025-<%= Time.current.year %> NighTrip. All rights reserved.</p>
+    <% end %>
   </aside>
 </footer>

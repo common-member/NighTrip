@@ -7,6 +7,9 @@ Rails.application.routes.draw do
     root to: "top#home"
   end
 
+  # 利用規約
+  get "terms", to: "terms#index"
+
   resources :spots
 
   devise_for :users

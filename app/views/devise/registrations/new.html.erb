@@ -1,7 +1,7 @@
 <div class="hero bg-base-200 min-h-screen">
   <div class="hero-content flex-col w-full">
     <div class="text-center lg:text-left mb-5">
-      <h1 class="text-5xl font-bold">新規会員登録</h1>
+      <h1 class="text-5xl font-bold"><%= t('.title') %></h1>
     </div>
 
     <div class="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
@@ -12,7 +12,7 @@
           <!-- 名前フィールド -->
           <div class="form-control">
             <label class="label">
-              <span class="label-text">名前</span>
+              <span class="label-text"><%= t('helpers.label.name') %></span>
             </label>
             <%= f.text_field :name, autofocus: true, autocomplete: "name", class: "input input-bordered", required: true %>
           </div>
@@ -20,7 +20,7 @@
           <!-- メールアドレスフィールド -->
           <div class="form-control">
             <label class="label">
-              <span class="label-text">メールアドレス</span>
+              <span class="label-text"><%= t('helpers.label.email') %></span>
             </label>
             <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "input input-bordered" %>
           </div>
@@ -28,7 +28,7 @@
           <!-- パスワードフィールド -->
           <div class="form-control">
             <label class="label">
-              <span class="label-text">パスワード</span>
+              <span class="label-text"><%= t('helpers.label.password') %></span>
             </label>
             <% if @minimum_password_length %>
             <em>(<%= @minimum_password_length %> 文字以上必要です)</em>
@@ -39,7 +39,7 @@
           <!-- パスワード確認フィールド -->
           <div class="form-control">
             <label class="label">
-              <span class="label-text">パスワード確認</span>
+              <span class="label-text"><%= t('helpers.label.password_confirmation') %></span>
             </label>
             <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "input input-bordered" %>
           </div>
@@ -48,12 +48,12 @@
             <div class="card bg-base-300 rounded-box grid place-items-center">
               <!-- サインアップボタン -->
               <div class="form-control w-full">
-                <%= f.submit "登録する", class: "btn btn-primary w-full" %>
+                <%= f.submit t('devise.registrations.new.submit'), class: "btn btn-primary w-full" %>
               </div>
             </div>
             <div class="divider">OR</div>
             <div class="card bg-base-300 rounded-box grid place-items-center">
-              <%= link_to "ログインの場合", new_user_session_path, class: "btn btn-primary w-full" %>
+              <%= link_to t('.to_login_page'), new_user_session_path, class: "btn btn-primary w-full" %>
             </div>
           </div>
 

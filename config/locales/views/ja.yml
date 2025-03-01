@@ -1,0 +1,71 @@
+ja:
+  # フォームへルパー関係は以下から取得する
+  helpers:
+    submit:
+      create: 投稿
+      submit: 保存
+      update: 更新
+    label:
+      name: ユーザー名
+      email: メールアドレス
+      password: パスワード
+      password_confirmation: パスワード確認
+  top:
+    home:
+      search_spots: 夜景スポットを探す
+      to_registration_page: 新規会員登録ページへ
+      to_login_page: ログインページへ
+  devise:
+    failure:
+      unauthenticated: ログインが必要です。
+      unconfirmed: メールアドレスの確認が必要です。
+      locked: アカウントがロックされています。
+      invalid: メールアドレスまたはパスワードが違います。
+      timeout: セッションの有効期限が切れました。
+    sessions:
+      signed_in: ログインしました。
+      signed_out: ログアウトしました。
+    passwords:
+      send_instructions: パスワードリセットの案内を送信しました。
+      updated: パスワードが変更されました。
+    registrations:
+      signed_up: アカウント登録が完了しました。
+      updated: アカウント情報を更新しました。
+      destroyed: アカウントを削除しました。
+      new:
+        title: 新規会員登録
+        submit: 登録
+        to_login_page: ログインページへ
+        to_register_page: 登録ページへ
+        password_forget: パスワードをお忘れの方はこちら
+  user_sessions:
+    new:
+      title: ログイン
+      login: ログイン
+      password_forget: パスワードをお忘れの方はこちら
+  users:
+    new:
+      title: ユーザー登録
+      to_login_page: ログインページへ
+  spots:
+    create:
+      success: 投稿が作成されました
+      failure: 投稿できませんでした
+    update:
+      success: 投稿が更新されました
+      failure: 更新できませんでした
+    destroy:
+      success: 削除されました
+  header:
+    sign_up: 新規登録
+    login: ログイン
+    logout: ログアウト
+    spot: スポット
+    spot_index: 投稿一覧
+    create_spot: 新規投稿
+    # bookmark_index: ブックマーク一覧
+    # profile: プロフィール
+  footer:
+    contact: お問い合わせ
+    terms: 利用規約
+    privacy_policy: プライバシーポリシー

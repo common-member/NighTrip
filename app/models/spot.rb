@@ -18,11 +18,11 @@ class Spot < ApplicationRecord
   end
 
   def self.ransackable_attributes(auth_object = nil)
-    ["address", "body", "name", "prefecture_id", "updated_at", "user_id", "use.name"]
+    [ "address", "body", "name", "prefecture_id", "updated_at", "user_id", "use.name" ]
   end
 
   def self.ransackable_associations(auth_object = nil)
-    ["user", "prefecture"]
+    [ "user", "prefecture" ]
   end
 
   # ransacker :user_name, formatter: proc { |v| User.where("name LIKE ?", "%#{v}%").pluck(:id) } do |parent|

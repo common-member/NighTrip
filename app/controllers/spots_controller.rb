@@ -4,7 +4,10 @@ class SpotsController < ApplicationController
 
   # GET /spots or /spots.json
   def index
-    @spots = Spot.includes(:user, :prefecture)
+    @q = Spot.ransack(params[:q])
+    @spots = @q.result.includes(:user, :prefecture)
+    # 都道府県の選択肢を取得
+    @prefectures = Prefecture.all
   end
 
   # GET /spots/1 or /spots/1.json

@@ -10,4 +10,8 @@ class User < ApplicationRecord
   def own?(object)
     id == object&.user.id
   end
+
+  def self.ransackable_attributes(auth_object = nil)
+    [ "id", "name" ]
+  end
 end

@@ -58,7 +58,7 @@ class SpotsTest < ApplicationSystemTestCase
     attach_file "spot_image", Rails.root.join("test/fixtures/files/test_image.png")
     click_on "更新"
 
-    assert_text "投稿が作成されました"
+    assert_text "投稿が更新されました"
     click_on "投稿一覧に戻る"
   end
 

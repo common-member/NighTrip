@@ -40,9 +40,9 @@ class SpotsTest < ApplicationSystemTestCase
     select @spot.prefecture.name, from: "spot[prefecture_id]"
     fill_in "spot_url", with: @spot.url
     attach_file "spot_image", Rails.root.join("test/fixtures/files/test_image.png")
-    click_on "Create Spot"
+    click_on "投稿"
 
-    assert_text "Spot was successfully created"
+    assert_text "投稿が作成されました"
     click_on "投稿一覧に戻る"
   end
 
@@ -56,9 +56,9 @@ class SpotsTest < ApplicationSystemTestCase
     select @spot.prefecture.name, from: "spot[prefecture_id]"
     fill_in "spot_url", with: @spot.url
     attach_file "spot_image", Rails.root.join("test/fixtures/files/test_image.png")
-    click_on "Update Spot"
+    click_on "更新"
 
-    assert_text "Spot was successfully updated"
+    assert_text "投稿が作成されました"
     click_on "投稿一覧に戻る"
   end
 
@@ -69,6 +69,6 @@ class SpotsTest < ApplicationSystemTestCase
       click_on "投稿を削除", match: :first
     end
 
-    assert_text "Spot was successfully destroyed"
+    assert_text "削除されました"
   end
 end

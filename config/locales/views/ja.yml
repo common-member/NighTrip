@@ -2,7 +2,7 @@ ja:
   # フォームへルパー関係は以下から取得する
   helpers:
     submit:
-      create: 登録
+      create: 投稿
       submit: 保存
       update: 更新
     label:
@@ -34,6 +34,7 @@ ja:
       destroyed: アカウントを削除しました。
       new:
         title: 新規会員登録
+        submit: 登録
         to_login_page: ログインページへ
         to_register_page: 登録ページへ
         password_forget: パスワードをお忘れの方はこちら

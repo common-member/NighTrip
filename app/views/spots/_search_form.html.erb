@@ -1,0 +1,23 @@
+<div class="mb-8 max-w-3xl mx-auto">
+  <%= search_form_for @q, class: "w-full grid grid-cols-6 gap-4" do |f| %>
+    <div class="col-span-2">
+      <%= f.label :prefecture_id_eq, "都道府県", class: "label" %>
+      <%= f.select :prefecture_id_eq, options_from_collection_for_select(@prefectures, :id,  :name, params.dig(:q, :prefecture_id_eq)),
+      { include_blank: "選択してください" },
+      { class: "w-full select select-bordered" } %>
+    </div>
+
+    <div class="col-span-4">
+      <%= f.label :name_or_address_or_body_or_user_name, "キーワード検索", class: "label" %>
+      <%= f.search_field :name_or_address_or_body_or_user_name, placeholder: "キーワードを入力", class: "input input-bordered w-full" %>
+    </div>
+
+    <div class="col-span-5">
+      <%= f.submit "検索", class: "btn btn-primary w-full" %>
+    </div>
+
+    <div class="col-span-1">
+      <%= sort_link(@q, :update_at, default_order: :desc, class: "btn btn-outline w-full") %>
+    </div>
+  <% end %>
+</div>

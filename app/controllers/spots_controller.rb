@@ -30,10 +30,10 @@ class SpotsController < ApplicationController
 
     respond_to do |format|
       if @spot.save
-        format.html { redirect_to @spot, notice: "Spot was successfully created." }
+        format.html { redirect_to @spot, notice: t("spots.create.success") }
         format.json { render :show, status: :created, location: @spot }
       else
-        format.html { render :new, status: :unprocessable_entity }
+        format.html { render :new, status: :unprocessable_entity, notice: t("spots.create.failure") }
         format.json { render json: @spot.errors, status: :unprocessable_entity }
       end
     end
@@ -43,10 +43,10 @@ class SpotsController < ApplicationController
   def update
     respond_to do |format|
       if @spot.update(spot_params)
-        format.html { redirect_to @spot, notice: "Spot was successfully updated." }
+        format.html { redirect_to @spot, notice: t("spots.update.success") }
         format.json { render :show, status: :ok, location: @spot }
       else
-        format.html { render :edit, status: :unprocessable_entity }
+        format.html { render :edit, status: :unprocessable_entity, notice: t("spots.update.failure") }
         format.json { render json: @spot.errors, status: :unprocessable_entity }
       end
     end
@@ -57,7 +57,7 @@ class SpotsController < ApplicationController
     @spot.destroy!
 
     respond_to do |format|
-      format.html { redirect_to spots_path, status: :see_other, notice: "Spot was successfully destroyed." }
+      format.html { redirect_to spots_path, status: :see_other, notice: t("spots.destroy.success") }
       format.json { head :no_content }
     end
   end

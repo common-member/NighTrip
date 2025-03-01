@@ -6,21 +6,21 @@
     <ul class="menu menu-horizontal px-1">
       <% if user_signed_in? %>
         <li>
-          <%= link_to "ログアウト", destroy_user_session_path, data: { turbo_method: :delete } %>
+          <%= link_to t('header.logout'), destroy_user_session_path, data: { turbo_method: :delete } %>
         </li>
       <% else %>
         <li>
-          <%= link_to "サインアップ", new_user_registration_path %>
+          <%= link_to t('header.sign_up'), new_user_registration_path %>
         </li>
         <li>
-          <%= link_to "ログイン", new_user_session_path %>
+          <%= link_to t('header.login'), new_user_session_path %>
         </li>
       <% end %>
       <li>
-        <%= link_to "新規投稿", new_spot_path %>
+        <%= link_to t('header.create_spot'), new_spot_path %>
       </li>
       <li>
-        <%= link_to "検索する", spots_path %>
+        <%= link_to t('header.spot_index'), spots_path %>
       </li>
     </ul>
   </div>

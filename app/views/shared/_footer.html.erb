@@ -1,11 +1,15 @@
 <footer class="footer footer-center bg-base-200 text-base-content rounded p-10 mt-12">
   <nav class="grid grid-flow-col gap-4">
-    <%= link_to "お問い合わせ", "https://forms.gle/PSBY2iA6keoDJm416",
+    <%= link_to t('footer.contact'), "https://forms.gle/PSBY2iA6keoDJm416",
                 class: "link link-hover",
                 target: "_blank",
                 rel: "noopener noreferrer" %>
-    <%= link_to "利用規約", terms_path, class: "link link-hover" %>
-    <%= link_to "プライバシーポリシー", "https://kiyac.app/privacypolicy/qO1wEtf0KvWQzyLaRJGK", class: "link link-hover", target: "_blank", rel: "noopener noreferrer" %>
+    <%= link_to t('footer.terms'), terms_path,
+                class: "link link-hover" %>
+    <%= link_to t('footer.privacy_policy'), "https://kiyac.app/privacypolicy/qO1wEtf0KvWQzyLaRJGK",
+                class: "link link-hover",
+                target: "_blank",
+                rel: "noopener noreferrer" %>
   </nav>
   <nav>
     <div class="grid grid-flow-col gap-4">

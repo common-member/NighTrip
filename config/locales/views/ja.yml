@@ -48,6 +48,8 @@ ja:
       title: ユーザー登録
       to_login_page: ログインページへ
   spots:
+    index:
+      no_spots: 条件に合うスポットが見つかりませんでした
     create:
       success: 投稿が作成されました
       failure: 投稿できませんでした

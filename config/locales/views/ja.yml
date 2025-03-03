@@ -71,3 +71,8 @@ ja:
     contact: お問い合わせ
     terms: 利用規約
     privacy_policy: プライバシーポリシー
+  views:
+    pagination:
+      first: "最初"
+      last: "最後"
+      truncate: "..."

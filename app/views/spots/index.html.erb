@@ -9,7 +9,7 @@
 
 <%= render 'search_form', q: @q, url: spots_path %>
 
-<div class="grid sm:grid-cols-3 gap-5 md:gap-8">
+<div class="grid sm:grid-cols-3 gap-5 md:gap-8 my-8">
   <% if @spots.any? %>
     <% @spots.each do |spot| %>
       <%= render spot %>
@@ -18,3 +18,5 @@
     <p class="text-center my-10 col-span-3"><%= t('spots.index.no_spots') %></p>
   <% end %>
 </div>
+
+<%= paginate @spots %>

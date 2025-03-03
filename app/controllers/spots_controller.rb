@@ -4,6 +4,10 @@ class SpotsController < ApplicationController
 
   # GET /spots or /spots.json
   def index
+    # 検索条件をparamsから取り出して手動でマージ
+    search_params = params[:q] || {}
+    search_params[:name_or_address_or_body_or_user_name_cont] = params[:q][:name_or_address_or_body_or_user_name] if params.dig(:q, :name_or_address_or_body_or_user_name).present?
+
     @q = Spot.ransack(params[:q])
     @spots = @q.result.includes(:user, :prefecture).page(params[:page])
     # 都道府県の選択肢を取得

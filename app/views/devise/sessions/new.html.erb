@@ -1,7 +1,7 @@
-<div class="hero bg-base-200 min-h-screen">
+<div class="hero min-h-screen">
   <div class="hero-content flex-col w-full">
     <div class="text-center lg:text-left mb-5">
-      <h1 class="text-5xl font-bold">ログイン</h1>
+      <h1 class="text-5xl font-bold"><%= t('.title') %></h1>
     </div>
 
     <div class="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
@@ -12,7 +12,7 @@
           <!-- メールアドレスフィールド -->
           <div class="form-control">
             <label class="label">
-              <span class="label-text">メールアドレス</span>
+              <span class="label-text"><%= t('activerecord.attributes.user.email') %></span>
             </label>
             <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "input input-bordered" %>
           </div>
@@ -20,7 +20,7 @@
           <!-- パスワードフィールド -->
           <div class="form-control">
             <label class="label">
-              <span class="label-text">パスワード</span>
+              <span class="label-text"><%= t('activerecord.attributes.user.password') %></span>
             </label>
             <%= f.password_field :password, autocomplete: "current-password", class: "input input-bordered" %>
           </div>
@@ -30,7 +30,7 @@
             <div class="form-control">
               <label class="label cursor-pointer">
                 <%= f.check_box :remember_me, class: "checkbox" %>
-                <span class="label-text">ログイン状態を保持する</span>
+                <span class="label-text"><%= t('.remember_me') %></span>
               </label>
             </div>
           <% end %>
@@ -39,20 +39,18 @@
             <div class="card bg-base-300 rounded-box grid place-items-center">
               <!-- ログインボタン -->
               <div class="form-control w-full">
-                <%= f.submit "ログイン", class: "btn btn-primary w-full" %>
+                <%= f.submit t('helpers.submit.login'), class: "btn btn-primary w-full" %>
               </div>
             </div>
             <div class="divider">OR</div>
             <div class="card bg-base-300 rounded-box grid place-items-center">
-              <%= link_to "新規会員登録の場合", new_user_registration_path, class: "btn btn-primary w-full" %>
+              <%= link_to t('.to_registration'), new_user_registration_path, class: "btn btn-primary w-full" %>
             </div>
           </div>
 
-          <!-- パスワードを忘れた場合のリンク
           <div class="card bg-base-300 rounded-box grid place-items-center mt-5">
-            <%= link_to "パスワードを忘れた場合", new_user_password_path, class: "btn btn-primary w-full" %>
+            <%= link_to t('.forget_password'), new_user_password_path, class: "btn btn-primary w-full" %>
           </div>
-          -->
 
         </div>
       <% end %>

@@ -5,6 +5,10 @@ ja:
       create: 投稿
       submit: 保存
       update: 更新
+      send: 送信
+      login: ログイン
+      change_password: 変更する
+      registration: 登録
     label:
       name: ユーザー名
       email: メールアドレス
@@ -25,9 +29,20 @@ ja:
     sessions:
       signed_in: ログインしました。
       signed_out: ログアウトしました。
+      new:
+        title: ログイン
+        forget_password: パスワードを忘れた場合
+        remember_me: ログイン状態を保持する
+        to_registration: 新規会員登録
     passwords:
       send_instructions: パスワードリセットの案内を送信しました。
       updated: パスワードが変更されました。
+      new:
+        forget_password?: パスワードをお忘れですか？
+      edit:
+        title: パスワード変更
+        new_password: 新しいパスワード
+        comfirmation: 新しいパスワードの確認
     registrations:
       signed_up: アカウント登録が完了しました。
       updated: アカウント情報を更新しました。
@@ -38,6 +53,15 @@ ja:
         to_login_page: ログインページへ
         to_register_page: 登録ページへ
         password_forget: パスワードをお忘れの方はこちら
+    mailer:
+      reset_password_instructions:
+        subject:                    "パスワードの再設定"
+        title:                      "こんにちは、"
+        reset_password_explanation: "パスワードの変更を受け付けました。以下のリンクから変更できます。"
+        reset_password_link:        "パスワードを変更する"
+        please_ignore:              "※パスワードリセットの申請に心当たりがない場合は、以降の対応は不要となります。"
+        wont_change:                "※上記リンクをクリックして新しいパスワードを作成しない限り、パスワードは変更されません。"
+        reset_password_within:      "※リンクの有効期限は6時間です。"
   user_sessions:
     new:
       title: ログイン
@@ -76,3 +100,7 @@ ja:
       first: "最初"
       last: "最後"
       truncate: "..."
+  errors:
+    messages:
+      not_saved: "保存できませんでした"
+      not_found: "見つかりませんでした"

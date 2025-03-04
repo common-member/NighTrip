@@ -1,7 +1,7 @@
-<div class="hero bg-base-200 min-h-screen">
+<div class="hero min-h-screen">
   <div class="hero-content flex-col w-full">
     <div class="text-center lg:text-left mb-5">
-      <h1 class="text-5xl font-bold">パスワードをお忘れですか？</h1>
+      <h1 class="text-5xl font-bold"><%= t('.forget_password?') %></h1>
     </div>
 
     <div class="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
@@ -12,19 +12,17 @@
           <!-- メールアドレスフィールド -->
           <div class="form-control">
             <label class="label">
-              <span class="label-text">メールアドレス</span>
+              <span class="label-text"><%= t('activerecord.attributes.user.email') %></span>
             </label>
             <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "input input-bordered" %>
           </div>
 
-          <!-- パスワードリセット送信ボタン
           <div class="form-control mt-6">
-            <%= f.submit "パスワードリセットの案内を送信", class: "btn btn-primary w-full" %>
+            <%= f.submit t('helpers.submit.send'), class: "btn btn-primary w-full" %>
           </div>
-          -->
 
           <div class="card bg-base-300 rounded-box grid place-items-center mt-5">
-            <%= link_to "ログインページに戻る", new_user_session_path, class: "btn btn-primary w-full" %>
+            <%= link_to "ログインページに戻る", new_user_session_path, class: "btn btn-primary w-full " %>
           </div>
         </div>
       <% end %>

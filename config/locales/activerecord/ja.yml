@@ -15,3 +15,9 @@ ja:
         url: URL
         body: その他情報
         image: 画像
+    errors:
+      models:
+        user:
+          attributes:
+            email:
+              not_found: "が見つかりません"

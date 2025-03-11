@@ -6,9 +6,9 @@ class CommentsController < ApplicationController
     @comment.user = current_user
 
     if @comment.save
-      redirect_to @spot, notice: 'コメントが投稿されました。'
+      redirect_to @spot, notice: "コメントが投稿されました。"
     else
-      redirect_to @spot, alert: 'コメントの投稿に失敗しました。'
+      redirect_to @spot, alert: "コメントの投稿に失敗しました。"
     end
   end
 

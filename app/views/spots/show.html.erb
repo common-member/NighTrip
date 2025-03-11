@@ -56,6 +56,17 @@
   </div>
 </div>
 
+<%# コメント部分 %>
+<div class="flex w-3/5 flex-col mx-auto my-8">
+  <%= render 'comments/form', comment: @comment, spot: @spot %>
+
+  <% if @spot.comments.any? %>
+    <%= render @spot.comments %>
+  <% else %>
+    <p class="mx-auto">コメントはまだありません。</p>
+  <% end %>
+</div>
+
 <div class="flex w-3/5 flex-col border-opacity-50 mx-auto mt-5">
   <% if current_user&.own?(@spot) %>
     <!-- button to edit a spot -->

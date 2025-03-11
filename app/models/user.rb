@@ -6,6 +6,7 @@ class User < ApplicationRecord
 
   validates :name, presence: true, length: { maximum: 100 }
   has_many :spots, dependent: :destroy
+  has_many :comments, dependent: :destroy
 
   def own?(object)
     id == object&.user.id

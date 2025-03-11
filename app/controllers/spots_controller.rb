@@ -2,7 +2,6 @@ class SpotsController < ApplicationController
   before_action :set_spot, only: %i[ edit update destroy ]
   skip_before_action :authenticate_user!, only: %i[ index show ]
 
-  # GET /spots or /spots.json
   def index
     # 検索条件をparamsから取り出して手動でマージ
     search_params = params[:q] || {}
@@ -14,21 +13,19 @@ class SpotsController < ApplicationController
     @prefectures = Prefecture.all
   end
 
-  # GET /spots/1 or /spots/1.json
   def show
     @spot = Spot.find(params[:id])
+    @comment = Comment.new
+    @comments = @spot.comments.includes(:user).order(created_at: :desc)
   end
 
-  # GET /spots/new
   def new
     @spot = current_user.spots.build
   end
 
-  # GET /spots/1/edit
   def edit
   end
 
-  # POST /spots or /spots.json
   def create
     @spot = current_user.spots.build(spot_params)
 
@@ -43,7 +40,6 @@ class SpotsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /spots/1 or /spots/1.json
   def update
     respond_to do |format|
       if @spot.update(spot_params)
@@ -56,7 +52,6 @@ class SpotsController < ApplicationController
     end
   end
 
-  # DELETE /spots/1 or /spots/1.json
   def destroy
     @spot.destroy!
 
@@ -67,12 +62,10 @@ class SpotsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_spot
       @spot = current_user.spots.find(params[:id])
     end
 
-    # Only allow a list of trusted parameters through.
     def spot_params
       params.require(:spot).permit(:name, :prefecture_id, :address, :url, :body, :image)
     end

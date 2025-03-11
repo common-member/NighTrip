@@ -7,7 +7,9 @@ Rails.application.routes.draw do
     root to: "top#home"
   end
 
-  resources :spots
+  resources :spots do
+    resources :comments, only: %i[ create ], shallow: true
+  end
 
   # 利用規約
   get "terms", to: "terms#index"

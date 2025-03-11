@@ -1,0 +1,10 @@
+<%= form_with model: comment, url: spot_comments_path(spot), class: 'w-full' do |f| %>
+  <div class="form-control mb-4">
+    <%= f.label :body, t('helpers.label.comment'), class: 'label-text' %>
+    <%= f.text_area :body, class: 'textarea textarea-bordered w-full', rows: 4 %>
+  </div>
+
+  <div class="form-control mb-4">
+    <%= f.submit t('helpers.submit.create'), class: 'btn btn-primary w-full' %>
+  </div>
+<% end %>

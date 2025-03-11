@@ -14,6 +14,7 @@ ja:
       email: メールアドレス
       password: パスワード
       password_confirmation: パスワード確認
+      comment: コメント
   top:
     home:
       search_spots: 夜景スポットを探す

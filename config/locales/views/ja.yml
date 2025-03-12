@@ -90,7 +90,7 @@ ja:
     spot: スポット
     spot_index: 投稿一覧
     create_spot: 新規投稿
-    # bookmark_index: ブックマーク一覧
+    bookmark_index: お気に入り
     # profile: プロフィール
   footer:
     contact: お問い合わせ
@@ -105,3 +105,8 @@ ja:
     messages:
       not_saved: "保存できませんでした"
       not_found: "見つかりませんでした"
+  bookmarks:
+    create:
+      success: お気に入り登録しました
+    destroy:
+      success: お気に入り登録を解除しました

@@ -12,7 +12,7 @@ Rails.application.routes.draw do
     resource :bookmarks, only: %i[ create destroy ]
   end
 
-  resources :bookmarks, only: [ :index ]
+  resources :bookmarks, only: %i[ index ]
 
   # 利用規約
   get "terms", to: "terms#index"

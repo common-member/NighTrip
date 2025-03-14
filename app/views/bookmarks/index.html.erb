@@ -1,0 +1,8 @@
+<div class="grid sm:grid-cols-3 gap-5 md:gap-8 my-8">
+  <% if @bookmarks.any? %>
+      <%= render partial: 'spots/spot', collection: @bookmarks.map(&:spot) %>
+    </div>
+  <% else %>
+    <p class="text-center my-10 col-span-3"><%= t('.no_bookmark') %></p>
+  <% end %>
+</div>

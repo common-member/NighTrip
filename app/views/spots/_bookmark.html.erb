@@ -1,3 +1,15 @@
-<%= link_to bookmarks_path(spot_id: spot.id), id: "bookmark-button-for-spot-#{spot.id}", data: { turbo_method: :post }, class: "btn btn-neutral" do %>
-  <svg class="h-4 w-4 text-slate-200"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round">  <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" /></svg>
+<% if user_signed_in? %>
+  <% if spot.bookmarked_by?(current_user) %>
+    <%= link_to spot_bookmarks_path(spot_id: spot.id), id: "spot_#{spot.id}_bookmark", data: { turbo_method: :delete }, class: "btn btn-primary" do %>
+      <svg class="h-4 w-4 text-slate-900" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+      </svg>
+    <% end %>
+  <% else %>
+    <%= link_to spot_bookmarks_path(spot_id: spot.id), id: "spot_#{spot.id}_bookmark", data: { turbo_method: :post }, class: "btn btn-neutral" do %>
+      <svg class="h-4 w-4 text-slate-200" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+      </svg>
+    <% end %>
+  <% end %>
 <% end %>

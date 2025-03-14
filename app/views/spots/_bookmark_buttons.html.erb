@@ -1,7 +1,3 @@
-<div class="ml-auto">
-  <% if current_user.bookmark?(spot) %>
-    <%= render 'unbookmark', { spot: spot } %>
-  <% else %>
-    <%= render 'bookmark', { spot: spot } %>
-  <% end %>
+<div class="ml-auto", id="spot_<%= spot.id %>_bookmark">
+  <%= render 'spots/bookmark', { spot: spot } %>
 </div>

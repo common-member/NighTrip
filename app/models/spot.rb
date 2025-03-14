@@ -13,6 +13,10 @@ class Spot < ApplicationRecord
   validates :body, length: { maximum: 5000 }
   validates :image, presence: true
 
+  def bookmarked_by?(user)
+    bookmarks.exists?(user_id: user.id)
+  end
+
   private
 
   def url_present?

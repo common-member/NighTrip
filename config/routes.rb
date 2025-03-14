@@ -9,11 +9,10 @@ Rails.application.routes.draw do
 
   resources :spots do
     resources :comments, only: %i[ create ], shallow: true
-    collection do
-      get :bookmarks
-    end
+    resource :bookmarks, only: %i[ create destroy ]
   end
-  resources :bookmarks, only: %i[ create destroy ]
+
+  resources :bookmarks, only: [ :index ]
 
   # 利用規約
   get "terms", to: "terms#index"

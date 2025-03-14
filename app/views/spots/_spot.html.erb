@@ -10,7 +10,7 @@
     <h2 class="card-title"><%= spot.name %></h2>
     <p><%= spot.prefecture.name %><%= spot.address %></p>
     <div class="card-actions justify-end">
-      <%= render 'bookmark_buttons', { spot: spot } %>
+      <%= render 'spots/bookmark_buttons', { spot: spot } %>
       <%= link_to "詳細", spot, class: "btn btn-primary" %>
     </div>
   </div>

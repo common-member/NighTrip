@@ -106,7 +106,9 @@ ja:
       not_saved: "保存できませんでした"
       not_found: "見つかりませんでした"
   bookmarks:
+    index:
+      no_bookmark: お気に入り登録された投稿はありません
     create:
-      success: お気に入り登録しました
+      failure: お気に入り登録できませんでした
     destroy:
-      success: お気に入り登録を解除しました
+      failure: お気に入り登録を解除できませんでした

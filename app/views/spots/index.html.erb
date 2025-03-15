@@ -1,22 +1,17 @@
 <% content_for :title, "Spots" %>
 
-<!-- 投稿一覧 -->
-  <!-- daisyUIデフォルトflash
-  <% if notice.present? %>
-    <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-md inline-block" id="notice"><%= notice %></p>
-  <% end %>
-  -->
-
 <%= render 'search_form', q: @q, url: spots_path %>
 
-<div class="grid sm:grid-cols-3 gap-5 md:gap-8 my-8">
-  <% if @spots.any? %>
-    <% @spots.each do |spot| %>
-      <%= render spot %>
+<%= turbo_frame_tag "spots_list" do %>
+  <div class="grid sm:grid-cols-3 gap-5 md:gap-8 my-8", id="spots_list">
+    <% if @spots.any? %>
+      <% @spots.each do |spot| %>
+        <%= render spot %>
+      <% end %>
+    <% else %>
+      <p class="text-center my-10 col-span-3"><%= t('spots.index.no_spots') %></p>
     <% end %>
-  <% else %>
-    <p class="text-center my-10 col-span-3"><%= t('spots.index.no_spots') %></p>
-  <% end %>
-</div>
+  </div>
 
-<%= paginate @spots %>
+  <%= paginate @spots %>
+<% end %>

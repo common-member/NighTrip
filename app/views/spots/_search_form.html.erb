@@ -1,5 +1,5 @@
 <div class="mb-8 mt-4 max-w-3xl mx-auto">
-  <%= search_form_for @q, class: "w-full grid grid-cols-6 gap-4" do |f| %>
+  <%= search_form_for @q, html: { data: { turbo_frame: "spots_list" } }, class: "w-full grid grid-cols-6 gap-4" do |f| %>
     <div class="col-span-2">
       <%= f.collection_select :prefecture_id_eq, @prefectures, :id, :name,
       { include_blank: "都道府県を選択" },

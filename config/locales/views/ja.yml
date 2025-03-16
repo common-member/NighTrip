@@ -3,6 +3,7 @@ ja:
   helpers:
     submit:
       create: 投稿
+      comment_create: コメントを投稿
       submit: 保存
       update: 更新
       send: 送信

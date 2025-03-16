@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   end
 
   resources :spots do
-    resources :comments, only: %i[ create ], shallow: true
+    resources :comments, only: %i[ create destroy ]
     resource :bookmarks, only: %i[ create destroy ]
   end
 

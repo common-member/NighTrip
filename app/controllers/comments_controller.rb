@@ -15,10 +15,13 @@ class CommentsController < ApplicationController
 
   def destroy
     spot = Spot.find(params[:spot_id])
-    comment = spot.comments.find(params[:id])
-    if comment.user.id == current_user.id
-      if comment.destroy
-        redirect_to spot, notice: "コメントが削除されました。"
+    @comment = spot.comments.find(params[:id])
+
+    if @comment.user.id == current_user.id
+      if @comment.destroy
+        respond_to do |format|
+          format.turbo_stream
+        end
       else
         redirect_to spot, alert: "コメントの削除に失敗しました。"
       end

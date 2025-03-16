@@ -1,4 +1,4 @@
-<div class="comment">
+<div id="comment_<%= comment.id %>" class="comment">
   <table class="comment-table mb-4">
     <tr>
       <td><strong><%= comment.user.name %></strong></td>
@@ -9,7 +9,7 @@
     </tr>
   </table>
   <% if current_user&.own?(comment) %>
-    <%= link_to "コメントを削除", spot_comment_path(comment.spot, comment), data: { turbo_method: :delete, turbo_confirm: '本当に削除しますか？' }, class: "btn btn-error w-full" %>
+    <%= link_to "削除する", spot_comment_path(comment.spot, comment), data: { turbo_method: :delete, turbo_confirm: '本当に削除しますか？' }, class: "btn btn-error w-full" %>
   <% end %>
   <div class="divider"></div>
 </div>

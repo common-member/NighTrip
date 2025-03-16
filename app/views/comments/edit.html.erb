@@ -1,0 +1,10 @@
+<%= turbo_frame_tag "comment_#{@comment.id}" do %>
+  <%= form_with(model: @comment, url: spot_comment_path(@spot, @comment), method: :put, class: 'comment_form w-full') do |f| %>
+    <div class="form-control mb-4">
+      <%= f.text_area :body, class: 'textarea textarea-bordered w-full', placeholder: "コメントを入力", rows: 3 %>
+    </div>
+    <div class="form-control mb-4">
+      <%= f.submit "更新", class: 'btn btn-primary w-full' %>
+    </div>
+  <% end %>
+<% end %>

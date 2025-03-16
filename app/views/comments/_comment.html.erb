@@ -1,15 +1,18 @@
-<div id="comment_<%= comment.id %>" class="comment">
-  <table class="comment-table mb-4">
-    <tr>
-      <td><strong><%= comment.user.name %></strong></td>
-      <td><%= comment.created_at.strftime("%Y/%m/%d %H:%M") %></td>
-    </tr>
-    <tr>
-      <td colspan="2"><%= comment.body %></td>
-    </tr>
-  </table>
-  <% if current_user&.own?(comment) %>
-    <%= link_to "削除する", spot_comment_path(comment.spot, comment), data: { turbo_method: :delete, turbo_confirm: '本当に削除しますか？' }, class: "btn btn-error w-full" %>
-  <% end %>
-  <div class="divider"></div>
-</div>
+<%= turbo_frame_tag comment do %>
+  <div id="comment_<%= comment.id %>" class="comment">
+    <table class="comment-table mb-4">
+      <tr>
+        <td><strong><%= comment.user.name %></strong></td>
+        <td><%= comment.created_at.strftime("%Y/%m/%d %H:%M") %></td>
+      </tr>
+      <tr>
+        <td colspan="2"><%= comment.body %></td>
+      </tr>
+    </table>
+    <% if current_user&.own?(comment) %>
+      <%= link_to "コメントを編集", edit_spot_comment_path(@spot, comment), class: "btn btn-primary w-full mb-4" %>
+      <%= link_to "コメントを削除", spot_comment_path(comment.spot, comment), data: { turbo_method: :delete, turbo_confirm: '本当に削除しますか？' }, class: "btn btn-error w-full" %>
+    <% end %>
+    <div class="divider"></div>
+  </div>
+<% end %>

@@ -1,6 +1,9 @@
 class CommentsController < ApplicationController
-  before_action :set_spot, only: %i[create destroy]
-  before_action :set_comment, only: %i[destroy]
+  before_action :set_spot, only: %i[edit create update destroy]
+  before_action :set_comment, only: %i[edit update destroy]
+
+  def edit
+  end
 
   def create
     @comment = @spot.comments.new(comment_params)
@@ -13,10 +16,15 @@ class CommentsController < ApplicationController
     end
   end
 
-  def destroy
-    spot = Spot.find(params[:spot_id])
-    @comment = spot.comments.find(params[:id])
+  def update
+    if @comment.update(comment_params)
+      redirect_to @spot, notice: "コメントが更新されました。"
+    else
+      render :edit, alert: "コメントの更新に失敗しました。"
+    end
+  end
 
+  def destroy
     if @comment.user.id == current_user.id
       if @comment.destroy
         respond_to do |format|

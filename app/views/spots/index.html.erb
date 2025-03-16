@@ -2,16 +2,12 @@
 
 <%= render 'search_form', q: @q, url: spots_path %>
 
-<%= turbo_frame_tag "spots_list" do %>
-  <div class="grid sm:grid-cols-3 gap-5 md:gap-8 my-8", id="spots_list">
-    <% if @spots.any? %>
-      <% @spots.each do |spot| %>
-        <%= render spot %>
-      <% end %>
-    <% else %>
-      <p class="text-center my-10 col-span-3"><%= t('spots.index.no_spots') %></p>
-    <% end %>
-  </div>
+<div class="grid sm:grid-cols-3 gap-5 md:gap-8 my-8">
+  <% if @spots.any? %>
+    <%= render @spots %>
+  <% else %>
+    <p class="text-center my-10 col-span-3"><%= t('spots.index.no_spots') %></p>
+  <% end %>
+</div>
 
-  <%= paginate @spots %>
-<% end %>
+<%= paginate @spots %>

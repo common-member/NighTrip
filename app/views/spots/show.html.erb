@@ -60,10 +60,12 @@
 <div class="flex w-3/5 flex-col mx-auto my-8">
   <%= render 'comments/form', comment: @comment, spot: @spot %>
 
+  <div class="divider"></div>
+
   <% if @spot.comments.any? %>
     <%= render @spot.comments %>
   <% else %>
-    <p class="mx-auto">コメントはまだありません。</p>
+    <p class="mx-auto">コメントはまだ投稿されていません</p>
   <% end %>
 </div>
 

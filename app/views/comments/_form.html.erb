@@ -1,8 +1,10 @@
-<%= form_with(model: comment, url: spot_comments_path(spot_id: spot.id, id: comment.id), class: 'comment_form w-full') do |f| %>
-  <div class="form-control mb-4">
-    <%= f.text_area :body, class: 'textarea textarea-bordered w-full', placeholder: "コメントを入力", rows: 3 %>
-  </div>
-  <div class="form-control mb-4">
-    <%= f.submit comment.new_record? ? "作成" : "更新", class: 'btn btn-primary w-full' %>
-  </div>
-<% end %>
+<div id="comment_form">
+  <%= form_with(model: comment, url: spot_comments_path(spot_id: spot.id, id: comment.id), class: 'w-full') do |f| %>
+    <div class="form-control mb-4">
+      <%= f.text_area :body, class: 'textarea textarea-bordered w-full', placeholder: "コメントを入力", rows: 3 %>
+    </div>
+    <div class="form-control mb-4">
+      <%= f.submit comment.new_record? ? "作成" : "更新", class: 'btn btn-primary w-full' %>
+    </div>
+  <% end %>
+</div>

@@ -10,7 +10,9 @@ class CommentsController < ApplicationController
     @comment.user = current_user
 
     if @comment.save
-      redirect_to @spot, notice: "コメントが投稿されました。"
+      respond_to do |format|
+        format.turbo_stream
+      end
     else
       redirect_to @spot, alert: "コメントの投稿に失敗しました。"
     end

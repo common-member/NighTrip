@@ -1,8 +1,8 @@
 <%= turbo_frame_tag comment do %>
-  <div id="comment_<%= comment.id %>" class="comment">
+  <div id="comment-<%= comment.id %>" class="comment">
     <table class="comment-table mb-4">
       <tr>
-        <td><strong><%= comment.user.name %></strong></td>
+        <p><strong><%= comment.user.name %></strong></p>
         <td><%= comment.created_at.strftime("%Y/%m/%d %H:%M") %></td>
       </tr>
       <tr>

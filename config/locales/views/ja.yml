@@ -56,6 +56,12 @@ ja:
         to_login_page: ログインページへ
         to_register_page: 登録ページへ
         password_forget: パスワードをお忘れの方はこちら
+      edit:
+        title: アカウント情報編集
+        submit: 更新
+        current_password: 現在のパスワード
+        cancel_account: アカウント削除
+        back: 戻る
     mailer:
       reset_password_instructions:
         subject:                    "パスワードの再設定"
@@ -65,6 +71,9 @@ ja:
         please_ignore:              "※パスワードリセットの申請に心当たりがない場合は、以降の対応は不要となります。"
         wont_change:                "※上記リンクをクリックして新しいパスワードを作成しない限り、パスワードは変更されません。"
         reset_password_within:      "※リンクの有効期限は6時間です。"
+    errors:
+      messages:
+        current_password: 現在のパスワード
   user_sessions:
     new:
       title: ログイン
@@ -93,7 +102,7 @@ ja:
     spot_index: 投稿一覧
     create_spot: 新規投稿
     bookmark_index: お気に入り
-    # profile: プロフィール
+    profile: マイページ
   footer:
     contact: お問い合わせ
     terms: 利用規約

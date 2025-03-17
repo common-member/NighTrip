@@ -9,6 +9,7 @@ ja:
         name: ユーザー名
         password: パスワード
         password_confirmation: パスワード確認
+        current_password: 現在のパスワード
       spot:
         name: スポット名
         address: 位置情報

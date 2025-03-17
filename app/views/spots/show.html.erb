@@ -63,7 +63,9 @@
   <div class="divider"></div>
 
   <% if @spot.comments.any? %>
-    <%= render @spot.comments %>
+    <div id="comments">
+      <%= render @spot.comments %>
+    </div>
   <% else %>
     <p class="mx-auto">コメントはまだ投稿されていません</p>
   <% end %>

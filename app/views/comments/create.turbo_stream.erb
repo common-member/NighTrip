@@ -1,5 +1,5 @@
-<%= turbo_stream.prepend "comments" do %>
-  <%= render partial: "comments/comment", locals: { comment: @comment } %>
+<%= turbo_stream.replace "comments" do %>
+  <%= render @spot.comments %>
 <% end %>
 
 <%= turbo_stream.replace "comment_form" do %>

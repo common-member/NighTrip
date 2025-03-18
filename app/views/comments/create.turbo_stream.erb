@@ -1,6 +1,8 @@
-<%= turbo_stream.replace "comments" do %>
-  <%= render @spot.comments %>
+<%= turbo_stream.prepend "comments" do %>
+  <%= render partial: "comments/comment", locals: { comment: @comment } %>
 <% end %>
+
+<%= turbo_stream.remove "no_comments" %>
 
 <%= turbo_stream.replace "comment_form" do %>
   <%= render 'comments/form', spot: @spot, comment: @spot.comments.new %>

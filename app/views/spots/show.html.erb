@@ -66,7 +66,7 @@
     <% if @spot.comments.any? %>
       <%= render @spot.comments %>
     <% else %>
-      <p class="text-center">コメントはまだ投稿されていません</p>
+      <p id="no_comments" class="text-center">コメントはまだ投稿されていません</p>
     <% end %>
   </div>
 </div>

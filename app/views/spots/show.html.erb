@@ -62,13 +62,13 @@
 
   <div class="divider"></div>
 
-  <% if @spot.comments.any? %>
-    <div id="comments">
+  <div id="comments">
+    <% if @spot.comments.any? %>
       <%= render @spot.comments %>
-    </div>
-  <% else %>
-    <p class="mx-auto">コメントはまだ投稿されていません</p>
-  <% end %>
+    <% else %>
+      <p class="text-center">コメントはまだ投稿されていません</p>
+    <% end %>
+  </div>
 </div>
 
 <div class="flex w-3/5 flex-col border-opacity-50 mx-auto mt-5">

@@ -1,6 +1,0 @@
-<% 10.times do |n| %>
-user_<%= n %>:
-  email: <%= "user#{n}@example.com" %>
-  encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
-  name: <%= "user#{n}" %>
-<% end %>

@@ -8,6 +8,7 @@ FactoryBot.define do
     association :user
     association :prefecture
 
+    # インスタンス生成後でないと、画像はattachできない。
     after(:build) do |spot|
       spot.image.attach(
         io: File.open(Rails.root.join('spec/fixtures/sample.jpg')),

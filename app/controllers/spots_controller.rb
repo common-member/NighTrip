@@ -13,6 +13,18 @@ class SpotsController < ApplicationController
     @spot = Spot.find(params[:id])
     @comment = Comment.new
     @comments = @spot.comments.includes(:user).order(created_at: :desc)
+
+    meta_tags = {
+      title: @spot.name,
+      og: {
+        title: @spot.name,
+        image: @spot.image.attached? ? url_for(@spot.image) : image_url("ogp-placeholder.png")
+      },
+      twitter: {
+        image: @spot.image.attached? ? url_for(@spot.image) : image_url("ogp-placeholder.png")
+      }
+    }
+    set_meta_tags(meta_tags)
   end
 
   def new

@@ -9,6 +9,7 @@
           1,
           null,
           null,
+          null,
           1,
           1,
           1,
@@ -20,6 +21,14 @@
           null,
           1,
           0,
+          null,
+          null,
+          1,
+          1,
+          1,
+          1,
+          1,
+          null,
           null,
           null
         ]
@@ -75,6 +84,12 @@
         ]
       },
       "/myapp/app/helpers/top_helper.rb": {
+        "lines": [
+          1,
+          null
+        ]
+      },
+      "/myapp/app/helpers/users/omniauth_callbacks_helper.rb": {
         "lines": [
           1,
           null
@@ -248,8 +263,8 @@
           1,
           null,
           1,
-          5,
-          5,
+          6,
+          6,
           null,
           null
         ]
@@ -260,6 +275,27 @@
           1,
           null,
           1,
+          null
+        ]
+      },
+      "/myapp/app/controllers/users/omniauth_callbacks_controller.rb": {
+        "lines": [
+          1,
+          1,
+          1,
+          null,
+          1,
+          1,
+          1,
+          null,
+          0,
+          0,
+          null,
+          null,
+          null,
+          1,
+          0,
+          null,
           null
         ]
       },
@@ -417,6 +453,6 @@
         "branches": {}
       }
     },
-    "timestamp": 1743229299
+    "timestamp": 1743322229
   }
 }

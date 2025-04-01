@@ -13,6 +13,15 @@ class User < ApplicationRecord
   # == Validations ==
   validates :name, presence: true, length: { maximum: 100 }
 
+  # == Scopes ==
+  scope :ranked_by_top_5_bookmarked_count_users, -> {
+    joins(spots: :bookmarks)
+    .where.not(email: ENV["EXCLUDED_EMAIL"])
+    .group("users.id")
+    .order("COUNT(bookmarks.id) DESC")
+    .limit(5)
+  }
+
   # == Class Methods ==
   def self.ransackable_attributes(auth_object = nil)
     [ "id", "name" ]
@@ -29,5 +38,9 @@ class User < ApplicationRecord
   # == Instance Methods ==
   def own?(object)
     id == object&.user.id
+  end
+
+  def total_bookmarked_count
+    spots.joins(:bookmarks).count
   end
 end

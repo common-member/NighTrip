@@ -27,6 +27,30 @@
   </tbody>
 </table>
 
+<h1 class="text-center text-2xl font-bold mb-2 mt-5">TOP5ユーザー別ブックマーク数</h1>
+
+<table>
+<table class="table border border-gray-800">
+  <thead>
+    <tr>
+      <th class="border border-gray-800">順位</th>
+      <th class="border border-gray-800">ユーザー名</th>
+      <th class="border border-gray-800">お気に入りされた数</th>
+      <th class="border border-gray-800">投稿数</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @top_5_users_by_bookmarks.each_with_index do |user, index| %>
+      <tr>
+        <td class="border border-gray-800"><%= index + 1 %> 位</td>
+        <td class="border border-gray-800"><%= user.name %></td>
+        <td class="border border-gray-800"><%= user.total_bookmarked_count %></td>
+        <td class="border border-gray-800"><%= user.spots.count %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
 <div class="mt-5 w-3/5 mx-auto">
   <%= back_button %>
 </div>

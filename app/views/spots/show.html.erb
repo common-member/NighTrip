@@ -7,11 +7,11 @@
 <h1 class="font-bold text-4xl p-3"><%= @spot.name%></h1>
 <div class="grid sm:grid-cols-3">
   <figure class="sm:col-span-2 mb-3">
-    <%= image_tag @spot.image %>
+    <%= image_tag @spot.image, class: "rounded" %>
   </figure>
 
-  <div class="bg-neutral sm:g sm:mx-4 w-full">
-    <h1 class="bg-info text-info-content p-4 text-xl">基本情報</h1>
+  <div class="bg-neutral sm:g sm:mx-4 w-full rounded">
+    <h1 class="bg-info text-info-content p-4 text-xl rounded">基本情報</h1>
 
     <div class="py-5 mx-5">
       <div class="divider divider-info text-xl">位置情報</div>
@@ -80,20 +80,12 @@
   </div>
 </div>
 
-<div class="flex w-3/5 flex-col border-opacity-50 mx-auto mt-5">
+<div class="w-3/5 mx-auto mt-5 space-y-5">
   <% if current_user&.own?(@spot) %>
-    <!-- button to edit a spot -->
-    <div class="card bg-base-content rounded-box grid place-items-center mb-5">
-      <%= link_to "投稿を編集", edit_spot_path(@spot), class: "btn btn-primary w-full" %>
-    </div>
-    <!-- button to delete a spot -->
-    <div class="card bg-base-content rounded-box grid place-items-center">
-      <%= link_to "投稿を削除", @spot, data: { turbo_method: :delete, turbo_confirm: "本当に削除しますか？" }, class: "btn btn-error w-full" %>
-    </div>
-    <div class="divider">OR</div>
+    <%= link_to "投稿を編集", edit_spot_path(@spot), class: "btn btn-primary w-full" %>
+    <%= link_to "投稿を削除", @spot, data: { turbo_method: :delete, turbo_confirm: "本当に削除しますか？" }, class: "btn btn-error w-full" %>
   <% end %>
 
-  <div class="card bg-base-content rounded-box grid place-items-center">
-    <%= link_to "投稿一覧に戻る", spots_path, class: "btn btn-primary w-full" %>
-  </div>
+  <%= back_button %>
+  <%= spots_index_button %>
 </div>

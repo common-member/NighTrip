@@ -17,6 +17,8 @@ ja:
       password: パスワード
       password_confirmation: パスワード確認
       comment: コメント
+      back: 戻る
+      spots_index: 投稿一覧へ
   top:
     home:
       search_spots: 夜景スポットを探す
@@ -63,7 +65,6 @@ ja:
         submit: 更新
         current_password: 現在のパスワード
         cancel_account: アカウント削除
-        back: 戻る
     mailer:
       reset_password_instructions:
         subject:                    "パスワードの再設定"
@@ -102,6 +103,7 @@ ja:
     logout: ログアウト
     spot: スポット
     spot_index: 投稿一覧
+    spot_ranking: ランキング
     create_spot: 新規投稿
     bookmark_index: お気に入り
     profile: マイページ

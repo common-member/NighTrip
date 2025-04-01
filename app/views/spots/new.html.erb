@@ -4,9 +4,8 @@
 
   <%= render "form", spot: @spot %>
 
-  <div class="flex w-3/5 flex-col border-opacity-50 mx-auto mt-5">
-    <div class="card bg-base-300 rounded-box grid place-items-center">
-      <%= link_to "投稿一覧に戻る", spots_path, class: "btn btn-primary w-full" %>
-    </div>
+  <div class="w-3/5 mx-auto mt-5 space-y-5">
+    <%= back_button %>
+    <%= spots_index_button %>
   </div>
 </div>

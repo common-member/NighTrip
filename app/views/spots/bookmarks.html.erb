@@ -1,7 +1,7 @@
 <% content_for(:title, t('.title')) %>
 <div class="container pt-3">
   <!-- スポット一覧 -->
-  <div class="grid grid-cols-3 gap-4">
+  <div class="grid grid-cols-3 gap-4 mb-6">
     <% if @bookmark_spots.present? %>
       <%= render @bookmark_spots %>
     <% else %>

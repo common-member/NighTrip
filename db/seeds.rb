@@ -57,12 +57,11 @@ prefectures.each do |prefecture|
 end
 
 # 初期ユーザー
-user = User.create!(
-  email: "hisa@example.com",
-  password: "hogehoge",
-  password_confirmation: "hogehoge",
-  name: "hisa"
-)
+user = User.find_or_create_by!(email: "master@example.com") do |u|
+  u.password = "hogehoge"
+  u.password_confirmation = "hogehoge"
+  u.name = "master"
+end
 
 # Spot投稿に関するデータ
 spots = [

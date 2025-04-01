@@ -24,4 +24,13 @@ module ApplicationHelper
       }
     }
   end
+
+  # == Buttons ==
+  def back_button(label = t("helpers.label.back"))
+    link_to label, :back, class: "btn btn-neutral w-full"
+  end
+
+  def spots_index_button(label = t("helpers.label.spots_index"))
+    link_to label, spots_path, class: "btn btn-primary w-full"
+  end
 end

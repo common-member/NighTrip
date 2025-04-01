@@ -1,0 +1,32 @@
+<h1 class="text-center text-2xl font-bold mb-2">TOP5お気に入り数スポット</h1>
+
+<table class="table border border-gray-800">
+  <thead>
+    <tr>
+      <th class="border border-gray-800">順位</th>
+      <th class="border border-gray-800">スポット名</th>
+      <th class="border border-gray-800">スポット画像</th>
+      <th class="border border-gray-800">お気に入り数</th>
+      <th class="border border-gray-800">投稿者</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @top_5_bookmarked_spots.each_with_index do |spot, index| %>
+      <tr>
+        <td class="border border-gray-800"><%= index + 1 %> 位</td>
+        <td class="border border-gray-800"><%= link_to spot.name, spot_path(spot) %></td>
+        <td class="border border-gray-800">
+          <%= link_to spot_path(spot) do %>
+            <%= image_tag spot.image, class: "w-40 h-20 object-cover rounded" %>
+          <% end %>
+        </td>
+        <td class="border border-gray-800"><%= spot.bookmarks.count %></td>
+        <td class="border border-gray-800"><%= spot.user.name %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<div class="mt-5 w-3/5 mx-auto">
+  <%= back_button %>
+</div>

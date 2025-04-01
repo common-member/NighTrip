@@ -75,6 +75,7 @@ class SpotsController < ApplicationController
 
   def ranking
     @top_5_bookmarked_spots = Spot.ranked_by_top_5_bookmarks
+    @top_5_users_by_bookmarks = User.ranked_by_top_5_bookmarked_count_users
   end
 
   private

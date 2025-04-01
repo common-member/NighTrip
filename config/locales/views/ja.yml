@@ -29,6 +29,8 @@ ja:
       locked: アカウントがロックされています。
       invalid: メールアドレスまたはパスワードが違います。
       timeout: セッションの有効期限が切れました。
+      user:
+        already_authenticated: "すでにログインしています。「Googleでログイン」された方は、ログアウトしてパスワードを再設定してください。"
     sessions:
       signed_in: ログインしました。
       signed_out: ログアウトしました。

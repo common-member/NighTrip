@@ -10,6 +10,9 @@ Rails.application.routes.draw do
   resources :spots do
     resources :comments, only: %i[edit create update destroy]
     resource :bookmarks, only: %i[create destroy]
+    collection do
+      get :ranking
+    end
   end
 
   resources :bookmarks, only: %i[index]

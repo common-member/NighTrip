@@ -1,6 +1,6 @@
 class SpotsController < ApplicationController
   before_action :set_spot, only: %i[ edit update destroy ]
-  skip_before_action :authenticate_user!, only: %i[ index show ]
+  skip_before_action :authenticate_user!, only: %i[ index show ranking ]
 
   def index
     @q = Spot.ransack(params[:q])
@@ -71,6 +71,10 @@ class SpotsController < ApplicationController
 
   def bookmarks
     @bookmark_spots = current_user.bookmark_spots.includes(:user).order(created_at: :desc)
+  end
+
+  def ranking
+    @top_5_bookmarked_spots = Spot.ranked_by_top_5_bookmarks
   end
 
   private

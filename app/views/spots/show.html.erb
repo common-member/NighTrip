@@ -4,66 +4,68 @@
   <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-md inline-block" id="notice"><%= notice %></p>
 <% end %>
 -->
-<h1 class="font-bold text-4xl p-3"><%= @spot.name%></h1>
-<div class="grid sm:grid-cols-3">
-  <figure class="sm:col-span-2 mb-3">
-    <%= image_tag @spot.image, class: "rounded" %>
-  </figure>
+<% cache(@spot) do %>
+  <h1 class="font-bold text-4xl p-3"><%= @spot.name%></h1>
+  <div class="grid sm:grid-cols-3">
+    <figure class="sm:col-span-2 mb-3">
+      <%= image_tag @spot.image, class: "rounded" %>
+    </figure>
 
-  <div class="bg-neutral sm:g sm:mx-4 w-full rounded">
-    <h1 class="bg-info text-info-content p-4 text-xl rounded">基本情報</h1>
+    <div class="bg-neutral sm:g sm:mx-4 w-full rounded">
+      <h1 class="bg-info text-info-content p-4 text-xl rounded">基本情報</h1>
 
-    <div class="py-5 mx-5">
-      <div class="divider divider-info text-xl">位置情報</div>
-      <div class="text-lg">
-        <%= @spot.prefecture.name %><%= @spot.address %>
-      </div>
-    </div>
-
-    <div class="py-5 mx-5">
-      <div class="divider divider-info text-xl">説明</div>
-      <% if @spot.body.present? %>
-        <div class="overflow-x-auto break-words max-h-48">
-          <%= simple_format(@spot.body) %>
+      <div class="py-5 mx-5">
+        <div class="divider divider-info text-xl">位置情報</div>
+        <div class="text-lg">
+          <%= @spot.prefecture.name %><%= @spot.address %>
         </div>
-      <% else %>
-        <p class="text-base-content">情報がありません</p>
-      <% end %>
-    </div>
+      </div>
 
-    <div class="py-5 mx-5">
-      <div class="divider divider-info text-xl">公式サイト</div>
-      <div class="text-lg text-primary">
-        <% if @spot.url.present? %>
-          <div class="overflow-x-auto break-words max-h-12">
-            <%= link_to nil, Spot.find(params[:id]).url.to_s, target: "_blank" %>
+      <div class="py-5 mx-5">
+        <div class="divider divider-info text-xl">説明</div>
+        <% if @spot.body.present? %>
+          <div class="overflow-x-auto break-words max-h-48">
+            <%= simple_format(@spot.body) %>
           </div>
         <% else %>
           <p class="text-base-content">情報がありません</p>
         <% end %>
       </div>
-    </div>
 
-    <div class="py-5 mx-5">
-      <div class="divider divider-info text-xl">投稿者</div>
-      <div class="text-lg">
-        <%= @spot.user.name %>
+      <div class="py-5 mx-5">
+        <div class="divider divider-info text-xl">公式サイト</div>
+        <div class="text-lg text-primary">
+          <% if @spot.url.present? %>
+            <div class="overflow-x-auto break-words max-h-12">
+              <%= link_to nil, Spot.find(params[:id]).url.to_s, target: "_blank" %>
+            </div>
+          <% else %>
+            <p class="text-base-content">情報がありません</p>
+          <% end %>
+        </div>
       </div>
-    </div>
 
-    <div class="flex justify-center mx-5 mb-2 items-center">
-      <%= link_to "https://x.com/intent/tweet?text=#{CGI.escape("【#{@spot.name}】をシェアしました！\n\nスポット名：#{@spot.name}\n位置情報：#{@spot.prefecture.name + @spot.address}\n投稿者：#{@spot.user.name}\n\n#{request.url}\n#NighTrip #夜景")}", target: '_blank', class: "btn btn-default flex items-center gap-2" do %>
-        <svg class="h-6 w-6 text-slate-500" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-          <path d="M4 4l11.733 16h4.267l-11.733 -16z" />
-          <path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772" />
-        </svg>
-        <span>でシェア</span>
-      <% end %>
-    </div>
+      <div class="py-5 mx-5">
+        <div class="divider divider-info text-xl">投稿者</div>
+        <div class="text-lg">
+          <%= @spot.user.name %>
+        </div>
+      </div>
 
+      <div class="flex justify-center mx-5 mb-2 items-center">
+        <%= link_to "https://x.com/intent/tweet?text=#{CGI.escape("【#{@spot.name}】をシェアしました！\n\nスポット名：#{@spot.name}\n位置情報：#{@spot.prefecture.name + @spot.address}\n投稿者：#{@spot.user.name}\n\n#{request.url}\n#NighTrip #夜景")}", target: '_blank', class: "btn btn-default flex items-center gap-2" do %>
+          <svg class="h-6 w-6 text-slate-500" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+            <path d="M4 4l11.733 16h4.267l-11.733 -16z" />
+            <path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772" />
+          </svg>
+          <span>でシェア</span>
+        <% end %>
+      </div>
+
+    </div>
   </div>
-</div>
+<% end %>
 
 <%# コメント部分 %>
 <div class="flex w-3/5 flex-col mx-auto my-8">

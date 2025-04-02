@@ -1,18 +1,21 @@
-<div id="<%= dom_id spot %>" class="card col-span-1 bg-base-100 shadow-xl">
+<% cache(spot) do %>
+  <div id="<%= dom_id spot %>" class="card col-span-1 bg-base-100 shadow-xl">
 
-  <!-- カバー写真部分 -->
-  <figure>
-    <%= image_tag spot.image, class: "object-cover" %>
-  </figure>
+    <!-- カバー写真部分 -->
+    <figure>
+      <%= image_tag spot.image.variant(resize_to_limit: [1200, 800]).processed, class: "object-cover" %>
+    </figure>
 
-  <!-- 本文部分 -->
-  <div class="card-body">
-    <h2 class="card-title"><%= spot.name %></h2>
-    <p><%= spot.prefecture.name %><%= spot.address %></p>
-    <div class="card-actions justify-end">
-      <%= render 'spots/bookmark_buttons', { spot: spot } %>
-      <%= link_to "詳細", spot, class: "btn btn-primary" %>
+    <!-- 本文部分 -->
+    <div class="card-body">
+      <h2 class="card-title"><%= spot.name %></h2>
+      <p><%= spot.prefecture.name %><%= spot.address %></p>
+      <div class="card-actions justify-end">
+        <%= render 'spots/bookmark_buttons', { spot: spot } %>
+        <%= link_to "詳細", spot, class: "btn btn-primary" %>
+      </div>
     </div>
+
   </div>
 
-</div>
+<% end %>

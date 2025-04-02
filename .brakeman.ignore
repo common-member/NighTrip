@@ -1,0 +1,9 @@
+{
+  "ignored_warnings": [
+    {
+      "warning_type": "Dynamic Render Path",
+      "fingerprint": "b45aeb16f8bcc9e47633461a642d2419f65c8150797ff9550b5518303cae498f",
+      "note": "False positive: Collection rendering with render @spots is safe"
+    }
+  ]
+}

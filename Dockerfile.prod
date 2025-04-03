@@ -27,7 +27,11 @@ RUN yarn install --production
 
 COPY . /myapp
 
-RUN bundle exec rails assets:precompile && bundle exec rails assets:clean && bundle exec rails db:migrate && bundle exec rails db:seed
+ENV ACTIVE_STORAGE_SERVICE=local
+RUN SECRET_KEY_BASE_DUMMY=1 bundle exec rails assets:precompile \
+    && bundle exec rails assets:clean \
+    && bundle exec rails db:migrate \
+    && bundle exec rails db:seed
 
 EXPOSE 3000
 

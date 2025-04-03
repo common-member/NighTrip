@@ -27,16 +27,7 @@ RUN yarn install --production
 
 COPY . /myapp
 
-ENV ACTIVE_STORAGE_SERVICE=local
-RUN SECRET_KEY_BASE_DUMMY=1 \
-    AWS_ACCESS_KEY_ID=dummy \
-    AWS_SECRET_ACCESS_KEY=dummy \
-    AWS_REGION=us-east-1 \
-    EXCLUDED_EMAIL=dummy@example.com \
-    bundle exec rails assets:precompile \
-    && bundle exec rails assets:clean \
-    && bundle exec rails db:migrate \
-    && bundle exec rails db:seed
+RUN bundle exec rails assets:precompile && bundle exec rails assets:clean && bundle exec rails db:migrate && bundle exec rails db:seed
 
 EXPOSE 3000
 

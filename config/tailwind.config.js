@@ -7,6 +7,16 @@ module.exports = {
     './app/javascript/**/*.js',
     './app/views/**/*.{erb,haml,html,slim}'
   ],
+  safelist: [
+    'bg-neutral', 'text-base-content',
+    'bg-primary', 'text-primary-content',
+    'bg-secondary', 'text-secondary-content',
+    'bg-accent', 'text-accent-content',
+    'bg-success', 'text-success-content',
+    'bg-info', 'text-info-content',
+    'bg-warning', 'text-warning-content',
+    'bg-error', 'text-error-content'
+  ],
   theme: {
     extend: {
       fontFamily: {

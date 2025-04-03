@@ -10,6 +10,9 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :bookmarks, dependent: :destroy
 
+  # == Active Storage ==
+  has_one_attached :avatar
+
   # == Validations ==
   validates :name, presence: true, length: { maximum: 30 }
 

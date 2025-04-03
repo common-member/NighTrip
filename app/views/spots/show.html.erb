@@ -79,21 +79,23 @@
 <% end %>
 
 <%# コメント部分 %>
-<div class="flex w-3/5 flex-col mx-auto my4">
+<div class="flex w-3/5 flex-col mx-auto my-4">
   <%= render 'comments/form', comment: @comment, spot: @spot %>
 
   <div class="divider"></div>
 
   <div id="comments">
     <% if @spot.comments.any? %>
-      <%= render @spot.comments %>
+      <%= render @spot.comments.order(created_at: :desc) %>
     <% else %>
       <p id="no_comments" class="text-center">コメントはまだ投稿されていません</p>
     <% end %>
   </div>
+
+  <div class="divider"></div>
 </div>
 
-<div class="w-3/5 mx-auto mt-5 space-y-5">
+<div class="w-3/5 mx-auto space-y-5">
   <% if current_user&.own?(@spot) %>
     <%= link_to "投稿を編集", edit_spot_path(@spot), class: "btn btn-primary w-full" %>
     <%= link_to "投稿を削除", @spot, data: { turbo_method: :delete, turbo_confirm: "本当に削除しますか？" }, class: "btn btn-error w-full" %>

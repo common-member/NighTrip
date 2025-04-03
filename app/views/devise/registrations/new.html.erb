@@ -44,6 +44,12 @@
             <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "input input-bordered" %>
           </div>
 
+          <!-- アバター画像フィールド -->
+          <div class="field">
+            <%= f.label :avatar %>
+            <%= f.file_field :avatar %>
+          </div>
+
           <div class="flex w-full flex-col border-opacity-50 mt-8">
             <div class="card bg-base-300 rounded-box grid place-items-center">
               <!-- サインアップボタン -->

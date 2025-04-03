@@ -1,53 +1,95 @@
 <h1 class="text-center text-2xl font-bold"><%= t('.title') %></h1>
 
-<div class="w-full max-w-2xl mx-auto my-8 space-y-5">
+<div class="w-full max-w-2xl mx-auto my-8">
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-    <%= render "devise/shared/error_messages", resource: resource %>
+    <div class="space-y-5">
+      <%= render "devise/shared/error_messages", resource: resource %>
 
-    <div class="form-control mb-4">
-      <label class="label">
-        <span class="label-text"><%= t('helpers.label.name') %>（最大30文字）</span>
-      </label>
-      <%= f.text_field :name, autofocus: true, autocomplete: "name", class: "input input-bordered", required: true %>
-    </div>
-
-    <div class="form-control mb-5">
-      <%= f.label :email, class: "label-text" %>
-      <%= f.email_field :email, autocomplete: "email", class: "input input-bordered w-full", required: true %>
-    </div>
-
-    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-      <div class="text-center text-sm text-gray-500">Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-    <% end %>
-
-    <% if resource.uid.blank? && resource.provider.blank? %>
       <div class="form-control">
-        <%= f.label :password, "新しいパスワード", class: "label-text" %>
-        <i class="text-sm">(変更しない場合はそのままにしてください)</i>
-        <%= f.password_field :password, autocomplete: "new-password", class: "input input-bordered w-full" %>
-        <% if @minimum_password_length %>
-          <em class="text-sm text-gray-500">最低<%= @minimum_password_length %>字以上で入力してください</em>
+        <%= f.label :name, "#{t('helpers.label.name')}（最大30文字）", class: "label-text" %>
+        <%= f.text_field :name, autofocus: true, autocomplete: "name", class: "input input-bordered", required: true %>
+      </div>
+
+      <div class="form-control">
+        <%= f.label :email, class: "label-text" %>
+        <%= f.email_field :email, autocomplete: "email", class: "input input-bordered", required: true %>
+      </div>
+
+      <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+        <div class="text-center text-sm text-gray-500">Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+      <% end %>
+
+      <% if resource.uid.blank? && resource.provider.blank? %>
+        <div class="form-control">
+          <%= f.label :password, "新しいパスワード", class: "label-text" %>
+          <i class="text-sm">(変更しない場合はそのままにしてください)</i>
+          <%= f.password_field :password, autocomplete: "new-password", class: "input input-bordered" %>
+          <% if @minimum_password_length %>
+            <em class="text-sm text-gray-500">最低<%= @minimum_password_length %>字以上で入力してください</em>
+          <% end %>
+        </div>
+
+        <div class="form-control">
+          <%= f.label :password_confirmation, "新しいパスワードの確認",class: "label-text" %>
+          <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "input input-bordered" %>
+        </div>
+
+        <div class="form-control">
+          <%= f.label :current_password, t('devise.registrations.edit.current_password'), class: "label-text" %>
+          <%= f.password_field :current_password, autocomplete: "current-password", class: "input input-bordered" %>
+        </div>
+      <% end %>
+
+      <div class="form-control">
+        <%= f.label :chat_color, "コメントの背景色", class: "label-text" %>
+        <%= f.select :chat_color,
+          options_for_select(
+            [
+              ['デフォルト', 'neutral' ],
+              ['エナジー', 'primary'],
+              ['カーム', 'secondary'],
+              ['ポップ', 'accent'],
+              ['フレッシュ', 'success'],
+              ['インフォ', 'info'],
+              ['サニー', 'warning'],
+              ['アラート', 'error']
+            ],
+            resource.chat_color
+          ),
+          {}, class: "select select-bordered w-full" %>
+      </div>
+
+      <!-- アバター画像 -->
+      <div class="form-control">
+        <%= f.label :avatar, "アバター画像", class: "label-text" %>
+        <%= f.file_field :avatar, class: "file-input file-input-primary" %>
+
+        <% if current_user.avatar.attached? %>
+          <div class="avatar">
+            <div class="w-24 rounded-full mt-2">
+              <%= image_tag current_user.avatar.variant(resize_to_limit: [100, 100]) %>
+            </div>
+          </div>
+        <% else %>
+          <div class="avatar">
+            <div class="w-24 rounded-full mt-2">
+              <%= image_tag 'default_avatar.png' %>
+            </div>
+          </div>
         <% end %>
       </div>
 
-      <div class="form-control">
-        <%= f.label :password_confirmation, "新しいパスワードの確認",class: "label-text" %>
-        <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "input input-bordered w-full" %>
+      <!-- 更新ボタン -->
+      <div>
+        <%= f.submit t('helpers.submit.update'), class: "btn btn-primary w-full" %>
       </div>
-
-      <div class="form-control">
-        <%= f.label :current_password, t('devise.registrations.edit.current_password'), class: "label-text" %>
-        <%= f.password_field :current_password, autocomplete: "current-password", class: "input input-bordered w-full" %>
-      </div>
-    <% end %>
-
-    <div class="flex justify-center">
-      <%= f.submit t('helpers.submit.update'), class: "btn btn-primary w-full" %>
     </div>
   <% end %>
 
   <div class="space-y-5 mx-auto max-w-2xl">
-    <%= back_button %>
+    <div class="mt-5">
+      <%= back_button %>
+    </div>
 
     <%= link_to t('header.logout'), destroy_user_session_path, data: { turbo_method: :delete }, class: "w-full btn btn-error" %>
 

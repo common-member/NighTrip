@@ -1,32 +1,40 @@
 <%= turbo_frame_tag comment do %>
   <div id="comment-<%= comment.id %>" class="comment chat <%= current_user&.own?(comment) ? 'chat-end' : 'chat-start' %>">
 
+    <div class="chat-image avatar">
+      <div class="w-10 rounded-full">
+        <% if comment.user.avatar.attached? %>
+          <%= image_tag(comment.user.avatar.variant(resize_to_fill: [40, 40]), alt: "#{comment.user.name}のアバター", class: "w-10 h-10 object-cover") %>
+        <% else %>
+          <%= image_tag 'default_avatar.png', class: "w-10 h-10 object-cover" %>
+        <% end %>
+      </div>
+    </div>
 
     <div class="chat-header">
       <%= comment.user.name %>
-      <time class="text-xs opacity-50 ml-2"><%= comment.created_at.strftime("%Y/%m/%d %H:%M") %></time>
+      <time class="text-xs opacity-50 ml-2"><%= comment.created_at.in_time_zone("Tokyo").strftime("%Y/%m/%d %H:%M") %></time>
     </div>
 
-    <div class="chat-bubble  break-words "><%= comment.body %></div>
-
-
-    <!--
-    <table class="comment-table mb-4">
-      <tr>
-        <p><strong><%= comment.user.name %></strong></p>
-        <td class="text-xs opacity-50"><%= comment.created_at.strftime("%Y/%m/%d %H:%M") %></td>
-      </tr>
-      <tr>
-        <td colspan="2"><%= comment.body %></td>
-      </tr>
-    </table>
-    -->
-
+    <% my_chat_color = comment.user.chat_color %>
+    <%
+      bubble_class = case my_chat_color
+        when 'デフォルト' then 'bg-neutral text-base-content'
+        when 'エナジー' then 'bg-primary text-primary-content'
+        when 'カーム' then 'bg-secondary text-secondary-content'
+        when 'ポップ' then 'bg-accent text-accent-content'
+        when 'フレッシュ' then 'bg-success text-success-content'
+        when 'インフォ' then 'bg-info text-info-content'
+        when 'サニー' then 'bg-warning text-warning-content'
+        when 'アラート' then 'bg-error text-error-content'
+      end
+    %>
+    <div class="chat-bubble break-words <%= bubble_class %>"><%= comment.body %></div>
 
     <% if current_user&.own?(comment) %>
       <div class="mt-2 flex flex-col gap-2 w-full">
-        <%= link_to "コメントを編集", edit_spot_comment_path(@spot, comment), class: "btn btn-sm btn-primary w-full" %>
-        <%= link_to "コメントを削除", spot_comment_path(comment.spot, comment), data: { turbo_method: :delete, turbo_confirm: '本当に削除しますか？' }, class: "btn btn-sm btn-error w-full" %>
+        <%= link_to "編集", edit_spot_comment_path(@spot, comment), class: "btn btn-sm btn-primary w-full" %>
+        <%= link_to "削除", spot_comment_path(comment.spot, comment), data: { turbo_method: :delete, turbo_confirm: '本当に削除しますか？' }, class: "btn btn-sm btn-error w-full" %>
       </div>
     <% end %>
   </div>

@@ -98,6 +98,26 @@
           null
         ]
       },
+      "/myapp/app/helpers/comments_helper.rb": {
+        "lines": [
+          1,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          null,
+          0,
+          null,
+          null,
+          null
+        ]
+      },
       "/myapp/app/helpers/spots_helper.rb": {
         "lines": [
           1,
@@ -708,6 +728,6 @@
         "branches": {}
       }
     },
-    "timestamp": 1743720971
+    "timestamp": 1743724091
   }
 }

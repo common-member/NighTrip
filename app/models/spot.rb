@@ -10,9 +10,9 @@ class Spot < ApplicationRecord
 
   # == Validations ==
   validates :name, presence: true, length: { maximum: 30 }
-  validates :address, presence: true
+  validates :address, presence: true, length: { maximum: 60 }
   validates :url, format: { with: /\Ahttps?:\/\/[^\s]+\z/i, message: "は有効なURL形式でなければなりません" }, allow_blank: true
-  validates :url, presence: true, if: :url_present?
+  validates :url, presence: true, length: { maximum: 255 }, if: :url_present?
   validates :body, length: { maximum: 5000 }
   validates :image, presence: true
 

@@ -1,7 +1,7 @@
 <%= form_with(model: spot, class: "contents") do |form| %>
   <% if spot.errors.any? %>
     <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-md my-3">
-      <h2><%= pluralize(spot.errors.count, "error") %> prohibited this spot from being saved:</h2>
+      <h2><%= spot.errors.count %> 件のエラーにより、スポットは保存できませんでした</h2>
 
       <ul class="list-disc ml-6">
         <% spot.errors.each do |error| %>
@@ -14,27 +14,27 @@
   <div class="space-y-2">
     <div>
       <%= form.label :name, class: "block font-semibold mb-1" do %>
-        スポット名 <span class="bg-red-700 text-xs ml-1 text-white rounded p-1">必須</span>
+        スポット名（最大30文字） <span class="bg-red-700 text-xs ml-1 text-white rounded p-1">必須</span>
       <% end %>
-      <%= form.text_field :name, required: true, placeholder: "例: 東京タワー（30文字以内）", class: "w-full input input-bordered" %>
+      <%= form.text_field :name, required: true, placeholder: "例: 東京タワー", class: "w-full input input-bordered" %>
     </div>
 
     <div>
       <%= form.label :prefecture_id, class: "block font-semibold mb-1" do %>
         都道府県 <span class="bg-red-700 text-xs ml-1 text-white rounded p-1">必須</span>
       <% end %>
-      <%= form.select :prefecture_id, Prefecture.all.collect { |p| [p.name, p.id] }, { include_blank: "選択してください" }, class: "w-full input input-bordered" %>
+      <%= form.select :prefecture_id, Prefecture.all.collect { |p| [p.name, p.id] }, { include_blank: "選択してください" }, { required: true, class: "w-full input input-bordered" } %>
     </div>
 
     <div>
       <%= form.label :address, class: "block font-semibold mb-1" do %>
-        市区町村番地 <span class="bg-red-700 text-xs ml-1 text-white rounded p-1">必須</span>
+        市区町村番地（最大60文字） <span class="bg-red-700 text-xs ml-1 text-white rounded p-1">必須</span>
       <% end %>
       <%= form.text_field :address, required: true, placeholder: "例: 港区芝公園4-2-8", class: "w-full input input-bordered" %>
     </div>
 
     <div>
-      <%= form.label :url, "サイトURL", class: "block font-semibold mb-1" %>
+      <%= form.label :url, "サイトURL（最大255文字）", class: "block font-semibold mb-1" %>
       <label class="input input-bordered flex items-center gap-2">
         <svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
           <g stroke-linejoin="round" stroke-linecap="round" stroke-width="2.5" fill="none" stroke="currentColor">
@@ -42,7 +42,12 @@
             <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
           </g>
         </svg>
-        <%= form.url_field :url, placeholder: "https://", pattern: "^(https?://)?([a-zA-Z0-9]([a-zA-Z0-9\\-].*[a-zA-Z0-9])?\\.)+[a-zA-Z].*$", title: "Must be valid URL", class: "grow" %>
+        <%= form.url_field :url,
+          maxlength: 255,
+          placeholder: "https://",
+          pattern: "^(https?://)?([a-zA-Z0-9]([a-zA-Z0-9\\-].*[a-zA-Z0-9])?\\.)+[a-zA-Z].*$",
+          title: "有効なURLでなければいけません",
+          class: "grow" %>
       </label>
       <p class="validator-hint text-sm text-gray-500 mt-1">有効なURLを入力してください（例: https://example.com）</p>
     </div>

@@ -11,7 +11,7 @@ class User < ApplicationRecord
   has_many :bookmarks, dependent: :destroy
 
   # == Validations ==
-  validates :name, presence: true, length: { maximum: 100 }
+  validates :name, presence: true, length: { maximum: 30 }
 
   # == Scopes ==
   scope :ranked_by_top_5_bookmarked_count_users, -> {

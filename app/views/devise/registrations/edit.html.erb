@@ -1,18 +1,17 @@
-<div class="w-full max-w-2xl mx-auto">
+<h1 class="text-center text-2xl font-bold"><%= t('.title') %></h1>
 
-  <h2 class="text-4xl font-bold text-center mb-6"><%= t('.title') %></h2>
-
+<div class="w-full max-w-2xl mx-auto my-8 space-y-5">
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
     <%= render "devise/shared/error_messages", resource: resource %>
 
     <div class="form-control mb-4">
       <label class="label">
-        <span class="label-text"><%= t('helpers.label.name') %></span>
+        <span class="label-text"><%= t('helpers.label.name') %>（最大30文字）</span>
       </label>
       <%= f.text_field :name, autofocus: true, autocomplete: "name", class: "input input-bordered", required: true %>
     </div>
 
-    <div class="form-control mb-4">
+    <div class="form-control mb-5">
       <%= f.label :email, class: "label-text" %>
       <%= f.email_field :email, autocomplete: "email", class: "input input-bordered w-full", required: true %>
     </div>
@@ -22,7 +21,7 @@
     <% end %>
 
     <% if resource.uid.blank? && resource.provider.blank? %>
-      <div class="form-control mb-4">
+      <div class="form-control">
         <%= f.label :password, "新しいパスワード", class: "label-text" %>
         <i class="text-sm">(変更しない場合はそのままにしてください)</i>
         <%= f.password_field :password, autocomplete: "new-password", class: "input input-bordered w-full" %>
@@ -31,12 +30,12 @@
         <% end %>
       </div>
 
-      <div class="form-control mb-4">
+      <div class="form-control">
         <%= f.label :password_confirmation, "新しいパスワードの確認",class: "label-text" %>
         <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "input input-bordered w-full" %>
       </div>
 
-      <div class="form-control mb-6">
+      <div class="form-control">
         <%= f.label :current_password, t('devise.registrations.edit.current_password'), class: "label-text" %>
         <%= f.password_field :current_password, autocomplete: "current-password", class: "input input-bordered w-full" %>
       </div>
@@ -47,15 +46,11 @@
     </div>
   <% end %>
 
-  <div class="mt-5">
+  <div class="space-y-5 mx-auto max-w-2xl">
     <%= back_button %>
-  </div>
 
-  <div class="mt-6">
     <%= link_to t('header.logout'), destroy_user_session_path, data: { turbo_method: :delete }, class: "w-full btn btn-error" %>
-  </div>
 
-  <div class="mt-6">
     <%= button_to t('.cancel_account'), registration_path(resource_name), data: { confirm: "アカウントを削除しますか？", turbo_confirm: "アカウントを削除しますか？" }, method: :delete, class: "w-full btn btn-error" %>
   </div>
 

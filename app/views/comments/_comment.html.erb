@@ -1,18 +1,33 @@
 <%= turbo_frame_tag comment do %>
-  <div id="comment-<%= comment.id %>" class="comment">
+  <div id="comment-<%= comment.id %>" class="comment chat <%= current_user&.own?(comment) ? 'chat-end' : 'chat-start' %>">
+
+
+    <div class="chat-header">
+      <%= comment.user.name %>
+      <time class="text-xs opacity-50 ml-2"><%= comment.created_at.strftime("%Y/%m/%d %H:%M") %></time>
+    </div>
+
+    <div class="chat-bubble  break-words "><%= comment.body %></div>
+
+
+    <!--
     <table class="comment-table mb-4">
       <tr>
         <p><strong><%= comment.user.name %></strong></p>
-        <td><%= comment.created_at.strftime("%Y/%m/%d %H:%M") %></td>
+        <td class="text-xs opacity-50"><%= comment.created_at.strftime("%Y/%m/%d %H:%M") %></td>
       </tr>
       <tr>
         <td colspan="2"><%= comment.body %></td>
       </tr>
     </table>
+    -->
+
+
     <% if current_user&.own?(comment) %>
-      <%= link_to "コメントを編集", edit_spot_comment_path(@spot, comment), class: "btn btn-primary w-full mb-4" %>
-      <%= link_to "コメントを削除", spot_comment_path(comment.spot, comment), data: { turbo_method: :delete, turbo_confirm: '本当に削除しますか？' }, class: "btn btn-error w-full" %>
+      <div class="mt-2 flex flex-col gap-2 w-full">
+        <%= link_to "コメントを編集", edit_spot_comment_path(@spot, comment), class: "btn btn-sm btn-primary w-full" %>
+        <%= link_to "コメントを削除", spot_comment_path(comment.spot, comment), data: { turbo_method: :delete, turbo_confirm: '本当に削除しますか？' }, class: "btn btn-sm btn-error w-full" %>
+      </div>
     <% end %>
-    <div class="divider"></div>
   </div>
 <% end %>

@@ -1,1 +1,7 @@
 <%= turbo_stream.remove @comment %>
+
+<% if @spot.comments.empty? %>
+  <%= turbo_stream.prepend "comments" do %>
+    <p id="no_comments" class="text-center">今がチャンス！最初のコメントを投稿してみましょう</p>
+  <% end %>
+<% end %>

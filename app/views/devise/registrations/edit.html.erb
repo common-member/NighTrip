@@ -61,7 +61,7 @@
 
       <!-- 更新ボタン -->
       <div>
-        <%= f.submit t('helpers.submit.update'), class: "btn btn-primary w-full" %>
+        <%= f.submit t('helpers.submit.update'), class: "btn btn-primary w-full", data: { action: "click->loading#show" } %>
       </div>
     </div>
   <% end %>
@@ -71,9 +71,9 @@
       <%= back_button %>
     </div>
 
-    <%= link_to t('header.logout'), destroy_user_session_path, data: { turbo_method: :delete }, class: "w-full btn btn-error" %>
+    <%= link_to t('header.logout'), destroy_user_session_path, data: { turbo_method: :delete, action: "click->loading#show" }, class: "w-full btn btn-error" %>
 
-    <%= button_to t('.cancel_account'), registration_path(resource_name), data: { confirm: "アカウントを削除しますか？", turbo_confirm: "アカウントを削除しますか？" }, method: :delete, class: "w-full btn btn-error" %>
+    <%= button_to t('.cancel_account'), registration_path(resource_name), data: { confirm: "アカウントを削除しますか？", turbo_confirm: "アカウントを削除しますか？", action: "click->loading#show" }, method: :delete, class: "w-full btn btn-error" %>
   </div>
 
 </div>

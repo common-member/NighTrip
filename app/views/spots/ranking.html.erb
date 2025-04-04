@@ -14,10 +14,10 @@
     <% @top_5_bookmarked_spots.each_with_index do |spot, index| %>
       <tr>
         <td class="border border-gray-800"><%= index + 1 %> 位</td>
-        <td class="border border-gray-800"><%= link_to spot.name, spot_path(spot) %></td>
+        <td class="border border-gray-800"><%= link_to spot.name, spot_path(spot), data: { action: "click->loading#show" } %></td>
         <td class="border border-gray-800">
           <%= link_to spot_path(spot) do %>
-            <%= image_tag spot.image, class: "w-40 h-20 object-cover rounded" %>
+            <%= image_tag spot.image, class: "w-40 h-20 object-cover rounded", data: { action: "click->loading#show" } %>
           <% end %>
         </td>
         <td class="border border-gray-800"><%= spot.bookmarks.count %></td>

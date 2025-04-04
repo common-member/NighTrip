@@ -5,7 +5,8 @@
                 target: "_blank",
                 rel: "noopener noreferrer" %>
     <%= link_to t('footer.terms'), terms_path,
-                class: "link link-hover" %>
+                class: "link link-hover",
+                data: { action: "click->loading#show" } %>
     <%= link_to t('footer.privacy_policy'), "https://kiyac.app/privacypolicy/qO1wEtf0KvWQzyLaRJGK",
                 class: "link link-hover",
                 target: "_blank",

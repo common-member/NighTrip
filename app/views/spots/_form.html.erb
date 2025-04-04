@@ -1,4 +1,4 @@
-<%= form_with(model: spot, class: "contents") do |form| %>
+<%= form_with(model: spot, class: "contents", turbo: false) do |form| %>
   <% if spot.errors.any? %>
     <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-md my-3">
       <h2><%= spot.errors.count %> 件のエラーにより、スポットは保存できませんでした</h2>
@@ -71,6 +71,6 @@
   </div>
 
   <div class="flex w-3/5 flex-col border-opacity-50 mx-auto mt-5">
-    <%= form.submit class: "btn btn-primary w-full" %>
+    <%= form.submit class: "btn btn-primary w-full", data: { action: "click->loading#show" } %>
   </div>
 <% end %>

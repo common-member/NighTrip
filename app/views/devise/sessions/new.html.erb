@@ -39,19 +39,19 @@
             <div class="card rounded-box grid place-items-center">
               <!-- ログインボタン -->
               <div class="form-control w-full">
-                <%= f.submit t('helpers.submit.login'), class: "btn btn-primary" %>
+                <%= f.submit t('helpers.submit.login'), class: "btn btn-primary", data: { action: "click->loading#show" } %>
               </div>
               <div class="form-control w-full mt-5">
-                <%= link_to "Googleでログイン / 新規登録", user_google_oauth2_omniauth_authorize_path, class: "btn btn-primary" %>
+                <%= link_to "Googleでログイン / 新規登録", user_google_oauth2_omniauth_authorize_path, class: "btn btn-primary", data: { action: "click->loading#show" } %>
               </div>
             </div>
             <div class="card bg-base-300 rounded-box grid place-items-center mt-5">
-              <%= link_to t('.to_registration'), new_user_registration_path, class: "btn btn-primary w-full" %>
+              <%= link_to t('.to_registration'), new_user_registration_path, class: "btn btn-primary w-full", data: { action: "click->loading#show" } %>
             </div>
           </div>
 
           <div class="card bg-base-300 rounded-box grid place-items-center mt-4">
-            <%= link_to t('.forget_password'), new_user_password_path, class: "btn btn-primary w-full" %>
+            <%= link_to t('.forget_password'), new_user_password_path, class: "btn btn-primary w-full", data: { action: "click->loading#show" } %>
           </div>
 
         </div>

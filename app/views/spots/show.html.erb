@@ -87,7 +87,7 @@
     <% if @spot.comments.any? %>
       <%= render @spot.comments.order(created_at: :desc) %>
     <% else %>
-      <p id="no_comments" class="text-center">コメントはまだ投稿されていません</p>
+      <p id="no_comments" class="text-center">今がチャンス！最初のコメントを投稿してみましょう</p>
     <% end %>
   </div>
 

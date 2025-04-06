@@ -17,6 +17,8 @@ Rails.application.routes.draw do
 
   resources :bookmarks, only: %i[index]
 
+  resource :profile, only: %i[show update]
+
   # 利用規約
   get "terms", to: "terms#index"
 

@@ -1,4 +1,5 @@
-<%= form_with(model: spot, class: "contents", turbo: false) do |form| %>
+<%= form_with(model: spot, class: "contents", turbo: false) do |f| %>
+  <%# エラー部 %>
   <% if spot.errors.any? %>
     <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-md my-3">
       <h2><%= spot.errors.count %> 件のエラーにより、スポットは保存できませんでした</h2>
@@ -11,30 +12,36 @@
     </div>
   <% end %>
 
+  <%# フォーム部 %>
   <div class="space-y-2">
-    <div>
-      <%= form.label :name, class: "block font-semibold mb-1" do %>
+
+    <%# スポット名 %>
+    <div class="form-group">
+      <%= f.label :name, class: "form-label" do %>
         スポット名（最大30文字） <span class="bg-red-700 text-xs ml-1 text-white rounded p-1">必須</span>
       <% end %>
-      <%= form.text_field :name, required: true, placeholder: "例: 東京タワー", class: "w-full input input-bordered" %>
+      <%= f.text_field :name, required: true, placeholder: "例: 東京タワー", class: "w-full input input-bordered" %>
     </div>
 
-    <div>
-      <%= form.label :prefecture_id, class: "block font-semibold mb-1" do %>
+    <%# 住所（都道府県） %>
+    <div class="form-group">
+      <%= f.label :prefecture_id, class: "form-label" do %>
         都道府県 <span class="bg-red-700 text-xs ml-1 text-white rounded p-1">必須</span>
       <% end %>
-      <%= form.select :prefecture_id, Prefecture.all.collect { |p| [p.name, p.id] }, { include_blank: "選択してください" }, { required: true, class: "w-full input input-bordered" } %>
+      <%= f.select :prefecture_id, Prefecture.all.collect { |p| [p.name, p.id] }, { include_blank: "選択してください" }, { required: true, class: "w-full input input-bordered" } %>
     </div>
 
-    <div>
-      <%= form.label :address, class: "block font-semibold mb-1" do %>
+    <%# 住所（詳細） %>
+    <div class="form-group">
+      <%= f.label :address, class: "form-label" do %>
         市区町村番地（最大60文字） <span class="bg-red-700 text-xs ml-1 text-white rounded p-1">必須</span>
       <% end %>
-      <%= form.text_field :address, required: true, placeholder: "例: 港区芝公園4-2-8", class: "w-full input input-bordered" %>
+      <%= f.text_field :address, required: true, placeholder: "例: 港区芝公園4-2-8", class: "w-full input input-bordered" %>
     </div>
 
-    <div>
-      <%= form.label :url, "サイトURL（最大255文字）", class: "block font-semibold mb-1" %>
+    <%# URL %>
+    <div class="form-group">
+      <%= f.label :url, "サイトURL（最大255文字）", class: "form-label" %>
       <label class="input input-bordered flex items-center gap-2">
         <svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
           <g stroke-linejoin="round" stroke-linecap="round" stroke-width="2.5" fill="none" stroke="currentColor">
@@ -42,7 +49,7 @@
             <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
           </g>
         </svg>
-        <%= form.url_field :url,
+        <%= f.url_field :url,
           maxlength: 255,
           placeholder: "https://",
           pattern: "^(https?://)?([a-zA-Z0-9]([a-zA-Z0-9\\-].*[a-zA-Z0-9])?\\.)+[a-zA-Z].*$",
@@ -52,16 +59,33 @@
       <p class="validator-hint text-sm text-gray-500 mt-1">有効なURLを入力してください（例: https://example.com）</p>
     </div>
 
-    <div>
-      <%= form.text_area :body, rows: 2, placeholder: "スポットの特徴や魅力を記入してください", class: "textarea textarea-bordered w-full" %>
+    <%# タグ %>
+    <div class="form-group">
+      <%= f.label :tag_names, "タグ（最大3つ）", class: "form-label" %>
+      <%= f.text_field :tag_names, value: spot.tags.map(&:name).join(' '
+), placeholder: "タワー 展望台 都会", class: "input input-bordered w-full", data: { max_tags: 3 } %>
+
+      <% if f.object.errors[:tag_names].present? %>
+        <div class="text-red-500 text-sm mt-1">
+          <%= f.object.errors.full_messages_for(:tag_names).join(', ') %>
+        </div>
+      <% end %>
     </div>
 
-    <div>
-      <%= form.label :image, class: "block font-semibold label" do %>
+    <%# 説明 %>
+    <div class="form-group">
+      <%= f.label :body, "説明", class: "form-label" %>
+      <%= f.text_area :body, rows: 2, placeholder: "スポットの特徴や魅力を記入してください", class: "textarea textarea-bordered w-full" %>
+    </div>
+
+    <%# 画像 %>
+    <div class="form-group">
+      <%= f.label :image, class: "form-label" do %>
         画像 <span class="bg-red-700 text-xs ml-1 text-white rounded p-1">必須</span>
       <% end %>
-      <%= form.file_field :image, class: "w-full file-input file-input-primary" %>
+      <%= f.file_field :image, class: "w-full file-input file-input-primary" %>
 
+      <%# 画像プレビュー %>
       <% if spot.persisted? && spot.image.attached? %>
         <div class="flex justify-center mt-2">
           <%= image_tag spot.image.variant(resize_to_limit: [300, 300]), class: "rounded" %>
@@ -70,7 +94,8 @@
     </div>
   </div>
 
+  <%# 送信ボタン %>
   <div class="flex w-3/5 flex-col border-opacity-50 mx-auto mt-5">
-    <%= form.submit class: "btn btn-primary w-full", data: { action: "click->loading#show" } %>
+    <%= f.submit class: "btn btn-primary w-full", data: { action: "click->loading#show" } %>
   </div>
 <% end %>

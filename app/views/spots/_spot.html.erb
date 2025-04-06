@@ -5,10 +5,23 @@
     <%= image_tag spot.image.variant(resize_to_limit: [1200, 800]).processed, class: "object-cover" %>
   </figure>
 
-  <!-- 本文部分 -->
+  <!-- 本文部 -->
   <div class="card-body">
+
+    <!-- タイトル部 -->
     <h2 class="card-title"><%= spot.name %></h2>
+
+    <!-- 住所部 -->
     <p><%= spot.prefecture.name %><%= spot.address %></p>
+
+    <!-- タグ部 -->
+    <div class="flex flex-wrap gap-2 my-2">
+      <% spot.tags.each do |tag| %>
+        <%= link_to tag.name, spots_path(q: { tags_name_eq: tag.name }), class: "badge badge-outline" %>
+      <% end %>
+    </div>
+
+    <!-- 下部ボタン部 -->
     <div class="card-actions justify-end">
       <%= link_to spot_path(spot, anchor: "comment_form"), class: "btn btn-secondary", data: { action: "click->loading#show" } do %>
         <svg class="h-6 w-6 text-slate-500"  fill="none" viewBox="0 0 24 24" stroke="currentColor">

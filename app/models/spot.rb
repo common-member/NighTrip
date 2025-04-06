@@ -4,9 +4,14 @@ class Spot < ApplicationRecord
   belongs_to :prefecture
   has_many :comments, dependent: :destroy
   has_many :bookmarks, dependent: :destroy
+  has_many :taggings, dependent: :destroy
+  has_many :tags, through: :taggings
 
   # == ActiveStorage ==
   has_one_attached :image
+
+  # == VirtualAttributes ==
+  attr_accessor :tag_names
 
   # == Validations ==
   validates :name, presence: true, length: { maximum: 30 }
@@ -15,6 +20,10 @@ class Spot < ApplicationRecord
   validates :url, presence: true, length: { maximum: 255 }, if: :url_present?
   validates :body, length: { maximum: 5000 }
   validates :image, presence: true
+  validate :validate_tag_limit
+
+  # == Callbacks ==
+  after_save :assign_tags
 
   # == Scopes ==
   scope :ranked_by_top_5_bookmarks, -> {
@@ -35,12 +44,38 @@ class Spot < ApplicationRecord
   end
 
   def self.ransackable_associations(auth_object = nil)
-    [ "prefecture" ]
+    %w[ prefecture tags ]
+  end
+
+  def assign_tags
+    return unless tag_names
+
+    names = tag_names.split(/[[:space:]]|　+/).map(&:strip).reject(&:blank?).uniq
+    self.tags = names.map { |name| Tag.find_or_create_by(name: name) }
   end
 
   private
 
+  def validate_tag_limit
+    return unless tag_names
+
+    names = tag_names.split(/[[:space:]]|　+/).map(&:strip).reject(&:blank?).uniq
+    if names.size > 3
+      errors.add(:tag_names, :too_many_tags)
+    end
+  end
+
   def url_present?
     url.present?
   end
+
+  # def assign_tags
+  #   return unless tag_names
+
+  #   names = tag_names.split(/[[:space:]]|　+/).map(&:strip).reject(&:blank?).uniq
+  #   if names.size > 3
+  #     return
+  #   end
+  #   self.tags = names.map { |name| Tag.find_or_create_by(name: name) }
+  # end
 end

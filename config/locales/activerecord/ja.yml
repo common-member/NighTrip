@@ -16,9 +16,14 @@ ja:
         url: URL
         body: その他情報
         image: 画像
+        tag_names: タグ
     errors:
       models:
         user:
           attributes:
             email:
               not_found: "が見つかりません"
+        spot:
+          attributes:
+            tag_names:
+              too_many_tags: "は最大で3つまでしか入力できません"

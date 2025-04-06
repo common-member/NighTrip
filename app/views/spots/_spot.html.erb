@@ -17,7 +17,7 @@
     <!-- タグ部 -->
     <div class="flex flex-wrap gap-2 my-2">
       <% spot.tags.each do |tag| %>
-        <%= link_to tag.name, spots_path(q: { tags_name_eq: tag.name }), class: "badge badge-outline" %>
+        <%= link_to tag.name, spots_path(q: { tags_name_eq: tag.name }), class: "badge badge-outline", data: { action: "click->loading#show" } %>
       <% end %>
     </div>
 

@@ -8,94 +8,94 @@
   </div>
 </div>
 
-<% cache(@spot.cache_key_with_version) do %>
-  <div class="grid sm:grid-cols-3">
+<div class="grid sm:grid-cols-3">
 
-    <!-- スポット画像 -->
+  <!-- スポット画像 -->
+  <% cache(@spot.cache_key_with_version + "/image") do %>
     <figure class="sm:col-span-2 mb-3">
       <%= image_tag @spot.image, class: "rounded" %>
     </figure>
+  <% end %>
 
-    <!-- 基本情報テーブル -->
-    <div class="sm:col-span-1 mx-5 max-w-full break-words">
-      <table class="table w-full border border-gray-800">
-        <thead>
-          <%# タイトル部 %>
-          <tr class="border border-gray-800">
-            <th class="text-xl text-center" colspan="2">基本情報</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <%# 位置情報部 %>
-            <td class="font-bold border border-gray-800">位置情報</td>
-            <td class="border border-gray-800 break-words max-h-32 overflow-y-auto">
-              <% full_address = "#{@spot.prefecture.name}#{@spot.address}" %>
-              <%= link_to full_address, "https://www.google.com/maps?q=#{CGI.escape(full_address)}", target: "_blank", rel: "noopener", class: "text-info break-words max-h-32 overflow-y-auto" %>
-            </td>
-          </tr>
-          <tr>
-            <%# 説明部%>
-            <td class="font-bold border border-gray-800">説明</td>
-            <td class="border border-gray-800">
-              <% if @spot.body.present? %>
-                <div class="break-words max-h-32 overflow-y-auto">
-                  <%= simple_format(@spot.body) %>
-                </div>
-              <% else %>
-                情報がありません
-              <% end %>
-            </td>
-          </tr>
-          <tr>
-            <%# URL部 %>
-            <td class="font-bold border border-gray-800">公式サイト</td>
-            <td class="border border-gray-800 break-words max-h-16 overflow-y-auto max-w-32">
-              <% if @spot.url.present? %>
-                <%= link_to @spot.url.to_s, @spot.url.to_s, target: "_blank", class: "text-info break-words max-h-16 overflow-y-auto" %>
-              <% else %>
-                情報がありません
-              <% end %>
-            </td>
-          </tr>
-          <tr>
-            <td class="font-bold border border-gray-800">タグ</td>
-            <td>
-              <!-- タグ部 -->
-              <% if @spot.tags.present? %>
-                <div class="flex flex-wrap gap-2">
-                  <% @spot.tags.each do |tag| %>
-                    <%= link_to tag.name, spots_path(q: { tags_name_eq: tag.name }), class: "badge badge-outline" %>
-                  <% end %>
-                </div>
-              <% else %>
-                情報がありません
-              <% end %>
-            </td>
-          </tr>
-          <tr>
-            <%# 投稿者部 %>
-            <td class="font-bold border border-gray-800">投稿者</td>
-            <td class="border border-gray-800 break-words overflow-x-auto"><%= @spot.user.name %></td>
-          </tr>
-          <tr>
-            <td class="border border-gray-800" colspan="2">
-              <%= link_to "https://x.com/intent/tweet?text=#{CGI.escape("【#{@spot.name}】をシェアしました！\n\nスポット名：#{@spot.name}\n位置情報：#{@spot.prefecture.name + @spot.address}\n投稿者：#{@spot.user.name}\n\n#{request.url}\n#NighTrip #夜景")}", target: '_blank', class: "btn btn-neutral flex items-center gap-2" do %>
-                <svg class="h-6 w-6 text-slate-200" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                  <path d="M4 4l11.733 16h4.267l-11.733 -16z" />
-                  <path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772" />
-                </svg>
-                <span>でシェア</span>
-              <% end %>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
+  <!-- 基本情報テーブル -->
+  <div class="sm:col-span-1 mx-5 max-w-full break-words">
+    <table class="table w-full border border-gray-800">
+      <thead>
+        <%# タイトル部 %>
+        <tr class="border border-gray-800">
+          <th class="text-xl text-center" colspan="2">基本情報</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <%# 位置情報部 %>
+          <td class="font-bold border border-gray-800">位置情報</td>
+          <td class="border border-gray-800 break-words max-h-32 overflow-y-auto">
+            <% full_address = "#{@spot.prefecture.name}#{@spot.address}" %>
+            <%= link_to full_address, "https://www.google.com/maps?q=#{CGI.escape(full_address)}", target: "_blank", rel: "noopener", class: "text-info break-words max-h-32 overflow-y-auto" %>
+          </td>
+        </tr>
+        <tr>
+          <%# 説明部%>
+          <td class="font-bold border border-gray-800">説明</td>
+          <td class="border border-gray-800">
+            <% if @spot.body.present? %>
+              <div class="break-words max-h-32 overflow-y-auto">
+                <%= simple_format(@spot.body) %>
+              </div>
+            <% else %>
+              情報がありません
+            <% end %>
+          </td>
+        </tr>
+        <tr>
+          <%# URL部 %>
+          <td class="font-bold border border-gray-800">公式サイト</td>
+          <td class="border border-gray-800 break-words max-h-16 overflow-y-auto max-w-32">
+            <% if @spot.url.present? %>
+              <%= link_to @spot.url.to_s, @spot.url.to_s, target: "_blank", class: "text-info break-words max-h-16 overflow-y-auto" %>
+            <% else %>
+              情報がありません
+            <% end %>
+          </td>
+        </tr>
+        <tr>
+          <td class="font-bold border border-gray-800">タグ</td>
+          <td>
+            <!-- タグ部 -->
+            <% if @spot.tags.present? %>
+              <div class="flex flex-wrap gap-2">
+                <% @spot.tags.each do |tag| %>
+                  <%= link_to tag.name, spots_path(q: { tags_name_eq: tag.name }), class: "badge badge-outline" %>
+                <% end %>
+              </div>
+            <% else %>
+              情報がありません
+            <% end %>
+          </td>
+        </tr>
+        <tr>
+          <%# 投稿者部 %>
+          <td class="font-bold border border-gray-800">投稿者</td>
+          <td class="border border-gray-800 break-words overflow-x-auto"><%= @spot.user.name %></td>
+        </tr>
+        <tr>
+          <td class="border border-gray-800" colspan="2">
+            <%= link_to "https://x.com/intent/tweet?text=#{CGI.escape("【#{@spot.name}】をシェアしました！\n\nスポット名：#{@spot.name}\n位置情報：#{@spot.prefecture.name + @spot.address}\n投稿者：#{@spot.user.name}\n\n#{request.url}\n#NighTrip #夜景")}", target: '_blank', class: "btn btn-neutral flex items-center gap-2" do %>
+              <svg class="h-6 w-6 text-slate-200" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                <path d="M4 4l11.733 16h4.267l-11.733 -16z" />
+                <path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772" />
+              </svg>
+              <span>でシェア</span>
+            <% end %>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
-<% end %>
+
+</div>
 
 <%# コメント部分 %>
 <div class="flex w-3/5 flex-col mx-auto">

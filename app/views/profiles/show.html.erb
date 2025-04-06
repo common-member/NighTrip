@@ -64,12 +64,12 @@
             <div class="card bg-base-100 shadow-md">
               <div class="card-body space-y-2">
                 <h3 class="card-title">
-                  <%= link_to comment.spot.name, spot_path(comment.spot), class: "w-full block" %>
+                  <%= link_to comment.spot.name, spot_path(comment.spot), class: "w-full block", data: { action: "click->loading#show" } %>
                 </h3>
                 <p class="text-sm text-gray-500">コメント日時: <%= l(comment.created_at, format: :long) %></p>
                 <p class="text-sm leading-relaxed"><%= truncate(comment.body, length: 100) %></p>
                 <div class="card-actions justify-end mt-2">
-                  <%= link_to "コメント欄へ", spot_path(comment.spot, anchor: "comment_form"), class: "btn btn-secondary" %>
+                  <%= link_to "コメント欄へ", spot_path(comment.spot, anchor: "comment_form"), class: "btn btn-secondary", data: { action: "click->loading#show" } %>
                 </div>
               </div>
             </div>

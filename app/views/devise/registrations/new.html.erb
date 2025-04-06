@@ -50,7 +50,7 @@
             <div class="card bg-base-300 rounded-box grid place-items-center">
               <!-- サインアップボタン -->
               <div class="form-control w-full">
-                <%= f.submit t('devise.registrations.new.submit'), class: "btn btn-primary w-full" %>
+                <%= f.submit t('devise.registrations.new.submit'), class: "btn btn-primary w-full", data: { action: "click->loading#show" } %>
               </div>
 
               <!-- Googleでログインボタン -->

@@ -7,11 +7,15 @@ class Spot < ApplicationRecord
   has_many :taggings, dependent: :destroy
   has_many :tags, through: :taggings
 
-  # == ActiveStorage ==
+  # == Active Storage ==
   has_one_attached :image
 
-  # == VirtualAttributes ==
+  # == Virtual Attributes ==
   attr_accessor :tag_names
+
+  # == Geocoder ==
+  geocoded_by :full_address
+  after_validation :geocode, if: :will_save_change_to_address?
 
   # == Validations ==
   validates :name, presence: true, length: { maximum: 30 }
@@ -33,11 +37,7 @@ class Spot < ApplicationRecord
       .limit(5)
   }
 
-  # == Instance Methods ==
-  def bookmarked_by?(user)
-    bookmarks.exists?(user_id: user.id)
-  end
-
+  # == Class Methods ==
   # == Ransack ==
   def self.ransackable_attributes(auth_object = nil)
     [ "address", "body", "name", "prefecture_id", "created_at" ]
@@ -47,6 +47,11 @@ class Spot < ApplicationRecord
     %w[ prefecture tags ]
   end
 
+  # == Instance Methods ==
+  def bookmarked_by?(user)
+    bookmarks.exists?(user_id: user.id)
+  end
+
   def assign_tags
     return unless tag_names
 
@@ -54,7 +59,13 @@ class Spot < ApplicationRecord
     self.tags = names.map { |name| Tag.find_or_create_by(name: name) }
   end
 
+  def full_address
+    "#{prefecture.name}#{address}"
+  end
+
   private
+
+  # == Instance Methods ==
 
   def validate_tag_limit
     return unless tag_names
@@ -68,14 +79,4 @@ class Spot < ApplicationRecord
   def url_present?
     url.present?
   end
-
-  # def assign_tags
-  #   return unless tag_names
-
-  #   names = tag_names.split(/[[:space:]]|　+/).map(&:strip).reject(&:blank?).uniq
-  #   if names.size > 3
-  #     return
-  #   end
-  #   self.tags = names.map { |name| Tag.find_or_create_by(name: name) }
-  # end
 end

@@ -2,7 +2,7 @@ module ApplicationHelper
   def default_meta_tags
     {
       site: "NighTrip",
-      title: "夜景スポット共有アプリ",
+      title: "",
       reverse: true,
       separator: "|",
       charset: "utf-8",

@@ -79,11 +79,11 @@ class SpotsController < ApplicationController
   end
 
   private
-    def set_spot
-      @spot = current_user.spots.find(params[:id])
-    end
+  def set_spot
+    @spot = current_user.spots.find(params[:id])
+  end
 
-    def spot_params
-      params.require(:spot).permit(:name, :prefecture_id, :address, :url, :body, :image)
-    end
+  def spot_params
+    params.require(:spot).permit(:name, :prefecture_id, :address, :url, :body, :image, :tag_names)
+  end
 end

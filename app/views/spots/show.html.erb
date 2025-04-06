@@ -20,12 +20,14 @@
     <div class="sm:col-span-1 mx-5 max-w-full break-words">
       <table class="table w-full border border-gray-800">
         <thead>
+          <%# タイトル部 %>
           <tr class="border border-gray-800">
             <th class="text-xl text-center" colspan="2">基本情報</th>
           </tr>
         </thead>
         <tbody>
           <tr>
+            <%# 位置情報部 %>
             <td class="font-bold border border-gray-800">位置情報</td>
             <td class="border border-gray-800 break-words max-h-32 overflow-y-auto">
               <% full_address = "#{@spot.prefecture.name}#{@spot.address}" %>
@@ -33,6 +35,7 @@
             </td>
           </tr>
           <tr>
+            <%# 説明部%>
             <td class="font-bold border border-gray-800">説明</td>
             <td class="border border-gray-800">
               <% if @spot.body.present? %>
@@ -45,6 +48,7 @@
             </td>
           </tr>
           <tr>
+            <%# URL部 %>
             <td class="font-bold border border-gray-800">公式サイト</td>
             <td class="border border-gray-800 break-words max-h-16 overflow-y-auto max-w-32">
               <% if @spot.url.present? %>
@@ -55,6 +59,22 @@
             </td>
           </tr>
           <tr>
+            <td class="font-bold border border-gray-800">タグ</td>
+            <td>
+              <!-- タグ部 -->
+              <% if @spot.tags.present? %>
+                <div class="flex flex-wrap gap-2">
+                  <% @spot.tags.each do |tag| %>
+                    <%= link_to tag.name, spots_path(q: { tags_name_eq: tag.name }), class: "badge badge-outline" %>
+                  <% end %>
+                </div>
+              <% else %>
+                情報がありません
+              <% end %>
+            </td>
+          </tr>
+          <tr>
+            <%# 投稿者部 %>
             <td class="font-bold border border-gray-800">投稿者</td>
             <td class="border border-gray-800 break-words overflow-x-auto"><%= @spot.user.name %></td>
           </tr>

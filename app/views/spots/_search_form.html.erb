@@ -1,20 +1,30 @@
 <div class="mb-8 mt-4 max-w-3xl mx-auto">
-  <%= search_form_for @q, class: "w-full grid grid-cols-6 gap-4" do |f| %>
+  <%= search_form_for @q, class: "w-full grid grid-cols-12 gap-4" do |f| %>
+
+    <%# 都道府県選択 %>
     <div class="col-span-2">
       <%= f.collection_select :prefecture_id_eq, @prefectures, :id, :name,
       { include_blank: "都道府県を選択" },
       { class: "w-full select select-bordered" } %>
     </div>
 
-    <div class="col-span-4">
+    <%# キーワード検索 %>
+    <div class="col-span-6">
       <%= f.search_field :name_or_address_or_body_cont, placeholder: "キーワードを入力", class: "input input-bordered w-full" %>
     </div>
 
-    <div class="col-span-5">
+    <%# タグ検索 %>
+    <div class="col-span-4">
+      <%= f.search_field :tags_name_eq, placeholder: "タグで検索", class: "input input-bordered w-full" %>
+    </div>
+
+    <%# 検索ボタン %>
+    <div class="col-span-10">
       <%= f.submit "検索", class: "btn btn-primary w-full", data: { action: "click->loading#show" } %>
     </div>
 
-    <div class="col-span-1">
+    <%# ソート %>
+    <div class="col-span-2">
       <%= sort_link(@q, :created_at, "作成日順", default_order: :desc, class: "btn btn-outline w-full") %>
     </div>
   <% end %>

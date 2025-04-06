@@ -2,6 +2,22 @@
 
 <%= render 'search_form', q: @q, url: spots_path %>
 
+<div class="flex justify-center mt-4">
+  <%= link_to "https://x.com/hashtag/NighTrip?src=hashtag_click&f=live",
+              target: '_blank',
+              rel: 'noopener noreferrer',
+              class: "btn btn-outline btn-md text-sky-400 border-sky-300 hover:bg-sky-100 transition duration-150",
+              "aria-label": "Xでみんなの投稿を見る" do %>
+    <svg class="h-8 w-8 mr-2 text-sky-400"
+         xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+         stroke="currentColor" stroke-width="2">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M4 4l11.733 16h4.267l-11.733 -16z" />
+      <path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772" />
+    </svg>
+    <span>みんなの投稿をXで見てみる</span>
+  <% end %>
+</div>
+
 <div class="grid sm:grid-cols-3 gap-5 md:gap-8 my-8">
   <% if @spots.any? %>
     <%= render @spots %>

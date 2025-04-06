@@ -62,11 +62,6 @@
         <% @comments.each do |comment| %>
           <% if comment.spot.present? %>
             <div class="card bg-base-100 shadow-md">
-              <% if comment.spot.image.attached? %>
-                <figure>
-                  <%= image_tag comment.spot.image.variant(resize_to_fill: [400, 240]), alt: comment.spot.name, class: "w-full object-cover" %>
-                </figure>
-              <% end %>
               <div class="card-body space-y-2">
                 <h3 class="card-title">
                   <%= link_to comment.spot.name, spot_path(comment.spot), class: "w-full block" %>

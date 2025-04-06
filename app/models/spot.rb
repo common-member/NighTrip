@@ -79,5 +79,4 @@ class Spot < ApplicationRecord
   def url_present?
     url.present?
   end
-
 end

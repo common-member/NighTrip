@@ -28,14 +28,6 @@
       </thead>
       <tbody>
         <tr>
-          <%# 位置情報部 %>
-          <td class="font-bold border border-gray-800">位置情報</td>
-          <td class="border border-gray-800 break-words max-h-32 overflow-y-auto">
-            <% full_address = "#{@spot.prefecture.name}#{@spot.address}" %>
-            <%= link_to full_address, "https://www.google.com/maps?q=#{CGI.escape(full_address)}", target: "_blank", rel: "noopener", class: "text-info break-words max-h-32 overflow-y-auto" %>
-          </td>
-        </tr>
-        <tr>
           <%# 説明部%>
           <td class="font-bold border border-gray-800">説明</td>
           <td class="border border-gray-800">
@@ -97,6 +89,17 @@
 
 </div>
 
+<%# Google Maps部 %>
+<div class="my-5 text-wrap">
+  <% if @spot.latitude.present? && @spot.longitude.present? %>
+    <h3 class="text-xl font-bold mb-1">位置情報</h3>
+    <%= link_to @spot.full_address, "https://www.google.com/maps?q=#{CGI.escape(@spot.full_address)}", target: "_blank", rel: "noopener", class: "text-info text-lg underline" %>
+    <div id="map" style="height: 400px;" class="mt-1 rounded"></div>
+  <% else %>
+    <p class="text-center">位置情報が取得できませんでした</p>
+  <% end %>
+</div>
+
 <%# コメント部分 %>
 <div class="flex w-3/5 flex-col mx-auto">
   <%= render 'comments/form', comment: @comment, spot: @spot %>
@@ -124,3 +127,24 @@
   <%= back_button %>
   <%= spots_index_button %>
 </div>
+
+<!-- JavaScript部 -->
+<script async
+  src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap">
+</script>
+
+<script>
+  function initMap() {
+    const spotLocation = { lat: <%= @spot.latitude %>, lng: <%= @spot.longitude %> };
+    const map = new google.maps.Map(document.getElementById("map"), {
+      zoom: 14,
+      center: spotLocation,
+    });
+
+    new google.maps.Marker({
+      position: spotLocation,
+      map: map,
+      title: "<%= @spot.name %>"
+    });
+  }
+</script>

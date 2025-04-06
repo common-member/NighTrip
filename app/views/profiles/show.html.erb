@@ -1,0 +1,89 @@
+<% content_for :title, "マイページ" %>
+
+<div class="container mx-auto px-4 py-6">
+
+  <!-- アカウント情報 -->
+  <section class="mb-8">
+    <h2 class="text-xl font-bold border-b border-gray-300 pb-2 mb-4">アカウント情報</h2>
+    <p>ユーザー名：<%= current_user.name %></p>
+    <p>メールアドレス：<%= current_user.email %></p>
+    <!-- 編集ボタンなども後で追加可能 -->
+    <div class="flex justify-center mt-4">
+      <%= link_to "編集", edit_user_registration_path, class: "btn btn-primary w-[80%] max-w-md", data: { action: "click->loading#show" } %>
+  </section>
+
+  <!-- コメントのテーマカラー -->
+  <section class="mb-8 mx-auto">
+    <%= form_for(current_user, url: profile_path, method: :put) do |f| %>
+      <div class="form-control">
+        <%= f.label :chat_color, "コメントの背景色", class: "text-xl font-bold border-b border-gray-300 pb-2 mb-4" %>
+        <%= f.select :chat_color,
+          options_for_select(
+            [
+              ['デフォルト', 'デフォルト'],
+              ['エナジー', 'エナジー'],
+              ['カーム', 'カーム'],
+              ['ポップ', 'ポップ'],
+              ['フレッシュ', 'フレッシュ'],
+              ['インフォ', 'インフォ'],
+              ['サニー', 'サニー'],
+              ['アラート', 'アラート']
+            ],
+            current_user.chat_color
+          ),
+          {}, class: "select select-bordered w-full" %>
+      </div>
+
+      <div class="flex justify-center mt-4">
+        <%= f.submit t('helpers.submit.update'), class: "btn btn-primary w-[80%] max-w-md", data: { action: "click->loading#show" } %>
+      </div>
+    <% end %>
+  </section>
+
+  <!-- 投稿したスポット一覧 -->
+  <section class="mb-10">
+    <h2 class="text-xl font-bold border-b border-gray-300 pb-2 mb-4">投稿した夜景スポット</h2>
+
+    <div class="grid sm:grid-cols-3 gap-5 md:gap-8 my-8">
+      <% if @spots.any? %>
+        <%= render @spots %>
+      <% else %>
+        <p class="text-center my-10 col-span-3"><%= t('spots.index.no_spots') %></p>
+      <% end %>
+    </div>
+  </section>
+
+  <!-- コメントしたスポット一覧 -->
+  <section>
+    <h2 class="text-xl font-bold border-b border-gray-300 pb-2 mb-4">コメントした投稿</h2>
+
+    <% if @comments.any? %>
+      <div class="grid sm:grid-cols-3 gap-5 md:gap-8 my-8">
+        <% @comments.each do |comment| %>
+          <% if comment.spot.present? %>
+            <div class="card bg-base-100 shadow-md">
+              <% if comment.spot.image.attached? %>
+                <figure>
+                  <%= image_tag comment.spot.image.variant(resize_to_fill: [400, 240]), alt: comment.spot.name, class: "w-full object-cover" %>
+                </figure>
+              <% end %>
+              <div class="card-body space-y-2">
+                <h3 class="card-title">
+                  <%= link_to comment.spot.name, spot_path(comment.spot), class: "w-full block" %>
+                </h3>
+                <p class="text-sm text-gray-500">コメント日時: <%= l(comment.created_at, format: :long) %></p>
+                <p class="text-sm leading-relaxed"><%= truncate(comment.body, length: 100) %></p>
+                <div class="card-actions justify-end mt-2">
+                  <%= link_to "コメント欄へ", spot_path(comment.spot, anchor: "comment_form"), class: "btn btn-secondary" %>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    <% else %>
+      <p class="text-center my-10 col-span-3 text-gray-500">まだコメントがありません。</p>
+    <% end %>
+  </section>
+
+</div>

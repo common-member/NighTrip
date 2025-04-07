@@ -20,7 +20,7 @@
       <%= f.label :name, class: "form-label", for: :spot_name do %>
         スポット名（最大30文字） <span class="bg-red-700 text-xs ml-1 text-white rounded p-1">必須</span>
       <% end %>
-      <%= f.text_field :name, required: true, placeholder: "例：東京タワー", class: "w-full input input-bordered" %>
+      <%= f.text_field :name, autofocus: true, required: true, placeholder: "例：東京タワー", class: "w-full input input-bordered" %>
     </div>
 
     <%# 住所（都道府県） %>

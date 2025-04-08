@@ -19,6 +19,7 @@ export default class extends Controller {
 
   async search() {
     // console.log('✅searchメソッドが呼ばれました') //デバッグ用
+    const query = this.inputTarget.value.trim();
 
     try {
       const query = this.inputTarget.value;

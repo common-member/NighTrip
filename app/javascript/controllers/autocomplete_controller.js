@@ -36,7 +36,7 @@ export default class extends Controller {
       // console.log("[DEBUG] items:", items) //デバッグ用
 
       this.resultsTarget.innerHTML = items.map(item =>
-        `<li class="cursor-pointer px-4 py-2 hover:bg-gray-100" data-action="click->autocomplete#select" data-id="${item.id}">${item.name}</li>`
+        `<li class="cursor-pointer px-4 py-2 hover:bg-gray-600" data-action="click->autocomplete#select" data-id="${item.id}">${item.name}</li>`
       ).join("");
 
     } catch (error) {

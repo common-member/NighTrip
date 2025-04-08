@@ -9,3 +9,6 @@ application.register("hello", HelloController)
 
 import LoadingController from "./loading_controller"
 application.register("loading", LoadingController)
+
+import AutocompleteController from "./autocomplete_controller"
+application.register("autocomplete", AutocompleteController)

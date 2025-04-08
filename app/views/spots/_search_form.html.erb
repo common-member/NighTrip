@@ -9,8 +9,21 @@
     </div>
 
     <%# キーワード検索 %>
-    <div class="col-span-6">
-      <%= f.search_field :name_or_address_or_body_cont, placeholder: "キーワードを入力", class: "input input-bordered w-full" %>
+    <div class="col-span-6"
+      data-controller="autocomplete"
+      data-autocomplete-url-value="<%= autocomplete_spots_path %>"
+      role="combobox">
+
+      <%= f.search_field :name_or_address_or_body_cont,
+            placeholder: "キーワードを入力",
+            class: "input input-bordered w-full",
+            data: { "autocomplete-target": 'input' } %>
+
+      <%= f.hidden_field :name, data: { "autocomplete-target": 'hidden' } %>
+
+      <ul data-autocomplete-target="results"
+          class="bg-gray-700 absolute rounded mt-1 w-full max-w-max max-h-60 overflow-auto z-50">
+      </ul>
     </div>
 
     <%# タグ検索 %>

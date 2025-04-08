@@ -78,6 +78,12 @@ class SpotsController < ApplicationController
     @top_5_users_by_bookmarks = User.ranked_by_top_5_bookmarked_count_users
   end
 
+  def autocomplete
+    query = params[:q]
+    spots = Spot.where("name ILIKE ?", "%#{query}%").select(:name).distinct.limit(10)
+    render json: spots.map { |spot| { id: nil, name: spot.name } }
+  end
+
   private
   def set_spot
     @spot = current_user.spots.find(params[:id])

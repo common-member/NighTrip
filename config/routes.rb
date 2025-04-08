@@ -7,6 +7,8 @@ Rails.application.routes.draw do
     root to: "top#home"
   end
 
+  get "spots/autocomplete", to: "spots#autocomplete", as: :autocomplete_spots
+
   resources :spots do
     resources :comments, only: %i[edit create update destroy]
     resource :bookmarks, only: %i[create destroy]

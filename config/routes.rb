@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   end
 
   get "spots/autocomplete", to: "spots#autocomplete", as: :autocomplete_spots
+  get "tags/autocomplete", to: "tags#autocomplete", as: :autocomplete_tags
 
   resources :spots do
     resources :comments, only: %i[edit create update destroy]

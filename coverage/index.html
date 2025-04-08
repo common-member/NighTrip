@@ -13,7 +13,7 @@
       <img src="./assets/0.13.1/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" class="hide">
-      <div class="timestamp">Generated <abbr class="timeago" title="2025-04-08T18:18:56+09:00">2025-04-08T18:18:56+09:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2025-04-08T19:26:42+09:00">2025-04-08T19:26:42+09:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
@@ -22,14 +22,14 @@
     <span class="group_name">All Files</span>
     (<span class="covered_percent">
       <span class="red">
-  50.17%
+  49.03%
 </span>
 
      </span>
      covered at
      <span class="covered_strength">
        <span class="green">
-         1.18
+         1.16
        </span>
     </span> hits/line
     )
@@ -38,15 +38,15 @@
   <a name="AllFiles"></a>
 
   <div>
-    <b>32</b> files in total.
+    <b>33</b> files in total.
   </div>
 
   <div class="t-line-summary">
-    <b>303</b> relevant lines,
+    <b>310</b> relevant lines,
     <span class="green"><b>152</b> lines covered</span> and
-    <span class="red"><b>151</b> lines missed. </span>
+    <span class="red"><b>158</b> lines missed. </span>
     (<span class="red">
-  50.17%
+  49.03%
 </span>
 )
   </div>
@@ -143,6 +143,17 @@
             <td class="cell--number">42</td>
             <td class="cell--number">10</td>
             <td class="cell--number">1.12</td>
+            
+          </tr>
+        
+          <tr class="t-file">
+            <td class="strong t-file__name"><a href="#1ccb40ec4f97269d2a8679f39d4f561faff3d571" class="src_link" title="app/controllers/tags_controller.rb">app/controllers/tags_controller.rb</a></td>
+            <td class="red strong cell--number t-file__coverage">0.00 %</td>
+            <td class="cell--number">7</td>
+            <td class="cell--number">7</td>
+            <td class="cell--number">0</td>
+            <td class="cell--number">7</td>
+            <td class="cell--number">0.00</td>
             
           </tr>
         
@@ -433,14 +444,14 @@
     <span class="group_name">Controllers</span>
     (<span class="covered_percent">
       <span class="red">
-  35.87%
+  34.55%
 </span>
 
      </span>
      covered at
      <span class="covered_strength">
        <span class="red">
-         0.5
+         0.48
        </span>
     </span> hits/line
     )
@@ -449,15 +460,15 @@
   <a name="Controllers"></a>
 
   <div>
-    <b>13</b> files in total.
+    <b>14</b> files in total.
   </div>
 
   <div class="t-line-summary">
-    <b>184</b> relevant lines,
+    <b>191</b> relevant lines,
     <span class="green"><b>66</b> lines covered</span> and
-    <span class="red"><b>118</b> lines missed. </span>
+    <span class="red"><b>125</b> lines missed. </span>
     (<span class="red">
-  35.87%
+  34.55%
 </span>
 )
   </div>
@@ -532,6 +543,17 @@
             <td class="cell--number">42</td>
             <td class="cell--number">10</td>
             <td class="cell--number">1.12</td>
+            
+          </tr>
+        
+          <tr class="t-file">
+            <td class="strong t-file__name"><a href="#1ccb40ec4f97269d2a8679f39d4f561faff3d571" class="src_link" title="app/controllers/tags_controller.rb">app/controllers/tags_controller.rb</a></td>
+            <td class="red strong cell--number t-file__coverage">0.00 %</td>
+            <td class="cell--number">7</td>
+            <td class="cell--number">7</td>
+            <td class="cell--number">0</td>
+            <td class="cell--number">7</td>
+            <td class="cell--number">0.00</td>
             
           </tr>
         
@@ -3832,6 +3854,107 @@
       
         <div>
           <li class="never" data-hits="" data-linenumber="95">
+            
+
+            
+
+            <code class="ruby">end</code>
+          </li>
+        </div>
+      
+    </ol>
+  </pre>
+</div>
+
+      
+        <div class="source_table" id="1ccb40ec4f97269d2a8679f39d4f561faff3d571">
+  <div class="header">
+    <h3>app/controllers/tags_controller.rb</h3>
+    <h4>
+      <span class="red">
+  0.0%
+</span>
+
+      lines covered
+    </h4>
+
+    
+
+    <div class="t-line-summary">
+      <b>7</b> relevant lines.
+      <span class="green"><b>0</b> lines covered</span> and
+      <span class="red"><b>7</b> lines missed.</span>
+    </div>
+
+    
+
+  </div>
+
+  <pre>
+    <ol>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="1">
+            
+
+            
+
+            <code class="ruby">class TagsController &lt; ApplicationController</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="2">
+            
+
+            
+
+            <code class="ruby">  def autocomplete</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="3">
+            
+
+            
+
+            <code class="ruby">    query = params[:q]</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="4">
+            
+
+            
+
+            <code class="ruby">    tags = Tag.where(&quot;name ILIKE ?&quot;, &quot;%#{query}%&quot;).select(:name).distinct.limit(10)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="5">
+            
+
+            
+
+            <code class="ruby">    render json: tags.map { |tag| { id: nil, name: tag.name } }</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="6">
+            
+
+            
+
+            <code class="ruby">  end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="7">
             
 
             

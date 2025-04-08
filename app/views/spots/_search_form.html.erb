@@ -27,8 +27,19 @@
     </div>
 
     <%# タグ検索 %>
-    <div class="col-span-4">
-      <%= f.search_field :tags_name_eq, placeholder: "タグで検索", class: "input input-bordered w-full" %>
+    <div class="col-span-4"
+      data-controller="autocomplete"
+      data-autocomplete-url-value="<%= autocomplete_tags_path %>"
+      role="combobox">
+
+      <%= f.search_field :tags_name_eq,
+      placeholder: "タグで検索",
+      class: "input input-bordered w-full",
+      data: { "autocomplete-target": 'input' } %>
+
+      <ul data-autocomplete-target="results"
+          class="bg-gray-700 absolute rounded mt-1 w-full max-w-max max-h-60 overflow-auto z-50">
+      </ul>
     </div>
 
     <%# 検索ボタン %>

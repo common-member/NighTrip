@@ -23,7 +23,7 @@ export default class extends Controller {
     try {
       const query = this.inputTarget.value;
 
-      if (query.length < 2) {
+      if (query.length < 1) {
         this.resultsTarget.innerHTML = "";
         return;
       }

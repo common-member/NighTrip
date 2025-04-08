@@ -580,6 +580,18 @@
         ],
         "branches": {}
       },
+      "/myapp/app/controllers/tags_controller.rb": {
+        "lines": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "branches": {}
+      },
       "/myapp/app/controllers/terms_controller.rb": {
         "lines": [
           0,
@@ -827,6 +839,6 @@
         "branches": {}
       }
     },
-    "timestamp": 1744103936
+    "timestamp": 1744108002
   }
 }

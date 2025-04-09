@@ -18,15 +18,17 @@
   <% end %>
 </div>
 
-<div class="grid sm:grid-cols-3 gap-5 md:gap-8 my-8">
+<%= turbo_frame_tag "spots-page-#{@spots.current_page}" do %>
   <% if @spots.any? %>
-    <%= render @spots %>
+    <div class="grid sm:grid-cols-3 gap-5 md:gap-8 my-8">
+      <%= render @spots %>
+    </div>
+
+    <%= turbo_frame_tag "spots-page-#{@spots.next_page}", loading: :lazy, src: path_to_next_page(@spots) %>
   <% else %>
     <p class="text-center my-10 col-span-3"><%= t('spots.index.no_spots') %></p>
   <% end %>
-</div>
-
-<%= paginate @spots %>
+<% end %>
 
 <div class="mx-auto w-3/5 mt-5">
   <%= back_button %>

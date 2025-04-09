@@ -1,58 +1,88 @@
 <% content_for :title, "ランキング" %>
 
-<h1 class="text-center text-2xl font-bold">TOP5お気に入り数スポット</h1>
+<h1 class="text-center text-2xl font-bold mb-6">ランキング</h1>
 
-<table class="table border border-gray-800 my-8">
-  <thead>
-    <tr>
-      <th class="border border-gray-800">順位</th>
-      <th class="border border-gray-800">スポット名</th>
-      <th class="border border-gray-800">スポット画像</th>
-      <th class="border border-gray-800">お気に入り数</th>
-      <th class="border border-gray-800">投稿者</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @top_5_bookmarked_spots.each_with_index do |spot, index| %>
-      <tr>
-        <td class="border border-gray-800"><%= index + 1 %> 位</td>
-        <td class="border border-gray-800"><%= link_to spot.name, spot_path(spot), data: { action: "click->loading#show" } %></td>
-        <td class="border border-gray-800">
-          <%= link_to spot_path(spot) do %>
-            <%= image_tag spot.image, class: "w-40 h-20 object-cover rounded", data: { action: "click->loading#show" } %>
-          <% end %>
-        </td>
-        <td class="border border-gray-800"><%= spot.bookmarks.count %></td>
-        <td class="border border-gray-800"><%= spot.user.name %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<div class="tabs tabs-boxed w-full max-w-5xl mx-auto">
+  <!-- Tab 1 -->
+  <input type="radio" name="ranking_tabs" class="tab" aria-label="スポットTOP5" checked="checked" />
+  <div class="tab-content bg-base-100 border border-base-300 p-6">
+    <h2 class="text-center text-xl font-semibold">お気に入り数</h2>
+    <table class="table border border-gray-800 my-4">
+      <thead>
+        <tr>
+          <th class="border border-gray-800">順位</th>
+          <th class="border border-gray-800">スポット名</th>
+          <th class="border border-gray-800">スポット画像</th>
+          <th class="border border-gray-800">お気に入り数</th>
+          <th class="border border-gray-800">投稿者</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @top_5_bookmarked_spots.each_with_index do |spot, index| %>
+          <tr>
+            <td class="border border-gray-800">
+              <div class="flex items-center gap-2">
+                <% if index == 0 %>
+                  <%= image_tag 'icons/gold_medal.png', alt: '1位', class: 'w-12 h-12' %>
+                <% elsif index == 1 %>
+                  <%= image_tag 'icons/silver_medal.png', alt: '2位', class: 'w-12 h-12' %>
+                <% elsif index == 2 %>
+                  <%= image_tag 'icons/bronze_medal.png', alt: '3位', class: 'w-12 h-12' %>
+                <% end %>
+                <%= index + 1 %> 位
+              </div>
+            </td>
+            <td class="border border-gray-800"><%= link_to spot.name, spot_path(spot), data: { action: "click->loading#show" } %></td>
+            <td class="border border-gray-800">
+              <%= link_to spot_path(spot) do %>
+                <%= image_tag spot.image, class: "w-40 h-20 object-cover rounded", data: { action: "click->loading#show" } %>
+              <% end %>
+            </td>
+            <td class="border border-gray-800"><%= spot.bookmarks.count %></td>
+            <td class="border border-gray-800"><%= spot.user.name %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 
-<h1 class="text-center text-2xl font-bold my-8">TOP5ユーザー別ブックマーク数</h1>
+  <!-- Tab 2 -->
+  <input type="radio" name="ranking_tabs" class="tab" aria-label="ユーザーTOP5" />
+  <div class="tab-content bg-base-100 border border-base-300 p-6">
+    <h2 class="text-center text-xl font-semibold">お気に入り数</h2>
+    <table class="table border border-gray-800 my-4">
+      <thead>
+        <tr>
+          <th class="border border-gray-800">順位</th>
+          <th class="border border-gray-800">ユーザー名</th>
+          <th class="border border-gray-800">投稿にお気に入りされた総数</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @top_5_users_by_bookmarks.each_with_index do |user, index| %>
+          <tr>
+            <td class="border border-gray-800">
+              <div class="flex items-center gap-2">
+                <% if index == 0 %>
+                  <%= image_tag 'icons/gold_medal.png', alt: '1位', class: 'w-12 h-12' %>
+                <% elsif index == 1 %>
+                  <%= image_tag 'icons/silver_medal.png', alt: '2位', class: 'w-12 h-12' %>
+                <% elsif index == 2 %>
+                  <%= image_tag 'icons/bronze_medal.png', alt: '3位', class: 'w-12 h-12' %>
+                <% end %>
+                <%= index + 1 %> 位
+              </div>
+            </td>
+            <td class="border border-gray-800"><%= user.name %></td>
+            <td class="border border-gray-800"><%= user.total_bookmarked_count %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 
-<table>
-<table class="table border border-gray-800">
-  <thead>
-    <tr>
-      <th class="border border-gray-800">順位</th>
-      <th class="border border-gray-800">ユーザー名</th>
-      <th class="border border-gray-800">お気に入りされた数</th>
-      <th class="border border-gray-800">投稿数</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @top_5_users_by_bookmarks.each_with_index do |user, index| %>
-      <tr>
-        <td class="border border-gray-800"><%= index + 1 %> 位</td>
-        <td class="border border-gray-800"><%= user.name %></td>
-        <td class="border border-gray-800"><%= user.total_bookmarked_count %></td>
-        <td class="border border-gray-800"><%= user.spots.count %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+</div>
 
-<div class="mt-5 w-3/5 mx-auto">
+<div class="mx-auto w-3/5">
   <%= back_button %>
 </div>

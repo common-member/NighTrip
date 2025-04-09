@@ -19,8 +19,8 @@ ja:
       comment: コメント
       back: 戻る
       spots_index: 投稿一覧へ
-  top:
-    home:
+  guide:
+    show:
       search_spots: 夜景スポットを探す
       to_registration_page: 新規会員登録ページへ
       to_login_page: ログインページへ
@@ -102,7 +102,7 @@ ja:
     login: ログイン
     logout: ログアウト
     spot: スポット
-    spot_index: 投稿一覧
+    guide: 使いかた
     spot_ranking: ランキング
     create_spot: 新規投稿
     bookmark_index: お気に入り

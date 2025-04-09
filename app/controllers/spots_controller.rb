@@ -5,7 +5,6 @@ class SpotsController < ApplicationController
   def index
     @q = Spot.ransack(params[:q])
     @spots = @q.result.order(created_at: :desc).page(params[:page])
-    # 都道府県の選択肢を取得
     @prefectures = Prefecture.all
   end
 

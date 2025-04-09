@@ -1,0 +1,64 @@
+<!-- service image -->
+<div
+  class="hero min-h-screen"
+  style="background-image: url(https://img.daisyui.com/images/stock/photo-1507358522600-9f71e620c44e.webp);">
+  <div class="hero-overlay bg-opacity-60"></div>
+  <div class="hero-content text-neutral-content text-center">
+    <div class="max-w-3xl">
+      <h1 class="mb-5 text-5xl font-bold">心に残る夜景を、ここで見つけよう</h1>
+      <%= link_to t('guide.show.search_spots'), spots_path, class: "btn btn-primary", data: { action: "click->loading#show" } %>
+    </div>
+  </div>
+</div>
+
+<div class="my-12">
+  <!-- first content -->
+  <div class="flex items-center mb-8">
+    <%= image_tag 'top/search.png', class: "w-1/5 mr-6" %>
+    <div>
+      <h1 class="text-2xl font-bold">1. 夜景検索</h1>
+      <p>
+        キーワードやエリア、カテゴリーで簡単に夜景スポットを探せる機能です。
+        検索結果から興味のある投稿の詳細な情報を確認することができます。
+      </p>
+    </div>
+  </div>
+
+  <!-- second content -->
+  <div class="flex items-center mb-8">
+    <%= image_tag 'top/diagnosis.png', class: "w-1/5 mr-6" %>
+    <div>
+      <h1 class="text-2xl font-bold">2. 診断機能</h1>
+      <p>
+        設問に解答することで、その内容に沿ったオススメの夜景スポットが判定されます。
+        自分の知らなかった夜景と出会えるかも？
+      </p>
+    </div>
+  </div>
+
+  <!-- third content -->
+  <div class="flex items-center mb-8">
+    <%= image_tag 'top/ranking.png', class: "w-1/5 mr-6" %>
+    <div>
+      <h1 class="text-2xl font-bold">3. ランキング機能</h1>
+      <p>
+        人気の夜景スポットや注目のユーザーがひと目で分かる！お気に入りの夜景スポットをレビューして、ランキング上位を目指そう！
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- registration and login container -->
+<div class="hero-content flex-col lg:flex-row-reverse my-12 mx-auto">
+  <div class="flex w-3/5 flex-col border-opacity-50">
+    <!-- button for user registration -->
+    <div class="card bg-base-300 rounded-box grid place-items-center">
+      <%= link_to t('guide.show.to_registration_page'), new_user_registration_path, class: "btn btn-primary w-full", data: { action: "click->loading#show" } %>
+    </div>
+    <div class="divider">OR</div>
+    <!-- button for login -->
+    <div class="card bg-base-300 rounded-box grid place-items-center">
+      <%= link_to t('guide.show.to_login_page'), new_user_session_path, class: "btn btn-primary w-full", data: { action: "click->loading#show" } %>
+    </div>
+  </div>
+</div>

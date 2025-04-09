@@ -6,7 +6,7 @@ RSpec.describe "Guides", type: :request do
   describe "GET /guide" do
     it "returns http success" do
       get "/guide"
-      expect(response).to have_http_status(302)
+      expect(response).to have_http_status(200)
     end
   end
 end

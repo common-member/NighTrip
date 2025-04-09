@@ -63,7 +63,7 @@
           1,
           1,
           null,
-          9,
+          10,
           null,
           null,
           null,
@@ -289,6 +289,8 @@
       "/myapp/app/controllers/guides_controller.rb": {
         "lines": [
           1,
+          1,
+          null,
           1,
           null
         ]
@@ -836,6 +838,6 @@
         "branches": {}
       }
     },
-    "timestamp": 1744231872
+    "timestamp": 1744232992
   }
 }

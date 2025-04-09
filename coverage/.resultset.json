@@ -89,7 +89,7 @@
           null,
           null,
           1,
-          6,
+          7,
           null,
           null,
           1,
@@ -118,6 +118,12 @@
           null
         ]
       },
+      "/myapp/app/helpers/guides_helper.rb": {
+        "lines": [
+          1,
+          null
+        ]
+      },
       "/myapp/app/helpers/profiles_helper.rb": {
         "lines": [
           1,
@@ -131,12 +137,6 @@
         ]
       },
       "/myapp/app/helpers/terms_helper.rb": {
-        "lines": [
-          1,
-          null
-        ]
-      },
-      "/myapp/app/helpers/top_helper.rb": {
         "lines": [
           1,
           null
@@ -212,11 +212,11 @@
           null,
           null,
           1,
-          48,
+          72,
           null,
           null,
           1,
-          40,
+          60,
           null,
           null,
           null,
@@ -266,7 +266,7 @@
           null,
           null,
           1,
-          4,
+          6,
           null,
           null
         ]
@@ -283,6 +283,31 @@
         "lines": [
           1,
           1,
+          null
+        ]
+      },
+      "/myapp/app/controllers/guides_controller.rb": {
+        "lines": [
+          1,
+          1,
+          null
+        ]
+      },
+      "/myapp/app/controllers/application_controller.rb": {
+        "lines": [
+          1,
+          1,
+          1,
+          null,
+          null,
+          1,
+          null,
+          1,
+          null,
+          1,
+          6,
+          6,
+          null,
           null
         ]
       },
@@ -312,24 +337,6 @@
           null
         ]
       },
-      "/myapp/app/controllers/application_controller.rb": {
-        "lines": [
-          1,
-          1,
-          1,
-          null,
-          null,
-          1,
-          null,
-          1,
-          null,
-          1,
-          6,
-          6,
-          null,
-          null
-        ]
-      },
       "/myapp/app/controllers/spots_controller.rb": {
         "lines": [
           1,
@@ -337,10 +344,9 @@
           1,
           null,
           1,
-          2,
-          2,
-          null,
-          2,
+          3,
+          3,
+          3,
           null,
           null,
           1,
@@ -426,15 +432,6 @@
           1,
           2,
           null,
-          null
-        ]
-      },
-      "/myapp/app/controllers/top_controller.rb": {
-        "lines": [
-          1,
-          1,
-          null,
-          1,
           null
         ]
       },
@@ -839,6 +836,6 @@
         "branches": {}
       }
     },
-    "timestamp": 1744223232
+    "timestamp": 1744230936
   }
 }

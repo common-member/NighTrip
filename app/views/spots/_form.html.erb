@@ -51,7 +51,7 @@
 
     <%# タグ %>
     <div class="form-group">
-      <%= f.label :tag_names, "タグ（最大3つ）", class: "form-label", for: :spot_tags %>
+      <%= f.label :tag_names, "タグ（最大3つ）（スペース区切り）", class: "form-label", for: :spot_tags %>
       <%= f.text_field :tag_names, value: spot.tags.map(&:name).join(' '
 ), placeholder: "例：タワー 展望台 都会", class: "input input-bordered w-full" %>
 
@@ -64,8 +64,8 @@
 
     <%# 説明 %>
     <div class="form-group">
-      <%= f.label :body, "説明", class: "form-label", for: :spot_body %>
-      <%= f.text_area :body, rows: 1, placeholder: "スポットの雰囲気、特徴や魅力などを記入してください（例：デートスポットにぴったり！）", class: "textarea textarea-bordered w-full" %>
+      <%= f.label :body, "説明（スポットの特徴や魅力などを記入してください）", class: "form-label", for: :spot_body %>
+      <%= f.text_area :body, rows: 1, placeholder: "例：デートスポットにぴったり！", class: "textarea textarea-bordered w-full" %>
     </div>
 
     <%# 画像 %>

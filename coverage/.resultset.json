@@ -142,12 +142,6 @@
           null
         ]
       },
-      "/myapp/app/helpers/top_helper.rb": {
-        "lines": [
-          1,
-          null
-        ]
-      },
       "/myapp/app/helpers/users/omniauth_callbacks_helper.rb": {
         "lines": [
           1,
@@ -606,16 +600,6 @@
         ],
         "branches": {}
       },
-      "/myapp/app/controllers/top_controller.rb": {
-        "lines": [
-          0,
-          0,
-          null,
-          0,
-          0
-        ],
-        "branches": {}
-      },
       "/myapp/app/controllers/users/confirmations_controller.rb": {
         "lines": [
           null,
@@ -852,6 +836,6 @@
         "branches": {}
       }
     },
-    "timestamp": 1744230721
+    "timestamp": 1744230936
   }
 }

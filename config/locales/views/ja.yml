@@ -33,6 +33,7 @@ ja:
       timeout: セッションの有効期限が切れました。
       user:
         already_authenticated: "すでにログインしています。「Googleでログイン」された方は、ログアウトしてパスワードを再設定してください。"
+        not_found_in_database: "メールアドレスが見つかりません。"
     sessions:
       signed_in: ログインしました。
       signed_out: ログアウトしました。

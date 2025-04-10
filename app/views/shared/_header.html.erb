@@ -25,7 +25,7 @@
       <li>
         <%= link_to ranking_spots_path, class: style_color, data: { action: "click->loading#show" } do %>
           <%= image_tag "icons/ranking.png", alt: "ランキングページへ" %>
-          <%= t('header.spot_ranking') %>
+          <%= t('header.ranking') %>
         <% end %>
       </li>
       <% if user_signed_in? %>

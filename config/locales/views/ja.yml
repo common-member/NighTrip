@@ -1,30 +1,66 @@
 ja:
-  # フォームへルパー関係は以下から取得する
   helpers:
     submit:
       create: 投稿
-      comment_create: コメントを投稿
-      comment_update: コメントを更新
       submit: 保存
       update: 更新
       send: 送信
+      edit: 編集
       login: ログイン
       change_password: 変更する
       registration: 登録
+      comment_create: コメントを投稿
+      comment_update: コメントを更新
+      current_password: 現在のパスワード
+      new_password: 新しいパスワード
+      new_password_confirmation: 新しいパスワード（確認）
+      tag_names: タグ
+
     label:
-      name: ユーザー名
-      email: メールアドレス
-      password: パスワード
-      password_confirmation: パスワード確認
+      user:
+        name: ユーザー名
+        name_length_limit: （最大30文字）
+        email: メールアドレス
+        password: パスワード
+        password_confirmation: パスワード確認
+
+      spot:
+        required: 必須
+        name: スポット名
+        name_length_limit: （最大30文字）
+        prefecture: 都道府県
+        address: 位置情報
+        address_length_limit: （最大60文字）
+        url: サイトURL
+        url_length_limit: （最大255文字）
+        tag: タグ
+        tags_length_limit: （最大3つ）
+        space_separate: （スペース区切り）
+        body: 説明
+        body_description: （スポットの特徴や魅力などを記入してください）
+        image: 画像
       comment: コメント
       back: 戻る
       spots_index: 投稿一覧へ
-  guide:
-    show:
-      search_spots: 夜景スポットを探す
-      to_registration_page: 新規会員登録ページへ
-      to_login_page: ログインページへ
+
+
+  header:
+    sign_up: 新規登録
+    guide: 使いかた
+    create_spot: 新規投稿
+    ranking: ランキング
+    bookmark_index: お気に入り
+    profile: マイページ
+    login: ログイン
+    logout: ログアウト
+
+  footer:
+    contact: お問い合わせ
+    terms: 利用規約
+    privacy_policy: プライバシーポリシー
+
   devise:
+    to_login_page: ログインページへ
     failure:
       unauthenticated: ログインが必要です。
       unconfirmed: メールアドレスの確認が必要です。
@@ -32,40 +68,45 @@ ja:
       invalid: メールアドレスまたはパスワードが違います。
       timeout: セッションの有効期限が切れました。
       user:
-        already_authenticated: "すでにログインしています。「Googleでログイン」された方は、ログアウトしてパスワードを再設定してください。"
-        not_found_in_database: "メールアドレスが見つかりません。"
+        already_authenticated: すでにログインしています。「Googleでログイン」された方は、ログアウトしてパスワードを再設定してください。
+        not_found_in_database: メールアドレスが見つかりません。
+
     sessions:
       signed_in: ログインしました。
       signed_out: ログアウトしました。
       new:
-        title: ログイン
-        forget_password: パスワードを忘れた場合
         remember_me: ログイン状態を保持する
-        to_registration: 新規会員登録
+        title: ログイン
+        login_or_registration_with_Google: Google でログイン / 新規登録
+        to_registration_page: 新規会員登録ページへ
+        forget_password: パスワードを忘れた場合
+
     passwords:
       send_instructions: パスワードリセットの案内を送信しました。
       updated: パスワードが変更されました。
       new:
+        title: パスワード再設定
         forget_password?: パスワードをお忘れですか？
       edit:
         title: パスワード変更
         new_password: 新しいパスワード
         comfirmation: 新しいパスワードの確認
+
     registrations:
       signed_up: アカウント登録が完了しました。
       updated: アカウント情報を更新しました。
       destroyed: アカウントを削除しました。
       new:
         title: 新規会員登録
-        submit: 登録
-        to_login_page: ログインページへ
-        to_register_page: 登録ページへ
-        password_forget: パスワードをお忘れの方はこちら
+        username_length_limit: （最大30文字）
+        password_minimum_length: 文字以上必要です
+        registrations_with_Google: Google で新規登録
       edit:
         title: アカウント情報編集
         submit: 更新
         current_password: 現在のパスワード
         cancel_account: アカウント削除
+
     mailer:
       reset_password_instructions:
         subject:                    "パスワードの再設定"
@@ -75,56 +116,89 @@ ja:
         please_ignore:              "※パスワードリセットの申請に心当たりがない場合は、以降の対応は不要となります。"
         wont_change:                "※上記リンクをクリックして新しいパスワードを作成しない限り、パスワードは変更されません。"
         reset_password_within:      "※リンクの有効期限は6時間です。"
-    errors:
-      messages:
-        current_password: 現在のパスワード
+
   user_sessions:
     new:
       title: ログイン
       login: ログイン
       password_forget: パスワードをお忘れの方はこちら
+
   users:
     new:
       title: ユーザー登録
       to_login_page: ログインページへ
+
   spots:
     index:
+      title: 投稿一覧
+      checkout_others_posts_on_X: みんなの投稿をXで見てみる
       no_spots: 条件に合うスポットが見つかりませんでした
+    new:
+      title: 新規投稿
     create:
       success: 投稿が作成されました
       failure: 投稿できませんでした
+    show:
+      title: 詳細画面
+      basic_info: 基本情報
+      no_info: 情報がありません
+      share: でシェア
+      geolocation:
+        error: 位置情報が取得できませんでした
+      to_show_page: 詳細
+      no_comments: 今がチャンス！最初のコメントを投稿してみましょう
+      edit_spot: 投稿を編集
+      delete_spot: 投稿を削除
+    edit:
+      title: 投稿編集
     update:
       success: 投稿が更新されました
       failure: 更新できませんでした
     destroy:
       success: 削除されました
-  header:
-    sign_up: 新規登録
-    login: ログイン
-    logout: ログアウト
-    spot: スポット
-    guide: 使いかた
-    spot_ranking: ランキング
-    create_spot: 新規投稿
-    bookmark_index: お気に入り
-    profile: マイページ
-  footer:
-    contact: お問い合わせ
-    terms: 利用規約
-    privacy_policy: プライバシーポリシー
-  views:
-    pagination:
-      first: "最初"
-      last: "最後"
-      truncate: "..."
-  errors:
-    messages:
-      not_saved: "保存できませんでした"
-      not_found: "見つかりませんでした"
+    ranking:
+      title: ランキング
+      bookmarked_count: お気に入り数
+      table:
+        header:
+          rank: 順位
+          total_bookmarked: 投稿にお気に入りされた総数
+
+  guides:
+    show:
+      title: 使い方
+      search_spots: 夜景スポットを探す
+      to_registration_page: 新規会員登録ページへ
+      to_login_page: ログインページへ
+
   bookmarks:
     index:
+      title: お気に入り一覧
       no_bookmark: お気に入り登録された投稿はありません
     create:
       failure: お気に入り登録できませんでした
     destroy:
       failure: お気に入り登録を解除できませんでした
+
+  profiles:
+    show:
+      title: マイページ
+      account_info: アカウント情報
+      username: ユーザー名
+      email: メールアドレス
+      comment_preview: コメントのプレビュー
+      current_chat_color_is: 現在のコメントの背景色は、
+      predicate: です
+      posted_spots: 投稿した夜景スポット
+      commented_spots: コメントした投稿
+      no_comments: まだコメントがありません
+
+  terms:
+    index:
+      title: 利用規約
+
+  errors:
+    messages:
+      current_password: 現在のパスワード
+      not_saved: "保存できませんでした"
+      not_found: "見つかりませんでした"

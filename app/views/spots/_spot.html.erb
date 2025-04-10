@@ -31,7 +31,12 @@
       <% end %>
 
       <%= render 'spots/bookmark_buttons', { spot: spot } %>
-      <%= link_to "詳細", spot, class: "btn btn-primary", data: { action: "click->loading#show", turbo_frame: "_top" } %>
+      <%= link_to t('spots.show.to_show_page'),
+        spot,
+        class: "btn btn-primary",
+        data: {
+          action: "click->loading#show",
+          turbo_frame: "_top" } %>
     </div>
   </div>
 

@@ -1,4 +1,4 @@
-<% content_for :title, "パスワード再設定" %>
+<% content_for :title, t('.title') %>
 
 <div class="hero min-h-screen">
   <div class="hero-content flex-col w-full">
@@ -14,9 +14,15 @@
           <!-- メールアドレスフィールド -->
           <div class="form-control">
             <label class="label">
-              <span class="label-text"><%= t('activerecord.attributes.user.email') %></span>
+              <span class="label-text">
+                <%= t('activerecord.attributes.user.email') %>
+              </span>
             </label>
-            <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "input input-bordered" %>
+            <%= f.email_field :email,
+              autofocus: true,
+              required: true,
+              autocomplete: "email",
+              class: "input input-bordered" %>
           </div>
 
           <div class="form-control mt-6">
@@ -24,7 +30,7 @@
           </div>
 
           <div class="card bg-base-300 rounded-box grid place-items-center mt-5">
-            <%= link_to "ログインページに戻る", new_user_session_path, class: "btn btn-primary w-full " %>
+            <%= link_to t('devise.to_login_page'), new_user_session_path, class: "btn btn-primary w-full " %>
           </div>
         </div>
       <% end %>

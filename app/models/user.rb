@@ -5,6 +5,9 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :omniauthable, omniauth_providers: [ :google_oauth2 ]
 
+  # == Callbacks ==
+  after_initialize :set_default_chat_color, if: :new_record?
+
   # == Associations ==
   has_many :spots, dependent: :destroy
   has_many :comments, dependent: :destroy
@@ -42,5 +45,9 @@ class User < ApplicationRecord
 
   def total_bookmarked_count
     spots.joins(:bookmarks).count
+  end
+
+  def set_default_chat_color
+    self.chat_color ||= "default"
   end
 end

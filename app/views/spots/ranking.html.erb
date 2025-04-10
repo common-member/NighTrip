@@ -1,20 +1,32 @@
-<% content_for :title, "ランキング" %>
+<% content_for :title, t('.title') %>
 
-<h1 class="text-center text-2xl font-bold mb-6">ランキング</h1>
+<h1 class="text-center text-2xl font-bold mb-6"><%= t('.title') %></h1>
 
 <div class="tabs tabs-boxed w-full max-w-5xl mx-auto">
   <!-- Tab 1 -->
   <input type="radio" name="ranking_tabs" class="tab" aria-label="スポットTOP5" checked="checked" />
   <div class="tab-content bg-base-100 border border-base-300 p-6">
-    <h2 class="text-center text-xl font-semibold">お気に入り数</h2>
+    <h2 class="text-center text-xl font-semibold">
+      <%= t('.bookmarked_count') %>
+    </h2>
     <table class="table border border-gray-800 my-4">
       <thead>
         <tr>
-          <th class="border border-gray-800">順位</th>
-          <th class="border border-gray-800">スポット名</th>
-          <th class="border border-gray-800">スポット画像</th>
-          <th class="border border-gray-800">お気に入り数</th>
-          <th class="border border-gray-800">投稿者</th>
+          <th class="border border-gray-800">
+            <%= t('.table.header.rank') %>
+          </th>
+          <th class="border border-gray-800">
+            <%= t('activerecord.attributes.spot.name') %>
+          </th>
+          <th class="border border-gray-800">
+            <%= t('activerecord.attributes.spot.image') %>
+          </th>
+          <th class="border border-gray-800">
+            <%= t('.bookmarked_count') %>
+          </th>
+          <th class="border border-gray-800">
+            <%= t('activerecord.attributes.spot.user.name') %>
+          </th>
         </tr>
       </thead>
       <tbody>
@@ -49,13 +61,21 @@
   <!-- Tab 2 -->
   <input type="radio" name="ranking_tabs" class="tab" aria-label="ユーザーTOP5" />
   <div class="tab-content bg-base-100 border border-base-300 p-6">
-    <h2 class="text-center text-xl font-semibold">お気に入り数</h2>
+    <h2 class="text-center text-xl font-semibold">
+      <%= t('.bookmarked_count') %>
+    </h2>
     <table class="table border border-gray-800 my-4">
       <thead>
         <tr>
-          <th class="border border-gray-800">順位</th>
-          <th class="border border-gray-800">ユーザー名</th>
-          <th class="border border-gray-800">投稿にお気に入りされた総数</th>
+          <th class="border border-gray-800">
+            <%= t('.bookmarked_count') %>
+          </th>
+          <th class="border border-gray-800">
+            <%= t('activerecord.attributes.user.name') %>
+          </th>
+          <th class="border border-gray-800">
+            <%= t('.table.header.total_bookmarked') %>
+          </th>
         </tr>
       </thead>
       <tbody>

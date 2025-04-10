@@ -3,27 +3,43 @@ ja:
     models:
       user: ユーザー
       spot: スポット
+      comment: コメント
+      bookmark: ブックマーク
+      tag: タグ
+      prefecture: 都道府県
     attributes:
       user:
-        email: メールアドレス
         name: ユーザー名
+        email: メールアドレス
         password: パスワード
         password_confirmation: パスワード確認
         current_password: 現在のパスワード
+        chat_color: コメントの背景色
+        chat_color_values:
+          default: デフォルト
+          energy: エナジー
+          calm: カーム
+          pop: ポップ
+          fresh: フレッシュ
+          info: インフォ
+          sunny: サニー
+          alert: アラート
       spot:
         name: スポット名
         address: 位置情報
-        url: URL
-        body: その他情報
+        url: 公式サイト
+        body: 説明
         image: 画像
-        tag_names: タグ
-    errors:
-      models:
+        tag: タグ
         user:
-          attributes:
-            email:
-              not_found: "が見つかりません"
-        spot:
-          attributes:
-            tag_names:
-              too_many_tags: "は最大で3つまでしか入力できません"
+          name: 投稿者
+      comment:
+        body: コメント
+      bookmark:
+        user: ユーザー
+        spot: スポット
+      tag:
+        name: タグ
+      prefecture:
+        name: 都道府県名
+        region: 地域

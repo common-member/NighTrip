@@ -1,33 +1,35 @@
-<% content_for :title, "マイページ" %>
+<% content_for :title, t('.title') %>
 
 <div class="container mx-auto px-4 py-6">
 
   <!-- アカウント情報 -->
   <section class="mb-8">
-    <h2 class="text-xl font-bold border-b border-gray-300 pb-2 mb-4">アカウント情報</h2>
-    <p>ユーザー名：<%= current_user.name %></p>
-    <p>メールアドレス：<%= current_user.email %></p>
+    <h2 class="text-xl font-bold border-b border-gray-300 pb-2 mb-4"><%= t('.account_info') %></h2>
+    <p><%= t('activerecord.attributes.user.name') %>：<%= current_user.name %></p>
+    <p><%= t('activerecord.attributes.user.email') %>：<%= current_user.email %></p>
     <!-- 編集ボタンなども後で追加可能 -->
     <div class="flex justify-center mt-4">
-      <%= link_to "編集", edit_user_registration_path, class: "btn btn-primary w-[80%] max-w-md", data: { action: "click->loading#show" } %>
+      <%= link_to t('helpers.submit.edit'), edit_user_registration_path, class: "btn btn-primary w-[80%] max-w-md", data: { action: "click->loading#show" } %>
   </section>
 
   <!-- コメントのテーマカラー -->
   <section class="mb-8 mx-auto">
     <%= form_for(current_user, url: profile_path, method: :put) do |f| %>
       <div class="form-control">
-        <%= f.label :chat_color, "コメントの背景色", class: "text-xl font-bold border-b border-gray-300 pb-2 mb-4" %>
+        <%= f.label :chat_color,
+          t('activerecord.attributes.user.chat_color'),
+          class: "text-xl font-bold border-b border-gray-300 pb-2 mb-4" %>
         <%= f.select :chat_color,
           options_for_select(
             [
-              ['デフォルト', 'デフォルト'],
-              ['エナジー', 'エナジー'],
-              ['カーム', 'カーム'],
-              ['ポップ', 'ポップ'],
-              ['フレッシュ', 'フレッシュ'],
-              ['インフォ', 'インフォ'],
-              ['サニー', 'サニー'],
-              ['アラート', 'アラート']
+              [t('activerecord.attributes.user.chat_color_values.default'), 'default'],
+              [t('activerecord.attributes.user.chat_color_values.energy'), 'energy'],
+              [t('activerecord.attributes.user.chat_color_values.calm'), 'calm'],
+              [t('activerecord.attributes.user.chat_color_values.pop'), 'pop'],
+              [t('activerecord.attributes.user.chat_color_values.fresh'), 'fresh'],
+              [t('activerecord.attributes.user.chat_color_values.info'), 'info'],
+              [t('activerecord.attributes.user.chat_color_values.sunny'), 'sunny'],
+              [t('activerecord.attributes.user.chat_color_values.alert'), 'alert']
             ],
             current_user.chat_color
           ),
@@ -35,29 +37,34 @@
       </div>
 
       <!-- コメントのプレビュー -->
-      <% color_class = case current_user.chat_color.presence || "デフォルト"
-        when "デフォルト" then "bg-neutral text-base-content"
-        when "エナジー"   then "bg-primary text-primary-content"
-        when "カーム"     then "bg-secondary text-secondary-content"
-        when "ポップ"     then "bg-accent text-accent-content"
-        when "フレッシュ" then "bg-success text-success-content"
-        when "インフォ"   then "bg-info text-info-content"
-        when "サニー"     then "bg-warning text-warning-content"
-        when "アラート"   then "bg-error text-error-content"
+      <% chat_color = current_user.chat_color.presence || 'default' %>
+      <% color_class = case chat_color
+        when 'default' then "bg-neutral text-base-content"
+        when 'energy'  then "bg-primary text-primary-content"
+        when 'calm'    then "bg-secondary text-secondary-content"
+        when 'pop'     then "bg-accent text-accent-content"
+        when 'fresh'   then "bg-success text-success-content"
+        when 'info'    then "bg-info text-info-content"
+        when 'sunny'   then "bg-warning text-warning-content"
+        when 'alert'   then "bg-error text-error-content"
         else
           "bg-neutral text-base-content"
         end %>
 
       <div class="my-4">
         <div class="text-md font-bold">
-          <p>コメントのプレビュー</p>
+          <p><%= t('.comment_preview') %></p>
         </div>
         <div class="chat chat-start">
           <div class="chat-header">
             <%= current_user.name %>
           </div>
           <div class="chat-bubble <%= color_class %>">
-            <p>現在のコメントの背景色は、「<%= current_user.chat_color %>」です</p>
+            <p>
+              <%= t('.current_chat_color_is') %>
+              <%= t("activerecord.attributes.user.chat_color_values.#{chat_color}") %>
+              <%= t('.predicate') %>
+            </p>
           </div>
         </div>
       </div>
@@ -70,7 +77,7 @@
 
   <!-- 投稿したスポット一覧 -->
   <section class="mb-10">
-    <h2 class="text-xl font-bold border-b border-gray-300 pb-2 mb-4">投稿した夜景スポット</h2>
+    <h2 class="text-xl font-bold border-b border-gray-300 pb-2 mb-4"><%= t('.posted_spots') %></h2>
 
     <div class="grid sm:grid-cols-3 gap-5 md:gap-8 my-8">
       <% if @spots.any? %>
@@ -83,7 +90,7 @@
 
   <!-- コメントしたスポット一覧 -->
   <section>
-    <h2 class="text-xl font-bold border-b border-gray-300 pb-2 mb-4">コメントした投稿</h2>
+    <h2 class="text-xl font-bold border-b border-gray-300 pb-2 mb-4"><%= t('.commented_spots') %></h2>
 
     <% if @comments.any? %>
       <div class="grid sm:grid-cols-3 gap-5 md:gap-8 my-8">
@@ -105,7 +112,7 @@
         <% end %>
       </div>
     <% else %>
-      <p class="text-center my-10 col-span-3 text-gray-500">まだコメントがありません。</p>
+      <p class="text-center my-10 col-span-3"><%= t('.no_comments') %></p>
     <% end %>
   </section>
 

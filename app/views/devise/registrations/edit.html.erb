@@ -1,4 +1,4 @@
-<% content_for :title, "アカウント情報編集" %>
+<% content_for :title, t('.title') %>
 
 <h1 class="text-center text-2xl font-bold"><%= t('.title') %></h1>
 
@@ -8,7 +8,9 @@
       <%= render "devise/shared/error_messages", resource: resource %>
 
       <div class="form-control">
-        <%= f.label :name, "#{t('helpers.label.name')}（最大30文字）", class: "label-text" %>
+        <%= f.label :name,
+          "#{t('activerecord.attributes.user.name')}#{t('helpers.label.user.name_length_limit')}",
+          class: "label-text" %>
         <%= f.text_field :name, autofocus: true, autocomplete: "name", class: "input input-bordered", required: true %>
       </div>
 

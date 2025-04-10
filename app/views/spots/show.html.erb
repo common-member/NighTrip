@@ -23,38 +23,38 @@
       <thead>
         <%# タイトル部 %>
         <tr class="border border-gray-800">
-          <th class="text-xl text-center" colspan="2">基本情報</th>
+          <th class="text-xl text-center" colspan="2"><%= t('.basic_info') %></th>
         </tr>
       </thead>
       <tbody>
         <tr>
           <%# 説明部%>
-          <td class="font-bold border border-gray-800">説明</td>
+          <td class="font-bold border border-gray-800"><%= t('activerecord.attributes.spot.body') %></td>
           <td class="border border-gray-800">
             <% if @spot.body.present? %>
               <div class="break-words max-h-32 overflow-y-auto">
                 <%= simple_format(@spot.body) %>
               </div>
             <% else %>
-              情報がありません
+              <%= t('.no_info') %>
             <% end %>
           </td>
         </tr>
         <tr>
           <%# URL部 %>
-          <td class="font-bold border border-gray-800">公式サイト</td>
+          <td class="font-bold border border-gray-800"><%= t('activerecord.attributes.spot.url') %></td>
           <td class="border border-gray-800 break-words max-h-16 overflow-y-auto max-w-32">
             <% if @spot.url.present? %>
               <%= link_to @spot.url.to_s, @spot.url.to_s, target: "_blank", class: "text-info break-words max-h-16 overflow-y-auto" %>
             <% else %>
-              情報がありません
+              <%= t('.no_info') %>
             <% end %>
           </td>
         </tr>
         <tr>
-          <td class="font-bold border border-gray-800">タグ</td>
+          <!-- タグ部 -->
+          <td class="font-bold border border-gray-800"><%= t('activerecord.attributes.spot.tag') %></td>
           <td>
-            <!-- タグ部 -->
             <% if @spot.tags.present? %>
               <div class="flex flex-wrap gap-2">
                 <% @spot.tags.each do |tag| %>
@@ -62,13 +62,13 @@
                 <% end %>
               </div>
             <% else %>
-              情報がありません
+              <%= t('.no_info') %>
             <% end %>
           </td>
         </tr>
         <tr>
           <%# 投稿者部 %>
-          <td class="font-bold border border-gray-800">投稿者</td>
+          <td class="font-bold border border-gray-800"><%= t('activerecord.attributes.spot.user.name') %></td>
           <td class="border border-gray-800 break-words overflow-x-auto"><%= @spot.user.name %></td>
         </tr>
         <tr>
@@ -79,7 +79,7 @@
                 <path d="M4 4l11.733 16h4.267l-11.733 -16z" />
                 <path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772" />
               </svg>
-              <span>でシェア</span>
+              <span><%= t('.share') %></span>
             <% end %>
           </td>
         </tr>
@@ -92,11 +92,11 @@
 <%# Google Maps部 %>
 <div class="my-5 text-wrap">
   <% if @spot.latitude.present? && @spot.longitude.present? %>
-    <h3 class="text-xl font-bold mb-1">位置情報</h3>
+    <h3 class="text-xl font-bold mb-1"><%= t('activerecord.attributes.spot.address') %></h3>
     <%= link_to @spot.full_address, "https://www.google.com/maps?q=#{CGI.escape(@spot.full_address)}", target: "_blank", rel: "noopener", class: "text-info text-lg underline" %>
     <div id="map" style="height: 400px;" class="mt-1 rounded"></div>
   <% else %>
-    <p class="text-center">位置情報が取得できませんでした</p>
+    <p class="text-center"><%= t('.geolocation.error') %></p>
   <% end %>
 </div>
 
@@ -110,7 +110,7 @@
     <% if @spot.comments.any? %>
       <%= render @spot.comments.order(created_at: :desc) %>
     <% else %>
-      <p id="no_comments" class="text-center">今がチャンス！最初のコメントを投稿してみましょう</p>
+      <p id="no_comments" class="text-center"><%= t('.no_comments') %></p>
     <% end %>
   </div>
 
@@ -120,8 +120,11 @@
 <!-- 下部ボタン -->
 <div class="w-3/5 mx-auto space-y-5">
   <% if current_user&.own?(@spot) %>
-    <%= link_to "投稿を編集", edit_spot_path(@spot), class: "btn btn-primary w-full" %>
-    <%= link_to "投稿を削除", @spot, data: { turbo_method: :delete, turbo_confirm: "本当に削除しますか？" }, class: "btn btn-error w-full" %>
+    <%= link_to t('.edit_spot'), edit_spot_path(@spot), class: "btn btn-primary w-full" %>
+    <%= link_to t('.delete_spot'),
+      @spot,
+      data: { turbo_method: :delete, turbo_confirm: "本当に削除しますか？" },
+      class: "btn btn-error w-full" %>
   <% end %>
 
   <%= back_button %>

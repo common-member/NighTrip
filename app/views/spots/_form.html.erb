@@ -1,7 +1,8 @@
 <%= form_with(model: spot, class: "contents") do |f| %>
   <%# エラー部 %>
   <% if spot.errors.any? %>
-    <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-md my-3">
+    <div id="error_explanation"
+      class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-md my-3">
       <h2><%= spot.errors.count %> 件のエラーにより、スポットは保存できませんでした</h2>
 
       <ul class="list-disc ml-6">
@@ -18,42 +19,72 @@
     <%# スポット名 %>
     <div class="form-group">
       <%= f.label :name, class: "form-label", for: :spot_name do %>
-        スポット名（最大30文字） <span class="bg-red-700 text-xs ml-1 text-white rounded p-1">必須</span>
+        <%= t('helpers.label.spot.name') %>
+        <%= t('helpers.label.spot.name_length_limit') %>
+        <span class="bg-red-700 text-xs ml-1 text-white rounded p-1">
+          <%= t('helpers.label.spot.required') %>
+        </span>
       <% end %>
-      <%= f.text_field :name, autofocus: true, required: true, placeholder: "例：東京タワー", class: "w-full input input-bordered" %>
+      <%= f.text_field :name,
+        autofocus: true,
+        required: true,
+        placeholder: "例：東京タワー",
+        class: "w-full input input-bordered mt-1" %>
     </div>
 
     <%# 住所（都道府県） %>
     <div class="form-group">
       <%= f.label :prefecture_id, class: "form-label", for: :spot_prefecture do %>
-        都道府県 <span class="bg-red-700 text-xs ml-1 text-white rounded p-1">必須</span>
+        <%= t('helpers.label.spot.prefecture') %>
+        <span class="bg-red-700 text-xs ml-1 text-white rounded p-1">
+          <%= t('helpers.label.spot.required') %>
+        </span>
       <% end %>
-      <%= f.select :prefecture_id, Prefecture.all.collect { |p| [p.name, p.id] }, { include_blank: "選択してください" }, { required: true, class: "w-full input input-bordered" } %>
+      <%= f.select :prefecture_id,
+        Prefecture.all.collect { |p| [p.name, p.id] },
+        { include_blank: "選択してください" },
+        { required: true, class: "w-full input input-bordered mt-1" } %>
     </div>
 
     <%# 住所（詳細） %>
     <div class="form-group">
       <%= f.label :address, class: "form-label", for: :spot_address do %>
-        市区町村番地（最大60文字） <span class="bg-red-700 text-xs ml-1 text-white rounded p-1">必須</span>
+        <%= t('helpers.label.spot.address') %>
+        <%= t('helpers.label.spot.address_length_limit') %>
+        <span class="bg-red-700 text-xs ml-1 text-white rounded p-1">
+          <%= t('helpers.label.spot.required') %>
+        </span>
       <% end %>
-      <%= f.text_field :address, required: true, placeholder: "例：港区芝公園4-2-8", class: "w-full input input-bordered" %>
+      <%= f.text_field :address,
+        required: true,
+        placeholder: "例：港区芝公園4-2-8",
+        class: "w-full input input-bordered mt-1" %>
     </div>
 
     <%# URL %>
     <div class="form-group">
-      <%= f.label :url, "サイトURL（最大255文字）", class: "form-label", for: :spot_url %>
+      <%= f.label :url, class: "form-label", for: :spot_url do %>
+        <%= t('helpers.label.spot.url') %>
+        <%= t('helpers.label.spot.url_length_limit') %>
+      <% end %>
       <%= f.url_field :url,
         maxlength: 255,
         placeholder: "例: https://example.com",
         title: "有効なURLでなければいけません",
-        class: "input input-bordered w-full" %>
+        class: "input input-bordered w-full mt-1" %>
     </div>
 
     <%# タグ %>
     <div class="form-group">
-      <%= f.label :tag_names, "タグ（最大3つ）（スペース区切り）", class: "form-label", for: :spot_tags %>
-      <%= f.text_field :tag_names, value: spot.tags.map(&:name).join(' '
-), placeholder: "例：タワー 展望台 都会", class: "input input-bordered w-full" %>
+      <%= f.label :tag_names, class: "form-label", for: :spot_tags do %>
+        <%= t('helpers.label.spot.tag') %>
+        <%= t('helpers.label.spot.tags_length_limit') %>
+        <%= t('helpers.label.spot.space_separate') %>
+      <% end %>
+      <%= f.text_field :tag_names,
+        value: spot.tags.map(&:name).join(' '),
+        placeholder: "例：タワー 展望台 都会",
+        class: "input input-bordered w-full mt-1" %>
 
       <% if f.object.errors[:tag_names].present? %>
         <div class="text-red-500 text-sm mt-1">
@@ -64,16 +95,27 @@
 
     <%# 説明 %>
     <div class="form-group">
-      <%= f.label :body, "説明（スポットの特徴や魅力などを記入してください）", class: "form-label", for: :spot_body %>
-      <%= f.text_area :body, rows: 1, placeholder: "例：デートスポットにぴったり！", class: "textarea textarea-bordered w-full" %>
+      <%= f.label :body, class: "form-label", for: :spot_body do %>
+        <%= t('helpers.label.spot.body') %>
+        <%= t('helpers.label.spot.body_description') %>
+      <% end %>
+      <%= f.text_area :body,
+        rows: 1,
+        placeholder: "例：デートスポットにぴったり！",
+        class: "textarea textarea-bordered w-full mt-1" %>
     </div>
 
     <%# 画像 %>
     <div class="form-group">
       <%= f.label :image, class: "form-label", for: :spot_image do %>
-        画像 <span class="bg-red-700 text-xs ml-1 text-white rounded p-1">必須</span>
+        <%= t('helpers.label.spot.image') %>
+        <span class="bg-red-700 text-xs ml-1 text-white rounded p-1">
+          <%= t('helpers.label.spot.required') %>
+        </span>
       <% end %>
-      <%= f.file_field :image, accept: 'image/*', class: "w-full file-input file-input-primary" %>
+      <%= f.file_field :image,
+        accept: 'image/*',
+        class: "w-full file-input file-input-primary mt-1" %>
 
       <%# 画像プレビュー %>
       <% if spot.persisted? && spot.image.attached? %>

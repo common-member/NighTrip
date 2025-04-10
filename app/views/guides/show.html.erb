@@ -1,3 +1,5 @@
+<% content_for :title, t('.title') %>
+
 <!-- service image -->
 <div
   class="hero min-h-screen"
@@ -6,7 +8,7 @@
   <div class="hero-content text-neutral-content text-center">
     <div class="max-w-3xl">
       <h1 class="mb-5 text-5xl font-bold">心に残る夜景を、ここで見つけよう</h1>
-      <%= link_to t('guide.show.search_spots'), spots_path, class: "btn btn-primary", data: { action: "click->loading#show" } %>
+      <%= link_to t('.search_spots'), spots_path, class: "btn btn-primary", data: { action: "click->loading#show" } %>
     </div>
   </div>
 </div>
@@ -53,12 +55,12 @@
   <div class="flex w-3/5 flex-col border-opacity-50">
     <!-- button for user registration -->
     <div class="card bg-base-300 rounded-box grid place-items-center">
-      <%= link_to t('guide.show.to_registration_page'), new_user_registration_path, class: "btn btn-primary w-full", data: { action: "click->loading#show" } %>
+      <%= link_to t('.to_registration_page'), new_user_registration_path, class: "btn btn-primary w-full", data: { action: "click->loading#show" } %>
     </div>
     <div class="divider">OR</div>
     <!-- button for login -->
     <div class="card bg-base-300 rounded-box grid place-items-center">
-      <%= link_to t('guide.show.to_login_page'), new_user_session_path, class: "btn btn-primary w-full", data: { action: "click->loading#show" } %>
+      <%= link_to t('.to_login_page'), new_user_session_path, class: "btn btn-primary w-full", data: { action: "click->loading#show" } %>
     </div>
   </div>
 </div>

@@ -1,4 +1,6 @@
 class DiagnosesController < ApplicationController
+  skip_before_action :authenticate_user!, only: %i[ new result ]
+
   def new
     @spot = Spot.new
     @region_options = Prefecture.region_options

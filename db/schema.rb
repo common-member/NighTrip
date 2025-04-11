@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_04_06_111049) do
+ActiveRecord::Schema[7.2].define(version: 2025_04_10_233852) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -81,6 +81,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_04_06_111049) do
     t.string "image"
     t.float "latitude"
     t.float "longitude"
+    t.string "atmosphere", default: "静か", null: false
     t.index ["user_id"], name: "index_spots_on_user_id"
   end
 

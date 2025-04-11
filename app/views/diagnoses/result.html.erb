@@ -1,0 +1,29 @@
+<div class="mx-auto w-2/5 my-8">
+
+  <h2 class="text-2xl font-bold mb-6 text-center">あなたへのオススメ夜景スポット</h2>
+
+  <% if @spots.any? %>
+    <div class="grid gap-6 grid-cols-1">
+      <% @spots.each do |spot| %>
+        <div class="my-8">
+          <%= render spot %>
+          <%= link_to "https://x.com/intent/tweet?text=#{CGI.escape("夜景診断：あなたへのオススメ夜景スポットは、【#{spot.name}】です！\n\n夜景詳細情報\nスポット名：#{spot.name}\n位置情報：#{spot.prefecture.name + spot.address}\n投稿者：#{spot.user.name}\n\n#{request.url}\n#NighTrip #夜景 #夜景診断")}", target: '_blank', class: "btn btn-neutral flex item-center gap-2 mt-5" do %>
+            <svg class="h-6 w-6 text-slate-200" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+              <path d="M4 4l11.733 16h4.267l-11.733 -16z" />
+              <path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772" />
+            </svg>
+            <span><%= t('.share') %></span>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  <% else %>
+    <div class="alert alert-info mt-4">
+      条件に合うスポットが見つかりませんでした。条件を変更して再度お試しください。
+    </div>
+  <% end %>
+
+  <%= back_button %>
+
+</div>

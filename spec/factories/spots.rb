@@ -4,6 +4,7 @@ FactoryBot.define do
     address { Faker::Address.full_address }
     url { Faker::Internet.url }
     body { Faker::Lorem.paragraph_by_chars(number: 300, supplemental: true) }
+    atmosphere { Spot::ATMOSPHERE_OPTIONS.sample }
 
     association :user
     association :prefecture

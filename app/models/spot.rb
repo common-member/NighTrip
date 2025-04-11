@@ -1,4 +1,13 @@
 class Spot < ApplicationRecord
+  # == Constants ==
+  ATMOSPHERE_OPTIONS = [
+    "静かに過ごせる",
+    "にぎやかで楽しい",
+    "幻想的な雰囲気",
+    "ロマンチックな空間",
+    "自然を感じる"
+  ].freeze
+
   # == Associations ==
   belongs_to :user
   belongs_to :prefecture
@@ -25,6 +34,7 @@ class Spot < ApplicationRecord
   validates :body, length: { maximum: 5000 }
   validates :image, presence: true
   validate :validate_tag_limit
+  validates :atmosphere, presence: true, inclusion: { in: ATMOSPHERE_OPTIONS }
 
   # == Callbacks ==
   after_save :assign_tags

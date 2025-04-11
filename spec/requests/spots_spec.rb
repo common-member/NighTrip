@@ -37,6 +37,7 @@ RSpec.describe "Spots", type: :request do
               body: "テストです。",
               address: "港区",
               url: "https://example.com",
+              atmosphere: "静かに過ごせる",
               prefecture_id: prefecture.id,
               image: image
             }

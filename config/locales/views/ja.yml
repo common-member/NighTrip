@@ -9,45 +9,32 @@ ja:
       login: ログイン
       change_password: 変更する
       registration: 登録
-      comment_create: コメントを投稿
-      comment_update: コメントを更新
-      current_password: 現在のパスワード
-      new_password: 新しいパスワード
-      new_password_confirmation: 新しいパスワード（確認）
-      tag_names: タグ
+
+    button:
+      back: 戻る
+      next: 次へ
 
     label:
       user:
-        name: ユーザー名
         name_length_limit: （最大30文字）
-        email: メールアドレス
-        password: パスワード
-        password_confirmation: パスワード確認
 
       spot:
         required: 必須
-        name: スポット名
         name_length_limit: （最大30文字）
-        prefecture: 都道府県
-        address: 位置情報
         address_length_limit: （最大60文字）
-        url: サイトURL
         url_length_limit: （最大255文字）
-        tag: タグ
         tags_length_limit: （最大3つ）
         space_separate: （スペース区切り）
-        body: 説明
         body_description: （スポットの特徴や魅力などを記入してください）
-        image: 画像
       comment: コメント
       back: 戻る
       spots_index: 投稿一覧へ
-
 
   header:
     sign_up: 新規登録
     guide: 使いかた
     create_spot: 新規投稿
+    diagnosis: 夜景診断
     ranking: ランキング
     bookmark_index: お気に入り
     profile: マイページ
@@ -192,6 +179,13 @@ ja:
       posted_spots: 投稿した夜景スポット
       commented_spots: コメントした投稿
       no_comments: まだコメントがありません
+
+  diagnoses:
+    new:
+      title: 夜景診断
+    result:
+      title: 診断結果
+      share: でシェアする
 
   terms:
     index:

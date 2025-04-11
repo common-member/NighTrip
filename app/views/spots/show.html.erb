@@ -52,6 +52,18 @@
           </td>
         </tr>
         <tr>
+          <%# 雰囲気部%>
+          <td class="font-bold border border-gray-800"><%= t('activerecord.attributes.spot.atmosphere') %></td>
+          <td class="border border-gray-800">
+            <% if @spot.atmosphere.present? %>
+              <%= @spot.atmosphere %>
+            <% else %>
+              <%= t('.no_info') %>
+            <% end %>
+          </td>
+        </tr>
+        <tr>
+        <tr>
           <!-- タグ部 -->
           <td class="font-bold border border-gray-800"><%= t('activerecord.attributes.spot.tag') %></td>
           <td>

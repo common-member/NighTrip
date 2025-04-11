@@ -26,11 +26,13 @@ ja:
           alert: アラート
       spot:
         name: スポット名
+        prefecture: 都道府県
         address: 位置情報
         url: 公式サイト
         body: 説明
         image: 画像
         tag: タグ
+        atmosphere: 雰囲気
         user:
           name: 投稿者
       comment:

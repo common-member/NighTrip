@@ -23,6 +23,12 @@
         </li>
       <% end %>
       <li>
+        <%= link_to diagnosis_path, class: style_color, data: { action: "click->loading#show" } do %>
+          <%= image_tag "icons/diagnosis.png", alt: "夜景診断ページへ" %>
+          <%= t('header.diagnosis') %>
+        <% end %>
+      </li>
+      <li>
         <%= link_to ranking_spots_path, class: style_color, data: { action: "click->loading#show" } do %>
           <%= image_tag "icons/ranking.png", alt: "ランキングページへ" %>
           <%= t('header.ranking') %>

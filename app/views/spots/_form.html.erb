@@ -19,7 +19,7 @@
     <%# スポット名 %>
     <div class="form-group">
       <%= f.label :name, class: "form-label", for: :spot_name do %>
-        <%= t('helpers.label.spot.name') %>
+        <%= t('activerecord.attributes.spot.name') %>
         <%= t('helpers.label.spot.name_length_limit') %>
         <span class="bg-red-700 text-xs ml-1 text-white rounded p-1">
           <%= t('helpers.label.spot.required') %>
@@ -35,7 +35,7 @@
     <%# 住所（都道府県） %>
     <div class="form-group">
       <%= f.label :prefecture_id, class: "form-label", for: :spot_prefecture do %>
-        <%= t('helpers.label.spot.prefecture') %>
+        <%= t('activerecord.attributes.spot.prefecture') %>
         <span class="bg-red-700 text-xs ml-1 text-white rounded p-1">
           <%= t('helpers.label.spot.required') %>
         </span>
@@ -49,7 +49,7 @@
     <%# 住所（詳細） %>
     <div class="form-group">
       <%= f.label :address, class: "form-label", for: :spot_address do %>
-        <%= t('helpers.label.spot.address') %>
+        <%= t('activerecord.attributes.spot.address') %>
         <%= t('helpers.label.spot.address_length_limit') %>
         <span class="bg-red-700 text-xs ml-1 text-white rounded p-1">
           <%= t('helpers.label.spot.required') %>
@@ -64,7 +64,7 @@
     <%# URL %>
     <div class="form-group">
       <%= f.label :url, class: "form-label", for: :spot_url do %>
-        <%= t('helpers.label.spot.url') %>
+        <%= t('activerecord.attributes.spot.url') %>
         <%= t('helpers.label.spot.url_length_limit') %>
       <% end %>
       <%= f.url_field :url,
@@ -74,10 +74,24 @@
         class: "input input-bordered w-full mt-1" %>
     </div>
 
+    <%# 雰囲気 %>
+    <div class="form-group">
+      <%= f.label :atmosphere, class: "form-label", for: :spot_atmosphere do %>
+        <%= t('activerecord.attributes.spot.atmosphere') %>
+        <span class="bg-red-700 text-xs ml-1 text-white rounded p-1">
+          <%= t('helpers.label.spot.required') %>
+        </span>
+      <% end %>
+      <%= f.select :atmosphere,
+        Spot::ATMOSPHERE_OPTIONS,
+        { include_blank: "選択してください" },
+        { required: true, class: "w-full input input-bordered mt-1" } %>
+    </div>
+
     <%# タグ %>
     <div class="form-group">
       <%= f.label :tag_names, class: "form-label", for: :spot_tags do %>
-        <%= t('helpers.label.spot.tag') %>
+        <%= t('activerecord.attributes.spot.tag') %>
         <%= t('helpers.label.spot.tags_length_limit') %>
         <%= t('helpers.label.spot.space_separate') %>
       <% end %>
@@ -96,7 +110,7 @@
     <%# 説明 %>
     <div class="form-group">
       <%= f.label :body, class: "form-label", for: :spot_body do %>
-        <%= t('helpers.label.spot.body') %>
+        <%= t('activerecord.attributes.spot.body') %>
         <%= t('helpers.label.spot.body_description') %>
       <% end %>
       <%= f.text_area :body,
@@ -108,7 +122,7 @@
     <%# 画像 %>
     <div class="form-group">
       <%= f.label :image, class: "form-label", for: :spot_image do %>
-        <%= t('helpers.label.spot.image') %>
+        <%= t('activerecord.attributes.spot.image') %>
         <span class="bg-red-700 text-xs ml-1 text-white rounded p-1">
           <%= t('helpers.label.spot.required') %>
         </span>
@@ -128,6 +142,6 @@
 
   <%# 送信ボタン %>
   <div class="flex w-3/5 flex-col border-opacity-50 mx-auto mt-5">
-    <%= f.submit class: "btn btn-primary w-full", data: { action: "click->loading#show" } %>
+    <%= f.submit class: "btn btn-primary w-full" %>
   </div>
 <% end %>

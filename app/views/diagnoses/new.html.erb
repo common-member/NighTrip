@@ -1,0 +1,83 @@
+<% content_for :title, t('.title') %>
+
+<h1 class="text-2xl font-bold my-4 text-center"><%= t('.title') %></h1>
+
+<%= form_with url: diagnosis_result_path, method: :post, data: { controller: "step-form" }, class: "my-8" do |f| %>
+
+  <!-- ステップバー -->
+  <ul class="steps w-full mb-5" data-step-form-target="progress">
+    <li class="step step-primary">地域</li>
+    <li class="step">雰囲気</li>
+    <li class="step">特徴</li>
+  </ul>
+
+  <!-- ステップ1：地域 -->
+  <div data-step-form-target="step" class="card p-6 bg-base-100 shadow-md w-2/5 mx-auto space-y-2">
+    <%= f.label :region, "STEP1：地域を選んでください", class: "block text-center text-lg font-semibold mb-2" %>
+    <%= f.collection_radio_buttons :region, @region_options, :last, :first do |b| %>
+      <label class="label cursor-pointer flex items-center gap-2">
+        <%= b.radio_button(class: "radio", required: true) %>
+        <%= b.text %>
+      </label>
+    <% end %>
+    <div>
+      <%= tag.button t('helpers.button.next'), type: 'button', data: { action: 'step-form#next' }, class: 'btn btn-primary w-full mt-5' %>
+    </div>
+  </div>
+
+  <!-- ステップ2：雰囲気 -->
+  <div data-step-form-target="step" style="display: none;" class="card p-6 bg-base-100 shadow-md w-2/5 mx-auto space-y-2">
+    <%= f.label :atmosphere, "STEP2：雰囲気を選んでください", class: "block text-center form-label text-lg font-semibold mb-2 " %>
+    <%= f.collection_radio_buttons :atmosphere, Spot::ATMOSPHERE_OPTIONS, :to_s, :to_s do |b| %>
+      <label class="label cursor-pointer flex items-center gap-2">
+        <%= b.radio_button(class: "radio", required: true) %>
+        <%= b.text %>
+      </label>
+    <% end %>
+    <div class="mt-5 flex justify-between">
+      <%= tag.button t('helpers.button.back'), type: 'button', data: { action: 'step-form#back' }, class: 'btn btn-outline' %>
+      <%= tag.button t('helpers.button.next'), type: 'button', data: { action: 'step-form#next' }, class: 'btn btn-primary' %>
+    </div>
+  </div>
+
+  <!-- ステップ3：特徴 -->
+  <div data-step-form-target="step" style="display: none;" class="card p-6 bg-base-100 shadow-md w-2/5 mx-auto">
+
+    <%= f.label :tag, "STEP3：特徴（タグ）を1つ選んでください", class: "block text-center form-label text-lg font-semibold mb-2" %>
+
+    <div data-controller="autocomplete"
+        data-autocomplete-url-value="<%= autocomplete_tags_path %>">
+
+      <%= f.text_field :tag,
+            data: {
+              "autocomplete-target": "input"
+            },
+            class: "input input-bordered w-full",
+            placeholder: "タグを入力してください",
+            required: true %>
+
+      <ul data-autocomplete-target="results"
+          class="bg-gray-700 absolute rounded mt-1 w-full max-w-max max-h-60 overflow-auto z-50">
+      </ul>
+    </div>
+
+    <div class="mt-4">
+      <p class="mb-2">人気のタグ</p>
+      <div class="flex flex-wrap gap-3" data-controller="tag-select">
+        <% @popular_tags.each do |tag| %>
+          <span class="badge badge-outline cursor-pointer"
+                data-action="click->tag-select#select"
+                data-tag-select-name-value="<%= tag.name %>">
+            <%= tag.name %>
+          </span>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="mt-5 flex justify-between">
+      <%= tag.button t('helpers.button.back'), type: 'button', data: { action: 'step-form#back' }, class: 'btn btn-outline' %>
+      <%= f.submit "診断する", class: "btn btn-success", data: { turbo: false } %>
+    </div>
+  </div>
+
+<% end %>

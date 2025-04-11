@@ -15,8 +15,11 @@ Rails.application.routes.draw do
   resources :bookmarks, only: %i[index]
   resource :profile, only: %i[show update]
 
-  get "terms", to: "terms#index"
-  get "guide", to: "guides#show"
+  get  "terms",            to: "terms#index"
+  get  "guide",            to: "guides#show"
+  get  "diagnosis",        to: "diagnoses#new"
+  get  "diagnosis/result", to: "diagnoses#result"
+  post "diagnosis/result", to: "diagnoses#result"
 
   devise_for :users, controllers: {
     omniauth_callbacks: "users/omniauth_callbacks",

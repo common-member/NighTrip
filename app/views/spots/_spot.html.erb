@@ -1,9 +1,11 @@
 <div id="<%= dom_id spot %>" class="card col-span-1 bg-base-100 shadow-xl">
 
   <!-- カバー写真部分 -->
-  <figure>
-    <%= image_tag spot.image.variant(resize_to_limit: [1200, 800]).processed, class: "object-cover" %>
-  </figure>
+  <% if spot.image.attached? %>
+    <figure>
+      <%= image_tag spot.image.variant(resize_to_limit: [1200, 800]).processed, class: "object-cover" %>
+    </figure>
+  <% end %>
 
   <!-- 本文部 -->
   <div class="card-body">

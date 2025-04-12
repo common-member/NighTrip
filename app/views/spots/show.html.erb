@@ -8,13 +8,13 @@
   </div>
 </div>
 
-<div class="grid sm:grid-cols-3">
+<div class="grid grid-cols-3">
 
   <!-- スポット画像 -->
   <% cache(@spot.cache_key_with_version + "/image") do %>
     <% if @spot.image.attached? && @spot.image.blob.present? %>
-      <figure>
-        <%= image_tag @spot.image.variant(resize_to_limit: [1200, 800]).processed, class: "object-cover" %>
+      <figure class="col-span-2">
+        <%= image_tag @spot.image.variant(resize_to_limit: [1200, 800], saver: { quality: 70 }), class: "object-cover w-full h-auto" %>
       </figure>
     <% end %>
   <% end %>

@@ -13,7 +13,9 @@
   <!-- スポット画像 -->
   <% cache(@spot.cache_key_with_version + "/image") do %>
     <figure class="sm:col-span-2 mb-3">
-      <%= image_tag @spot.image, class: "rounded" %>
+      <% if @spot.image.attached?%>
+        <%= image_tag @spot.image, class: "rounded" %>
+      <% end %>
     </figure>
   <% end %>
 

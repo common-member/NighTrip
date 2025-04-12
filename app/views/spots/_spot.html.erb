@@ -3,7 +3,7 @@
   <!-- カバー写真部分 -->
   <% if spot.image.attached? && spot.image.blob.present? %>
     <figure>
-      <%= image_tag spot.image.variant(resize_to_limit: [1200, 800]).processed, class: "object-cover" %>
+      <%= image_tag spot.image.variant(resize_to_limit: [400, 300], saver: { quality: 50 }), class: "object-cover" %>
     </figure>
   <% end %>
 

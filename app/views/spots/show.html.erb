@@ -12,11 +12,11 @@
 
   <!-- スポット画像 -->
   <% cache(@spot.cache_key_with_version + "/image") do %>
-    <figure class="sm:col-span-2 mb-3">
-      <% if @spot.image.attached?%>
-        <%= image_tag @spot.image, class: "rounded" %>
-      <% end %>
-    </figure>
+    <% if @spot.image.attached? && @spot.image.blob.present? %>
+      <figure>
+        <%= image_tag @spot.image.variant(resize_to_limit: [1200, 800]).processed, class: "object-cover" %>
+      </figure>
+    <% end %>
   <% end %>
 
   <!-- 基本情報テーブル -->

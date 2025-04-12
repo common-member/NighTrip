@@ -1,7 +1,7 @@
 <div id="<%= dom_id spot %>" class="card col-span-1 bg-base-100 shadow-xl">
 
   <!-- カバー写真部分 -->
-  <% if spot.image.attached? %>
+  <% if spot.image.attached? && spot.image.blob.present? %>
     <figure>
       <%= image_tag spot.image.variant(resize_to_limit: [1200, 800]).processed, class: "object-cover" %>
     </figure>

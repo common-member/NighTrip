@@ -6,7 +6,21 @@
       <time class="text-xs opacity-50 ml-2"><%= comment.created_at.in_time_zone("Tokyo").strftime("%Y/%m/%d %H:%M") %></time>
     </div>
 
-    <div class="chat-bubble break-words <%= comment_class(comment.user.chat_color) %>">
+    <% chat_color = comment.user.chat_color.presence || 'default' %>
+    <% color_class = case chat_color
+      when 'default' then "bg-neutral text-base-content"
+      when 'energy'  then "bg-primary text-primary-content"
+      when 'calm'    then "bg-secondary text-secondary-content"
+      when 'pop'     then "bg-accent text-accent-content"
+      when 'fresh'   then "bg-success text-success-content"
+      when 'info'    then "bg-info text-info-content"
+      when 'sunny'   then "bg-warning text-warning-content"
+      when 'alert'   then "bg-error text-error-content"
+      else
+        "bg-neutral text-base-content"
+      end %>
+
+    <div class="chat-bubble break-words <%= color_class %>">
       <%= comment.body %>
     </div>
 

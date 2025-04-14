@@ -1,6 +1,6 @@
 <% content_for :title, @spot.name %>
 
-<!-- スポット名 + ブックマークボタン -->
+<!-- スポット名 -->
 <div class="flex items-center justify-start px-3 py-3">
   <h1 class="font-bold text-4xl"><%= @spot.name %></h1>
 </div>
@@ -17,7 +17,7 @@
   <% end %>
 
   <!-- 基本情報テーブル -->
-  <div class="sm:col-span-1 mx-5 max-w-full break-words">
+  <div class="sm:col-span-1 mx-5 max-w-full break-words bg-base-100">
     <table class="table w-full border border-gray-800">
       <thead>
         <%# タイトル部 %>

@@ -3,9 +3,6 @@
 <!-- スポット名 + ブックマークボタン -->
 <div class="flex items-center justify-start px-3 py-3">
   <h1 class="font-bold text-4xl"><%= @spot.name %></h1>
-  <div class="ml-2">
-    <%= render 'spots/bookmark_buttons', { spot: @spot } %>
-  </div>
 </div>
 
 <div class="grid grid-cols-3">
@@ -95,6 +92,11 @@
               </svg>
               <span><%= t('.share') %></span>
             <% end %>
+          </td>
+        </tr>
+        <tr>
+          <td class="border border-gray-800" colspan="2">
+            <%= render 'spots/bookmark_buttons', { spot: @spot } %>
           </td>
         </tr>
       </tbody>

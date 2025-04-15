@@ -132,7 +132,6 @@ ja:
       share: でシェア
       geolocation:
         error: 位置情報が取得できませんでした
-      to_show_page: 詳細
       no_comments: 今がチャンス！最初のコメントを投稿してみましょう
       edit_spot: 投稿を編集
       delete_spot: 投稿を削除

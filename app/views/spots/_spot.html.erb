@@ -1,45 +1,72 @@
-<div id="<%= dom_id spot %>" class="card col-span-1 bg-base-100 shadow-xl">
+<div id="<%= dom_id spot %>"
+     class="card col-span-1 bg-base-100
+            shadow-2xl rounded-xl
+            hover:shadow-blue-500/50
+            transition duration-300" >
 
-  <!-- カバー写真部分 -->
-  <% if spot.image.attached? && spot.image.blob.present? %>
-    <figure>
-      <%= image_tag spot.image.variant(resize_to_limit: [400, 300], saver: { quality: 50 }), class: "object-cover" %>
-    </figure>
+  <%= link_to spot,
+              data: {
+                action: "click->loading#show",
+                turbo_frame: "_top"
+              },
+              class: "block h-full" do
+  %>
+
+    <!-- カバー写真部分 -->
+    <% if spot.image.attached? && spot.image.blob.present? %>
+      <figure>
+        <%= image_tag spot.image.variant(resize_to_limit: [410, 310],
+                      saver: { quality: 50 }),
+                      class: "object-cover rounded-xl"
+        %>
+      </figure>
+    <% end %>
+
+    <!-- 本文部 -->
+    <div class="card-body p-6 flex flex-col justify-between">
+
+      <!-- タイトル部 -->
+      <h2 class="card-title"><%= spot.name %></h2>
+
+      <!-- 住所部 -->
+      <p><%= spot.prefecture.name %><%= spot.address %></p>
+
+      <!-- タグ部 -->
+      <div class="flex flex-wrap my-1">
+        <% spot.tags.each do |tag| %>
+          <%= link_to tag.name,
+                      spots_path(q: { tags_name_eq: tag.name }),
+                      class: "badge badge-outline"
+          %>
+        <% end %>
+      </div>
+
+      <!-- 下部ボタン部 -->
+      <div class="flex justify-between">
+        <%= link_to spot_path(spot, anchor: "comment_form"),
+                    class: "btn btn-secondary",
+                    data: {
+                      action: "click->loading#show",
+                      turbo_frame: "_top"
+                    } do
+        %>
+          <svg class="h-6 w-6 text-slate-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8
+                a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72
+                C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
+            />
+          </svg>
+          <%= spot.comments.count %>
+        <% end %>
+
+        <%= render 'spots/bookmark_buttons', { spot: spot } %>
+      </div>
+    </div>
+
   <% end %>
-
-  <!-- 本文部 -->
-  <div class="card-body">
-
-    <!-- タイトル部 -->
-    <h2 class="card-title"><%= spot.name %></h2>
-
-    <!-- 住所部 -->
-    <p><%= spot.prefecture.name %><%= spot.address %></p>
-
-    <!-- タグ部 -->
-    <div class="flex flex-wrap gap-2 my-2">
-      <% spot.tags.each do |tag| %>
-        <%= link_to tag.name, spots_path(q: { tags_name_eq: tag.name }), class: "badge badge-outline" %>
-      <% end %>
-    </div>
-
-    <!-- 下部ボタン部 -->
-    <div class="card-actions justify-end">
-      <%= link_to spot_path(spot, anchor: "comment_form"), class: "btn btn-secondary", data: { action: "click->loading#show", turbo_frame: "_top" } do %>
-        <svg class="h-6 w-6 text-slate-500"  fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
-        </svg>
-        <%= spot.comments.count %>
-      <% end %>
-
-      <%= render 'spots/bookmark_buttons', { spot: spot } %>
-      <%= link_to t('spots.show.to_show_page'),
-        spot,
-        class: "btn btn-primary",
-        data: {
-          action: "click->loading#show",
-          turbo_frame: "_top" } %>
-    </div>
-  </div>
 
 </div>

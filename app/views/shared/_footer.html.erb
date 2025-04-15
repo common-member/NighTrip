@@ -1,17 +1,6 @@
-<footer class="footer footer-center bg-base-200 text-base-content rounded p-10 mt-12">
-  <nav class="grid grid-flow-col gap-4">
-    <%= link_to t('footer.contact'), "https://forms.gle/PSBY2iA6keoDJm416",
-                class: "link link-hover",
-                target: "_blank",
-                rel: "noopener noreferrer" %>
-    <%= link_to t('footer.terms'), terms_path,
-                class: "link link-hover",
-                data: { action: "click->loading#show" } %>
-    <%= link_to t('footer.privacy_policy'), "https://kiyac.app/privacypolicy/qO1wEtf0KvWQzyLaRJGK",
-                class: "link link-hover",
-                target: "_blank",
-                rel: "noopener noreferrer" %>
-  </nav>
+<footer class="footer footer-center bg-base-100 text-base-content rounded p-10 mt-12 bottom-0 w-full">
+
+  <%# 開発者アイコン系 %>
   <nav>
     <div class="grid grid-flow-col gap-4">
       <a href="https://x.com/hisa_dev">
@@ -38,6 +27,23 @@
       </a>
     </div>
   </nav>
+
+  <%# コンタクト系 %>
+  <nav class="grid grid-flow-col gap-4">
+    <%= link_to t('footer.contact'), "https://forms.gle/PSBY2iA6keoDJm416",
+                class: "link link-hover",
+                target: "_blank",
+                rel: "noopener noreferrer" %>
+    <%= link_to t('footer.terms'), terms_path,
+                class: "link link-hover",
+                data: { action: "click->loading#show" } %>
+    <%= link_to t('footer.privacy_policy'), "https://kiyac.app/privacypolicy/qO1wEtf0KvWQzyLaRJGK",
+                class: "link link-hover",
+                target: "_blank",
+                rel: "noopener noreferrer" %>
+  </nav>
+
+  <%# コピーライト %>
   <aside>
     <% if Time.current.year == 2025 %>
       <p>© <%= Time.current.year %> NighTrip. All rights reserved.</p>

@@ -1,11 +1,11 @@
 <% content_for :title, t('.title') %>
 
-<h1 class="text-2xl font-bold my-4 text-center"><%= t('.title') %></h1>
+<h1 class="text-2xl font-bold text-center"><%= t('.title') %></h1>
 
-<%= form_with url: diagnosis_result_path, method: :post, data: { controller: "step-form" }, class: "my-8" do |f| %>
+<%= form_with url: diagnosis_result_path, method: :post, data: { controller: "step-form" }, class: "my-4" do |f| %>
 
   <!-- ステップバー -->
-  <ul class="steps w-full mb-5" data-step-form-target="progress">
+  <ul class="steps w-full mb-4" data-step-form-target="progress">
     <li class="step step-primary">地域</li>
     <li class="step">雰囲気</li>
     <li class="step">特徴</li>
@@ -21,7 +21,7 @@
       </label>
     <% end %>
     <div>
-      <%= tag.button t('helpers.button.next'), type: 'button', data: { action: 'step-form#next' }, class: 'btn btn-primary w-full mt-5' %>
+      <%= tag.button t('helpers.button.next'), type: 'button', data: { action: 'step-form#next' }, class: 'btn btn-primary w-full mt-4' %>
     </div>
   </div>
 

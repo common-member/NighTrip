@@ -1,8 +1,8 @@
 <% content_for :title, t('.title') %>
 
-<div class="mx-auto w-1/3 my-8">
+<div class="mx-auto w-1/3 mb-4">
 
-  <h2 class="text-2xl font-bold mb-6 text-center">あなたへのオススメ夜景スポット</h2>
+  <h2 class="text-2xl font-bold text-center">あなたへのオススメ夜景スポット</h2>
 
   <% if @spots.any? %>
     <div class="grid gap-6 grid-cols-1 mx-3">
@@ -22,7 +22,7 @@
       <% end %>
     </div>
   <% else %>
-    <div class="alert alert-info my-8">
+    <div class="alert alert-info my-4">
       条件に合うスポットが見つかりませんでした。条件を変更して再度お試しください。
     </div>
     <div class="block">

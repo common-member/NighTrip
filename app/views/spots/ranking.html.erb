@@ -34,6 +34,7 @@
           <tr>
             <td class="border border-gray-800">
               <div class="flex items-center gap-2">
+                <%= index + 1 %> 位
                 <% if index == 0 %>
                   <%= image_tag 'icons/gold_medal.png', alt: '1位', class: 'w-12 h-12' %>
                 <% elsif index == 1 %>
@@ -41,13 +42,19 @@
                 <% elsif index == 2 %>
                   <%= image_tag 'icons/bronze_medal.png', alt: '3位', class: 'w-12 h-12' %>
                 <% end %>
-                <%= index + 1 %> 位
               </div>
             </td>
-            <td class="border border-gray-800"><%= link_to spot.name, spot_path(spot), data: { action: "click->loading#show" } %></td>
+            <td class="border border-gray-800">
+              <%= link_to spot.name, spot_path(spot), data: { action: "click->loading#show" } %>
+            </td>
             <td class="border border-gray-800">
               <%= link_to spot_path(spot) do %>
-                <%= image_tag spot.image, class: "w-40 h-20 object-cover rounded", data: { action: "click->loading#show" } %>
+                <%= image_tag spot.image,
+                              class: "w-40 h-20 object-cover rounded",
+                              data: {
+                                action: "click->loading#show"
+                              }
+                %>
               <% end %>
             </td>
             <td class="border border-gray-800"><%= spot.bookmarks.count %></td>
@@ -83,6 +90,7 @@
           <tr>
             <td class="border border-gray-800">
               <div class="flex items-center gap-2">
+                <%= index + 1 %> 位
                 <% if index == 0 %>
                   <%= image_tag 'icons/gold_medal.png', alt: '1位', class: 'w-12 h-12' %>
                 <% elsif index == 1 %>
@@ -90,7 +98,6 @@
                 <% elsif index == 2 %>
                   <%= image_tag 'icons/bronze_medal.png', alt: '3位', class: 'w-12 h-12' %>
                 <% end %>
-                <%= index + 1 %> 位
               </div>
             </td>
             <td class="border border-gray-800"><%= user.name %></td>

@@ -3,13 +3,14 @@
 [![NighTrip画像](app/assets/images/ogp-placeholder.png)](https://nightrip.net/)
 
 # 目次
-- [サービス概要](#-サービス概要)<br>
-- [サービス開発背景](#-サービス開発背景)<br>
-- [機能紹介](#-機能紹介)<br>
-- [技術構成](#-技術構成)<br>
-  - [使用技術](#-使用技術)<br>
-  - [ER図](#-er図)<br>
-  - [画面遷移図](#-画面遷移図)<br>
+- [サービス概要](#サービス概要)<br>
+- [サービス開発背景](#サービス開発背景)<br>
+- [機能紹介](#機能紹介)<br>
+- [技術構成](#技術構成)<br>
+  - [使用技術](#使用技術)<br>
+  - [ER図](#er図)<br>
+  - [画面遷移図](#画面遷移図)<br>
+  - [講師の方へ](#講師の方へ)<br>
 <br>
 
 # サービス概要
@@ -74,27 +75,28 @@
 ## 使用技術
 | カテゴリ | 技術内容 |
 | --- | --- |
-| サーバーサイド | Ruby on Rails 7.2.2.1・Ruby 3.3.6 |
-| フロントエンド | Ruby on Rails・JavaScript |
-| CSSフレームワーク | Tailwind CSS + daisyUI |
+| サーバーサイド | Ruby on Rails 7.2.2.1 ・ Ruby 3.3.6 |
+| フロントエンド | Hotwire（Turbo + Stimulus）・ JavaScript |
+| CSSフレームワーク | Tailwind CSS ・ daisyUI |
 | Web API | Google Maps API |
-| データベースサーバー | PostgreSQL |
-| ファイルサーバー | AWS S3 |
+| データベース | PostgreSQL |
+| ストレージ | Amazon S3 |
 | アプリケーションサーバー | Render |
-| バージョン管理ツール | Git ・ GitHub |
-| CI | GitHub Actions |
-| 仮想化技術 | Docker |
+| バージョン管理 | Git ・ GitHub |
+| CI/CD | GitHub Actions |
+| 仮想化 | Docker |
 <br>
 
-## ER図（dbdiagram.io）
-[こちら](https://dbdiagram.io/d/NighTrip-6785ce446b7fa355c3c7cc11)でご覧ください。
+## ER図
+[![Image from Gyazo](https://i.gyazo.com/e77865ebeafc4fac722a742ae551a4c6.png)](https://gyazo.com/e77865ebeafc4fac722a742ae551a4c6)
+[こちら（dbdiagram.io）](https://dbdiagram.io/d/NighTrip-6785ce446b7fa355c3c7cc11)でもご確認いただけます。
 <br>
 
-## 画面遷移図（Figma）
-[Figma](https://www.figma.com/design/wJfx2YGnGh29NnKSyHBQgr/NighTrip?node-id=0-1&t=vJGRuuSqfAuQPLD2-1)で記載しています。
+## 画面遷移図
+[こちら(Figma)](https://www.figma.com/design/wJfx2YGnGh29NnKSyHBQgr/NighTrip?node-id=0-1&t=vJGRuuSqfAuQPLD2-1)でご確認いただけます。
 <br>
 
-### 【講師の方へ】
+## 講師の方へ
 本アプリは、卒業制作のNighTripを新しく作り直したものになっております。<br>
 現在は、[proto-NighTrip](https://github.com/common-member/proto-NighTrip)として切り分けて保存しております。<br>
 ご了承ください。<br>

@@ -22,7 +22,6 @@
         <%= f.select :chat_color,
           options_for_select(
             [
-              [t('activerecord.attributes.user.chat_color_values.default'), 'default'],
               [t('activerecord.attributes.user.chat_color_values.energy'), 'energy'],
               [t('activerecord.attributes.user.chat_color_values.calm'), 'calm'],
               [t('activerecord.attributes.user.chat_color_values.pop'), 'pop'],
@@ -37,9 +36,8 @@
       </div>
 
       <!-- コメントのプレビュー -->
-      <% chat_color = current_user.chat_color.presence || 'default' %>
+      <% chat_color = current_user.chat_color.presence || 'energy' %>
       <% color_class = case chat_color
-        when 'default' then "bg-neutral text-base-content"
         when 'energy'  then "bg-primary text-primary-content"
         when 'calm'    then "bg-secondary text-secondary-content"
         when 'pop'     then "bg-accent text-accent-content"
@@ -48,7 +46,7 @@
         when 'sunny'   then "bg-warning text-warning-content"
         when 'alert'   then "bg-error text-error-content"
         else
-          "bg-neutral text-base-content"
+          "bg-primary text-primary-content"
         end %>
 
       <div class="my-4">

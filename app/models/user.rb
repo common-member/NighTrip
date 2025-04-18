@@ -48,6 +48,6 @@ class User < ApplicationRecord
   end
 
   def set_default_chat_color
-    self.chat_color ||= "default"
+    self.chat_color ||= "energy"
   end
 end

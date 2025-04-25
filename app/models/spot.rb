@@ -47,6 +47,15 @@ class Spot < ApplicationRecord
       .limit(5)
   }
 
+  scope :diagnosised, -> {
+    left_joins(:bookmarks)
+      .group("spots.id")
+      .select("spots.*, COUNT(bookmarks.id) AS bookmarks_count")
+      .order("bookmarks_count DESC")
+      .includes(:user, :prefecture)
+      .limit(3)
+  }
+
   # == Class Methods ==
   # == Ransack ==
   def self.ransackable_attributes(auth_object = nil)

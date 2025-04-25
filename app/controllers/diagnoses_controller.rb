@@ -27,12 +27,6 @@ class DiagnosesController < ApplicationController
       @spots = @spots.joins(:tags).where(tags: { name: tag_name })
     end
 
-    @spots = @spots
-      .left_joins(:bookmarks)
-      .group("spots.id")
-      .select("spots.*, COUNT(bookmarks.id) AS bookmarks_count")
-      .order("bookmarks_count DESC")
-      .includes(:user, :prefecture)
-      .limit(3)
+    @spots = @spots.diagnosised
   end
 end

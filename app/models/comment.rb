@@ -1,6 +1,8 @@
 class Comment < ApplicationRecord
-  validates :body, presence: true, length: { maximum: 65_535 }
-
+  # == Associations ==
   belongs_to :user
   belongs_to :spot
+
+  # == Validations ==
+  validates :body, presence: true, length: { maximum: 65_535 }
 end

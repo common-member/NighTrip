@@ -22,10 +22,6 @@ class Spot < ApplicationRecord
   # == Virtual Attributes ==
   attr_accessor :tag_names
 
-  # == Geocoder ==
-  geocoded_by :full_address
-  after_validation :geocode, if: :will_save_change_to_address?
-
   # == Validations ==
   validates :name, presence: true, length: { maximum: 30 }
   validates :address, presence: true, length: { maximum: 60 }
@@ -38,6 +34,10 @@ class Spot < ApplicationRecord
 
   # == Callbacks ==
   after_save :assign_tags
+
+  # == Geocoder ==
+  geocoded_by :full_address
+  after_validation :geocode, if: :will_save_change_to_address?
 
   # == Scopes ==
   scope :ranked_by_top_5_bookmarks, -> {
@@ -85,7 +85,6 @@ class Spot < ApplicationRecord
   private
 
   # == Instance Methods ==
-
   def validate_tag_limit
     return unless tag_names
 

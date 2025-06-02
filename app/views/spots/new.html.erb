@@ -1,9 +1,13 @@
+<%# Page title  %>
 <% content_for :title, t('.title') %>
 
+<%# Main Content %>
 <div class="md:w-2/3 w-full mx-auto">
 
+  <%# form rendering %>
   <%= render "form", spot: @spot %>
 
+  <%# Navigation buttons: back and index %>
   <div class="w-3/5 mx-auto mt-5 space-y-5">
     <%= back_button %>
     <%= spots_index_button %>

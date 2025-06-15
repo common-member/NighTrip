@@ -1,13 +1,14 @@
+<%# Page title  %>
 <% content_for :title, @spot.name %>
 
-<!-- スポット名 -->
+<%# Spot Name %>
 <div class="flex items-center justify-start px-3 py-3">
   <h1 class="font-bold text-4xl"><%= @spot.name %></h1>
 </div>
 
 <div class="grid grid-cols-3">
 
-  <!-- スポット画像 -->
+  <%# Spot Image %>
   <% cache(@spot.cache_key_with_version + "/image") do %>
     <% if @spot.image.attached? && @spot.image.blob.present? %>
       <figure class="col-span-2">
@@ -16,18 +17,18 @@
     <% end %>
   <% end %>
 
-  <!-- 基本情報テーブル -->
+  <%# Basic info %>
   <div class="sm:col-span-1 mx-5 max-w-full break-words bg-base-100">
     <table class="table w-full border border-gray-800">
       <thead>
-        <%# タイトル部 %>
+        <%# Spot Title %>
         <tr class="border border-gray-800">
           <th class="text-xl text-center" colspan="2"><%= t('.basic_info') %></th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <%# 説明部%>
+          <%# Description %>
           <td class="font-bold border border-gray-800"><%= t('activerecord.attributes.spot.body') %></td>
           <td class="border border-gray-800">
             <% if @spot.body.present? %>
@@ -40,7 +41,7 @@
           </td>
         </tr>
         <tr>
-          <%# URL部 %>
+          <%# URL %>
           <td class="font-bold border border-gray-800"><%= t('activerecord.attributes.spot.url') %></td>
           <td class="border border-gray-800 break-words max-h-16 overflow-y-auto max-w-32">
             <% if @spot.url.present? %>
@@ -51,7 +52,7 @@
           </td>
         </tr>
         <tr>
-          <%# 雰囲気部%>
+          <%# atmospheres %>
           <td class="font-bold border border-gray-800"><%= t('activerecord.attributes.spot.atmosphere') %></td>
           <td class="border border-gray-800">
             <% if @spot.atmosphere.present? %>
@@ -63,7 +64,7 @@
         </tr>
         <tr>
         <tr>
-          <!-- タグ部 -->
+          <%# tags %>
           <td class="font-bold border border-gray-800"><%= t('activerecord.attributes.spot.tag') %></td>
           <td>
             <% if @spot.tags.present? %>
@@ -78,7 +79,7 @@
           </td>
         </tr>
         <tr>
-          <%# 投稿者部 %>
+          <%# Post User Name %>
           <td class="font-bold border border-gray-800"><%= t('activerecord.attributes.spot.user.name') %></td>
           <td class="border border-gray-800 break-words overflow-x-auto"><%= @spot.user.name %></td>
         </tr>
@@ -105,7 +106,7 @@
 
 </div>
 
-<%# Google Maps部 %>
+<%# Google Maps %>
 <div class="my-5 text-wrap">
   <% if @spot.latitude.present? && @spot.longitude.present? %>
     <h3 class="text-xl font-bold mb-1"><%= t('activerecord.attributes.spot.address') %></h3>
@@ -116,7 +117,7 @@
   <% end %>
 </div>
 
-<%# コメント部分 %>
+<%# Comments %>
 <div class="flex w-3/5 flex-col mx-auto">
   <%= render 'comments/form', comment: @comment, spot: @spot %>
 
@@ -133,7 +134,7 @@
   <div class="divider"></div>
 </div>
 
-<!-- 下部ボタン -->
+<%# Utility Buttons %>
 <div class="w-3/5 mx-auto space-y-5">
   <% if current_user&.own?(@spot) %>
     <%= link_to t('.edit_spot'), edit_spot_path(@spot), class: "btn btn-primary w-full" %>
@@ -147,7 +148,7 @@
   <%= spots_index_button %>
 </div>
 
-<!-- JavaScript部 -->
+<%# JavaScript %>
 <script async
   src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap">
 </script>

@@ -80,6 +80,15 @@
 
       <%= render 'shared/footer' %>
 
+      <%# Floating Action Button %>
+      <%= link_to new_spot_path, class: "btn btn-primary btn-circle fixed bottom-10 right-10 z-50 shadow-lg h-14 w-14" do %>
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none"
+            viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M12 4v16m8-8H4"/>
+        </svg>
+      <% end %>
+
     </div>
   </body>
 </html>

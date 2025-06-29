@@ -1,8 +1,8 @@
 <div id="<%= dom_id spot %>"
      class="card col-span-1 bg-base-100
             shadow-2xl rounded-xl
-            hover:shadow-blue-500/50
-            transition duration-300" >
+            hover:shadow-blue-500/50 hover:scale-103 hover:z-10
+            transition duration-200 ease-in-out" >
 
   <%= link_to spot,
               data: {
@@ -14,7 +14,7 @@
 
     <!-- カバー写真部分 -->
     <% if spot.image.attached? && spot.image.blob.present? %>
-      <figure>
+      <figure class="overflow-hidden">
         <%= image_tag spot.image.variant(resize_to_limit: [410, 310],
                       saver: { quality: 50 }),
                       class: "object-cover rounded-xl"
@@ -23,20 +23,20 @@
     <% end %>
 
     <!-- 本文部 -->
-    <div class="card-body p-6 flex flex-col justify-between">
+    <div class="card-body p-6 flex flex-col justify-between gap-3">
 
       <!-- タイトル部 -->
-      <h2 class="card-title"><%= spot.name %></h2>
+      <h2 class="card-title text-lg font-semibold tracking-tight"><%= spot.name %></h2>
 
-      <!-- 住所部 -->
-      <p><%= spot.prefecture.name %><%= spot.address %></p>
+      <!-- 位置情報部 -->
+      <p class="text-sm text-gray-400 truncate"><%= spot.prefecture.name %><%= spot.address %></p>
 
       <!-- タグ部 -->
       <div class="flex flex-wrap my-1">
         <% spot.tags.each do |tag| %>
           <%= link_to tag.name,
                       spots_path(q: { tags_name_eq: tag.name }),
-                      class: "badge badge-outline"
+                      class: "badge badge-outline hover:bg-gray-700 hover:text-white cursor-pointer transition"
           %>
         <% end %>
       </div>
@@ -44,7 +44,7 @@
       <!-- 下部ボタン部 -->
       <div class="flex justify-between">
         <%= link_to spot_path(spot, anchor: "comment_form"),
-                    class: "btn btn-secondary",
+                    class: "btn btn-secondary gap-1",
                     data: {
                       action: "click->loading#show",
                       turbo_frame: "_top"
@@ -60,7 +60,7 @@
                 C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
             />
           </svg>
-          <%= spot.comments.count %>
+          <%= spot.comments.count %> 件
         <% end %>
 
         <%= render 'spots/bookmark_buttons', { spot: spot } %>

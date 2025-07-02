@@ -27,10 +27,10 @@ module ApplicationHelper
 
   # == Buttons ==
   def back_button(label = t("helpers.label.back"))
-    link_to label, :back, class: "btn btn-base w-full", data: { action: "click->loading#show" }
+    link_to label, :back, class: "btn btn-base w-full hover:bg-gray-600", data: { action: "click->loading#show" }
   end
 
   def spots_index_button(label = t("helpers.label.spots_index"))
-    link_to label, spots_path, class: "btn btn-primary w-full", data: { action: "click->loading#show" }
+    link_to label, spots_path, class: "btn btn-primary w-full hover:bg-gray-600", data: { action: "click->loading#show" }
   end
 end

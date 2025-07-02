@@ -9,7 +9,7 @@
       <% @spots.each do |spot| %>
         <div class="my-4">
           <%= render spot %>
-          <%= link_to "https://x.com/intent/tweet?text=#{CGI.escape("夜景診断：あなたへのオススメ夜景スポットは、【#{spot.name}】です！\n\n夜景詳細情報\nスポット名：#{spot.name}\n位置情報：#{spot.prefecture.name + spot.address}\n投稿者：#{spot.user.name}\n\n#{request.url}\n#NighTrip #夜景 #夜景診断")}", target: '_blank', class: "btn btn-base flex item-center gap-2 my-5" do %>
+          <%= link_to "https://x.com/intent/tweet?text=#{CGI.escape("夜景診断：あなたへのオススメ夜景スポットは、【#{spot.name}】です！\n\n夜景詳細情報\nスポット名：#{spot.name}\n位置情報：#{spot.prefecture.name + spot.address}\n投稿者：#{spot.user.name}\n\n#{request.url}\n#NighTrip #夜景 #夜景診断")}", target: '_blank', class: "btn btn-base flex item-center gap-2 my-5 hover:bg-gray-600" do %>
             <svg class="h-6 w-6 text-slate-200" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
               <path d="M4 4l11.733 16h4.267l-11.733 -16z" />

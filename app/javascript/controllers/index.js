@@ -13,6 +13,9 @@ application.register("hello", HelloController)
 import LoadingController from "./loading_controller"
 application.register("loading", LoadingController)
 
+import ScrollToTopController from "./scroll_to_top_controller"
+application.register("scroll-to-top", ScrollToTopController)
+
 import StepFormController from "./step_form_controller"
 application.register("step-form", StepFormController)
 

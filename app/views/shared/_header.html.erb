@@ -8,60 +8,27 @@
   </div>
   <div class="flex-none">
     <ul class="menu menu-horizontal px-1">
-      <li>
-        <%= link_to guide_path, class: style_color, data: { action: "click->loading#show" } do %>
-          <%= image_tag "icons/info.png", alt: "使いかたページへ" %>
-          <%= t('header.guide') %>
-        <% end %>
-      </li>
+      <li><%= nav_link_to t('header.guide'), guide_path, icon: "icons/info.png", alt: "使いかたページへ" %></li>
       <% if user_signed_in? %>
-        <li>
-          <%= link_to new_spot_path, class: style_color, data: { action: "click->loading#show" } do %>
-            <%= image_tag "icons/add.png", alt: "新規投稿ページへ" %>
-            <%= t('header.create_spot') %>
-          <% end %>
-        </li>
+        <li><%= nav_link_to t('header.create_spot'), new_spot_path, icon: "icons/add.png", alt: "新規投稿ページへ" %></li>
       <% end %>
-      <li>
-        <%= link_to diagnosis_path, class: style_color, data: { action: "click->loading#show" } do %>
-          <%= image_tag "icons/diagnosis.png", alt: "夜景診断ページへ" %>
-          <%= t('header.diagnosis') %>
-        <% end %>
-      </li>
-      <li>
-        <%= link_to ranking_spots_path, class: style_color, data: { action: "click->loading#show" } do %>
-          <%= image_tag "icons/ranking.png", alt: "ランキングページへ" %>
-          <%= t('header.ranking') %>
-        <% end %>
-      </li>
+      <li><%= nav_link_to t('header.diagnosis'), diagnosis_path, icon: "icons/diagnosis.png", alt: "夜景診断ページへ" %></li>
+      <li><%= nav_link_to t('header.ranking'), ranking_spots_path, icon: "icons/ranking.png", alt: "ランキングページへ" %></li>
       <% if user_signed_in? %>
-        <li>
-          <%= link_to bookmarks_path, class: style_color, data: { action: "click->loading#show" } do %>
-            <%= image_tag "icons/star.png", alt: "お気に入りページへ" %>
-            <%= t('header.bookmark_index') %>
-          <% end %>
-        </li>
-        <li>
-          <%= link_to profile_path, class: style_color, data: { action: "click->loading#show" } do %>
-            <%= image_tag "icons/account_circle.png", alt: "ユーザー情報編集ページへ" %>
-            <%= t('header.profile') %>
-          <% end %>
-        </li>
+        <li><%= nav_link_to t('header.bookmark_index'), bookmarks_path, icon: "icons/star.png", alt: "お気に入りページへ" %></li>
+        <li><%= nav_link_to t('header.profile'), profile_path, icon: "icons/account_circle.png", alt: "ユーザー情報編集ページへ" %></li>
       <% end %>
       <% if user_signed_in? %>
         <li>
-          <%= link_to destroy_user_session_path, data: { turbo_method: :delete, action: "click->loading#show" }, class: "btn btn-error" do %>
+          <%= link_to destroy_user_session_path,
+                      data: { turbo_method: :delete, action: "click->loading#show" },
+                      class: "btn btn-error" do %>
             <%= image_tag "icons/logout.png", alt: "ログアウトする" %>
             <%= t('header.logout') %>
           <% end %>
         </li>
       <% else %>
-        <li>
-          <%= link_to new_user_session_path, class: "btn btn-primary", data: { action: "click->loading#show" } do %>
-            <%= image_tag "icons/login.png", alt: "ログインページへ" %>
-            <%= t('header.login') %>
-          <% end %>
-        </li>
+        <li><%= nav_link_to t('header.login'), new_user_session_path, icon: "icons/login.png", alt: "ログインページへ", style_color: "btn btn-primary" %></li>
       <% end %>
     </ul>
   </div>

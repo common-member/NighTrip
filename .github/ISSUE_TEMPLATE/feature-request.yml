@@ -59,3 +59,11 @@ body:
       placeholder: "任意: 追加情報があれば"
     validations:
       required: false
+
+  - type: markdown
+    attributes:
+      value: |
+        ---
+        **Claude Code を使って実装するには:**
+        このIssueを作成したら `approved` ラベルを付けるとClaudeが自動で実装を開始します。
+        または、コメントで `@claude implement this` と書いてもOKです。

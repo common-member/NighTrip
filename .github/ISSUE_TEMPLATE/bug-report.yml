@@ -50,3 +50,11 @@ body:
       description: "画像をドラッグ＆ドロップで添付"
     validations:
       required: false
+
+  - type: markdown
+    attributes:
+      value: |
+        ---
+        **Claude Code を使って修正するには:**
+        このIssueを作成したら `approved` ラベルを付けるとClaudeが自動でバグ修正を開始します。
+        または、コメントで `@claude fix this bug` と書いてもOKです。

@@ -3,3 +3,6 @@ contact_links:
   - name: "NighTrip サイト"
     url: https://nightrip.net/
     about: "NighTrip 本番サイト"
+  - name: "Claude Code を Actions タブから起動する"
+    url: https://github.com/common-member/NighTrip/actions/workflows/claude-code.yml
+    about: "Issue を作らず直接 Claude に指示を送る（Run workflow）"

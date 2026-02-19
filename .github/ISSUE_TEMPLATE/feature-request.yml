@@ -64,6 +64,8 @@ body:
     attributes:
       value: |
         ---
-        **Claude Code を使って実装するには:**
-        このIssueを作成したら `approved` ラベルを付けるとClaudeが自動で実装を開始します。
-        または、コメントで `@claude implement this` と書いてもOKです。
+        **Claude Code で実装する方法（GitHub Mobileアプリ内で完結）:**
+
+        1. **ラベルで起動（タイピング不要）** — `approved` ラベルを付ける → 自動実装開始
+        2. **Actionsタブで起動** — Actions → Claude Code → Run workflow → プロンプト入力
+        3. **コメントで起動** — `@claude implement this` と書く（iOSでは `@Claude` でもOK）

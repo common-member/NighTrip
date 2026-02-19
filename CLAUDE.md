@@ -66,54 +66,73 @@ spec/
 
 ## GitHub Mobile Workflow
 
-Claude Code can be triggered directly from GitHub Mobile — no local setup needed.
+Claude Code integrates directly with GitHub Mobile — no local setup or browser needed.
 
-### Two Ways to Trigger Claude
+> **Note:** Emoji reactions (👍, etc.) cannot trigger workflows. This is a GitHub platform limitation — reactions do not fire webhook events.
 
-**1. Label trigger** — for new issues (feature requests, bug reports):
-1. Create issue via mobile using the template
-2. Add the `approved` label → Claude starts implementing automatically
+### 4 Ways to Trigger Claude
 
-**2. Comment trigger** — for quick instructions on any issue or PR:
-- Type `@claude [instruction]` in any comment → Claude responds and acts
+#### 1. Label `approved` (Recommended — Zero Typing)
 
-### Available Slash Commands (type in any issue/PR comment)
+Best for implementing new issues:
+
+1. Create an issue using a template (GitHub Mobile app)
+2. Tap **Labels** → select `approved`
+3. Claude starts automatically and labels the issue `in-progress`
+
+#### 2. Assign to `claude` (Alternative to Label)
+
+Works the same as the label trigger — assign the issue to the `claude` user.
+
+#### 3. Actions Tab — Run Workflow (Best for Custom Prompts)
+
+Best for one-off tasks without creating an issue:
+
+1. Open the repository in GitHub Mobile → **Actions** tab
+2. Select **Claude Code** → tap **Run workflow**
+3. Enter your prompt in Japanese or English → tap **Run**
+
+#### 4. Comment Mention (Quick Instructions on Any Thread)
+
+For directing Claude on existing issues or PRs:
+
+- Write `@claude [instruction]` in any issue, PR, or review comment
+- **iOS tip:** Auto-capitalization may change `@claude` → `@Claude` — both work
+
+### Trigger Comparison
+
+| Method | Best For | Typing Required |
+|--------|----------|----------------|
+| `approved` label | New feature / bug requests | None |
+| Assign to `claude` | Same as above (alternative) | None |
+| Actions → Run workflow | Specific custom tasks | Prompt only |
+| `@claude` comment | Instructions on existing threads | Full comment |
+
+### Slash Commands (type in any issue/PR comment)
 
 | Command | What It Does |
 |---------|-------------|
-| `/implement-feature [#issue or description]` | SDD workflow: explore → specs → implement → verify |
+| `/implement-feature [description]` | SDD: explore → specs → implement → verify |
 | `/fix-issue [issue-number]` | Reproduce bug with failing test, then fix |
 | `/review-pr [pr-number]` | Full code review: Rails conventions, security, test coverage |
 | `/help` | Show all available commands |
 
-### Common Mobile Usage Examples
-
-```
-# Ask Claude to implement an approved issue
-@claude implement this feature
-
-# Ask Claude to fix a specific problem in a PR
-@claude fix the RuboCop offenses in app/controllers/spots_controller.rb
-
-# Get a full PR review before merging
-/review-pr
-
-# Ask Claude to explain code
-@claude how does the bookmark feature work?
-
-# Ask Claude to add missing specs
-@claude write system specs for the spot search flow
-```
-
 ### Label Flow
 
 ```
-[You] Create issue → proposal
-[You] Add label → approved
-[Claude] Starts work → in-progress
-[Claude] Opens PR → needs-review
-[You] Review & approve → auto-merge (optional)
+[You]    Create issue         → label: proposal
+[You]    Add label: approved  → Claude starts
+[Claude] Working              → label: in-progress
+[Claude] Opens PR             → label: needs-review
+[You]    Review & merge       → (optional: auto-merge label)
 ```
+
+### Mobile Tips
+
+- Everything works inside the GitHub Mobile app — no browser needed
+- `@Claude` (capital C) works the same as `@claude` (iOS auto-capitalization handled)
+- Bookmark the **Actions** tab for quick access to Run workflow
+- Emoji reactions (👍, etc.) cannot trigger Claude — use labels or comments instead
 
 ---
 

@@ -151,14 +151,14 @@ GEM
       logger
     faraday-net_http (3.4.0)
       net-http (>= 0.5.0)
-    ffi (1.17.1-aarch64-linux-gnu)
-    ffi (1.17.1-aarch64-linux-musl)
-    ffi (1.17.1-arm-linux-gnu)
-    ffi (1.17.1-arm-linux-musl)
-    ffi (1.17.1-arm64-darwin)
-    ffi (1.17.1-x86_64-darwin)
-    ffi (1.17.1-x86_64-linux-gnu)
-    ffi (1.17.1-x86_64-linux-musl)
+    ffi (1.17.3-aarch64-linux-gnu)
+    ffi (1.17.3-aarch64-linux-musl)
+    ffi (1.17.3-arm-linux-gnu)
+    ffi (1.17.3-arm-linux-musl)
+    ffi (1.17.3-arm64-darwin)
+    ffi (1.17.3-x86_64-darwin)
+    ffi (1.17.3-x86_64-linux-gnu)
+    ffi (1.17.3-x86_64-linux-musl)
     geocoder (1.8.5)
       base64 (>= 0.1.0)
       csv (>= 3.0.0)
@@ -397,7 +397,7 @@ GEM
       rubocop-performance
       rubocop-rails
     ruby-progressbar (1.13.0)
-    ruby-vips (2.2.2)
+    ruby-vips (2.3.0)
       ffi (~> 1.12)
       logger
     rubyzip (2.4.1)

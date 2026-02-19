@@ -1,0 +1,52 @@
+name: "Bug Report"
+description: "バグを報告する"
+title: "[Bug] "
+labels: ["bug"]
+body:
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: "何が起きた？"
+      description: "簡潔に説明してください"
+      placeholder: "例: スポット投稿時に画像アップロードが失敗する"
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: "期待する動作"
+      placeholder: "例: 画像が正常にアップロードされてスポットが作成される"
+    validations:
+      required: false
+
+  - type: dropdown
+    id: severity
+    attributes:
+      label: "深刻度"
+      options:
+        - "致命的（サイトが使えない）"
+        - "高（主要機能が壊れている）"
+        - "中（回避策あり）"
+        - "低（見た目の問題）"
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: "再現手順（任意）"
+      placeholder: |
+        1. ○○ページを開く
+        2. ○○ボタンをクリック
+        3. エラーが表示される
+    validations:
+      required: false
+
+  - type: textarea
+    id: screenshot
+    attributes:
+      label: "スクリーンショット（任意）"
+      description: "画像をドラッグ＆ドロップで添付"
+    validations:
+      required: false

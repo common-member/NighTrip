@@ -1,0 +1,35 @@
+name: "Maintenance"
+description: "メンテナンス・リファクタリングタスク"
+title: "[Chore] "
+labels: ["maintenance"]
+body:
+  - type: textarea
+    id: task
+    attributes:
+      label: "タスク内容"
+      description: "何をしたいか簡潔に"
+      placeholder: "例: Dependabotの未対応PRを整理したい"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: type
+    attributes:
+      label: "種類"
+      options:
+        - "依存関係の更新"
+        - "リファクタリング"
+        - "CI/CD改善"
+        - "ドキュメント"
+        - "テスト追加"
+        - "セキュリティ対応"
+        - "その他"
+    validations:
+      required: true
+
+  - type: textarea
+    id: notes
+    attributes:
+      label: "補足（任意）"
+    validations:
+      required: false

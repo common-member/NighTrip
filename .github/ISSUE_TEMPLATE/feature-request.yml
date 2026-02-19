@@ -1,0 +1,48 @@
+name: "Feature Request"
+description: "新しい機能を提案する"
+title: "[Feature] "
+labels: ["proposal"]
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: "やりたいこと"
+      description: "1行でOK。何を実現したいかを書いてください。"
+      placeholder: "例: スポット詳細ページにLINEシェアボタンを追加したい"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: "優先度"
+      options:
+        - "高（すぐ欲しい）"
+        - "中（次のスプリント）"
+        - "低（いつか）"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: category
+    attributes:
+      label: "カテゴリ"
+      options:
+        - "UI/UX改善"
+        - "新機能"
+        - "SEO"
+        - "パフォーマンス"
+        - "セキュリティ"
+        - "インフラ"
+        - "その他"
+    validations:
+      required: true
+
+  - type: textarea
+    id: context
+    attributes:
+      label: "補足（任意）"
+      description: "参考URL、スクリーンショット、詳細な要件など"
+      placeholder: "任意: 追加情報があれば"
+    validations:
+      required: false

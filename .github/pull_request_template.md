@@ -8,12 +8,20 @@ Closes #
 
 -
 
+## SDD Confirmation
+
+<!-- Verify that Spec Driven Development was followed -->
+
+- [ ] Specs were written **before** implementation code
+- [ ] Failing specs were confirmed to fail before implementing
+- [ ] All new functionality is covered by specs
+
 ## Test Plan
 
-- [ ] `bundle exec rspec` passes
-- [ ] `bin/rubocop` passes
-- [ ] `bin/brakeman --no-pager` passes
-- [ ] Manual verification (if applicable)
+- [ ] `bundle exec rspec` passes (all tests green)
+- [ ] `bin/rubocop` passes (no linting errors)
+- [ ] `bin/brakeman --no-pager` passes (no security warnings)
+- [ ] Manual verification performed (if applicable)
 
 ## Screenshots (if UI change)
 

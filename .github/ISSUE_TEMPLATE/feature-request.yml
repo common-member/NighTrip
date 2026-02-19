@@ -39,6 +39,19 @@ body:
       required: true
 
   - type: textarea
+    id: acceptance_criteria
+    attributes:
+      label: "受け入れ基準（任意）"
+      description: "この機能が完成したとみなせる条件を箇条書きで書いてください。スペック作成に使われます。"
+      placeholder: |
+        例:
+        - スポット詳細ページにLINEシェアボタンが表示される
+        - ボタンをクリックするとLINEシェア画面が開く
+        - スポット名とURLがシェアテキストに含まれる
+    validations:
+      required: false
+
+  - type: textarea
     id: context
     attributes:
       label: "補足（任意）"

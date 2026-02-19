@@ -12,20 +12,20 @@ NighTrip (https://nightrip.net/) is a night-view spot sharing web application.
 
 ```bash
 # Setup
-bundle install
-yarn install
-bin/rails db:prepare
+bundle install && yarn install && bin/rails db:prepare
 
 # Run locally
 bin/dev
 
-# Tests
+# Tests (SDD — write specs FIRST, then implement)
 bundle exec rspec                    # All tests
-bundle exec rspec spec/models/       # Model tests only
-bundle exec rspec spec/system/       # System tests only
+bundle exec rspec spec/models/       # Model specs only
+bundle exec rspec spec/requests/     # Request specs only
+bundle exec rspec spec/system/       # System specs only
 
-# Linting & Security
-bin/rubocop -f github                # RuboCop
+# Quality checks (run ALL before every PR)
+bin/rubocop -a                       # Auto-fix linting
+bin/rubocop -f github                # CI-style output
 bin/brakeman --no-pager              # Security scan
 
 # Database
@@ -41,33 +41,43 @@ bin/rails assets:precompile RAILS_ENV=test
 
 ```
 app/
-├── controllers/    # Rails controllers (RESTful)
-├── models/         # ActiveRecord models
-├── views/          # ERB templates + Turbo Frames/Streams
+├── controllers/    # Thin RESTful controllers (delegate to models)
+├── models/         # Business logic lives here
+├── views/          # ERB + Turbo Frames/Streams
 ├── javascript/     # Stimulus controllers
 ├── helpers/        # View helpers
 ├── mailers/        # Action Mailer
 └── assets/         # Stylesheets (Tailwind via cssbundling)
 
-config/
-├── routes.rb       # Routing definitions
-├── database.yml    # PostgreSQL config
-└── environments/   # Per-environment settings
-
 spec/
 ├── models/         # Model specs (RSpec)
+├── requests/       # Request/integration specs
 ├── system/         # System specs (Capybara + Selenium)
-├── factories/      # FactoryBot factories
-└── rails_helper.rb # RSpec configuration
+└── factories/      # FactoryBot factories
 ```
 
 ## Key Models
 
 - `User` — Devise authentication + Google OAuth
 - `Spot` — Night-view spots with geolocation (lat/lng via Geocoder)
-- `Comment` — Spot comments (Turbo Streams for real-time)
+- `Comment` — Spot comments (Turbo Streams for real-time updates)
 - `Bookmark` — User bookmarks for spots
 - `Tag` / `SpotTag` — Tagging system
+
+## SDD Workflow — ALWAYS Follow This Order
+
+**IMPORTANT: Spec Driven Development is mandatory for all features.**
+
+1. **Explore** — Read relevant models, controllers, and existing specs before writing anything
+2. **Write failing specs first** — Model specs → Request specs → System specs
+3. **Confirm specs fail** — Run `bundle exec rspec <spec-file>` and verify failure
+4. **Implement** — Write minimal code to make specs pass
+5. **Verify** — Run full suite: `bundle exec rspec`
+6. **Lint** — `bin/rubocop -a`
+7. **Security** — `bin/brakeman --no-pager`
+8. **PR** — Create PR with `needs-review` label
+
+Use the `/implement-feature` skill for guided SDD workflow.
 
 ## Branching & Workflow
 
@@ -75,17 +85,6 @@ spec/
 - Feature: `feature/issue-{number}-{slug}`
 - Bug fix: `fix/issue-{number}-{slug}`
 - Maintenance: `chore/issue-{number}-{slug}`
-
-### Development Workflow (SDD - Spec Driven Development)
-1. Check for Issues with `approved` label
-2. Create feature branch from `main`
-3. Write/update specs first, then implement
-4. Run full test suite: `bundle exec rspec`
-5. Run linter: `bin/rubocop -a` (auto-correct safe violations)
-6. Run security scan: `bin/brakeman --no-pager`
-7. Create PR with structured description
-8. Add `needs-review` label to PR
-9. After merge to `main`, Render auto-deploys
 
 ### Label System
 | Label | Meaning |
@@ -114,9 +113,13 @@ Required in production (Render):
 
 ## Coding Conventions
 
-- Follow existing Rails conventions and Rubocop rules (`.rubocop.yml`)
-- Use Hotwire (Turbo Frames/Streams + Stimulus) for interactivity — no heavy JS frameworks
-- Use daisyUI component classes for UI elements
 - Japanese UI text, English code/comments
-- Always write RSpec tests for new features
-- Keep controllers thin, models contain business logic
+- Controllers thin — business logic belongs in models
+- Hotwire (Turbo Frames/Streams + Stimulus) for all interactivity — no heavy JS frameworks
+- daisyUI component classes for UI elements
+- Follow `.rubocop.yml` (rubocop-rails-omakase)
+
+### Detailed Rules (auto-loaded by Claude Code)
+- Testing/SDD: @.claude/rules/testing.md
+- Rails conventions: @.claude/rules/rails-conventions.md
+- Hotwire conventions: @.claude/rules/hotwire.md

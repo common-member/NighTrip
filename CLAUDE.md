@@ -64,55 +64,112 @@ spec/
 - `Bookmark` — User bookmarks for spots
 - `Tag` / `SpotTag` — Tagging system
 
-## GitHub Mobile Workflow
+## GitHub Mobile ワークフロー
 
-Claude Code can be triggered directly from GitHub Mobile — no local setup needed.
+Claude Code は GitHub Mobile から完全に操作できます。ローカル環境・PCは不要。
 
-### Two Ways to Trigger Claude
+### 重要: 絵文字リアクションはトリガーとして使用不可
 
-**1. Label trigger** — for new issues (feature requests, bug reports):
-1. Create issue via mobile using the template
-2. Add the `approved` label → Claude starts implementing automatically
+GitHub Actions は絵文字リアクション（👍 🚀 など）をワークフロートリガーとして認識しません。
+GitHubの仕様上、リアクションイベントはワークフローを起動しないため、以下の方法を使用してください。
 
-**2. Comment trigger** — for quick instructions on any issue or PR:
-- Type `@claude [instruction]` in any comment → Claude responds and acts
+### トリガー方法（モバイル最適順）
 
-### Available Slash Commands (type in any issue/PR comment)
+#### 方法1: ラベルで起動 — 最推奨（タイピング不要）
 
-| Command | What It Does |
-|---------|-------------|
-| `/implement-feature [#issue or description]` | SDD workflow: explore → specs → implement → verify |
-| `/fix-issue [issue-number]` | Reproduce bug with failing test, then fix |
-| `/review-pr [pr-number]` | Full code review: Rails conventions, security, test coverage |
-| `/help` | Show all available commands |
+Issueに `approved` ラベルを付けるだけで Claude が自動起動します。
 
-### Common Mobile Usage Examples
+**GitHub Mobile での操作:**
+1. Issueを開く
+2. 右上メニュー（...）→ "Labels" をタップ
+3. `approved` を選択 → Claude が即座に作業開始
 
-```
-# Ask Claude to implement an approved issue
-@claude implement this feature
+#### 方法2: Actions タブから手動実行（workflow_dispatch）
 
-# Ask Claude to fix a specific problem in a PR
-@claude fix the RuboCop offenses in app/controllers/spots_controller.rb
+GitHub Mobile の Actions タブから Claude に直接指示を送れます。
+※ ワークフローへの `workflow_dispatch` 追加が必要（後述の「推奨ワークフロー設定」参照）
 
-# Get a full PR review before merging
-/review-pr
+**GitHub Mobile での操作:**
+1. リポジトリの "Actions" タブを開く
+2. 左メニューで "Claude Code" を選択
+3. "Run workflow" ボタンをタップ
+4. 指示内容（日本語OK）を入力 → "Run workflow" で実行
 
-# Ask Claude to explain code
-@claude how does the bookmark feature work?
+#### 方法3: コメントで起動（iOS自動大文字補正に注意）
 
-# Ask Claude to add missing specs
-@claude write system specs for the spot search flow
-```
+コメントに `@claude [指示]` と書くとトリガーされます。
 
-### Label Flow
+⚠️ **iOS の自動大文字補正**: `@claude` が `@Claude` に変換されると動作しません。
+対策: バックスペースで補正を元に戻してから送信。または `/claude` （スラッシュ始まりは補正されない）でも起動可能。
+
+### ラベルフロー
 
 ```
-[You] Create issue → proposal
-[You] Add label → approved
-[Claude] Starts work → in-progress
-[Claude] Opens PR → needs-review
-[You] Review & approve → auto-merge (optional)
+[あなた] Issue を作成  → "proposal" ラベル自動付与
+[あなた] "approved" ラベルを追加
+[Claude] 作業開始      → "in-progress" に変更
+[Claude] PR を作成     → "needs-review" に変更
+[あなた] PR をレビュー → マージ（または "auto-merge" ラベルで自動）
+```
+
+### スラッシュコマンド（コメントに記入）
+
+| コマンド | 動作 |
+|----------|------|
+| `/implement-feature` | SDD: 探索 → スペック → 実装 → 検証 |
+| `/fix-issue [番号]` | 失敗テストを書いてからバグ修正 |
+| `/review-pr [番号]` | コードレビュー（Rails規約・セキュリティ・テスト） |
+| `/help` | コマンド一覧を表示 |
+
+### モバイル活用例
+
+```
+# Issue を承認して実装開始（タイピング不要）
+→ "approved" ラベルを付けるだけ
+
+# Actions タブから直接指示
+→ Run workflow > "スポット検索にタグフィルターを追加して"
+
+# PRのコードレビューを依頼
+→ コメント: /review-pr
+
+# 特定の問題を修正依頼
+→ コメント: @claude RuboCop の指摘を全部直して
+```
+
+### 推奨ワークフロー設定（手動更新が必要）
+
+`.github/workflows/claude-code.yml` に以下を追加すると、
+**Actions タブからタイピングなしで Claude を起動**できるようになります:
+
+```yaml
+on:
+  issues:
+    types: [labeled]
+  issue_comment:
+    types: [created]
+  workflow_dispatch:           # Actions タブから手動実行
+    inputs:
+      prompt:
+        description: 'Claudeへの指示（日本語OK）'
+        required: true
+        type: string
+      issue_number:
+        description: '関連するIssue番号（任意）'
+        required: false
+        type: string
+```
+
+また、iOS自動大文字補正バグの修正として、ワークフローの `if:` 条件を以下に変更:
+
+```yaml
+if: |
+  (github.event_name == 'issues' && github.event.label.name == 'approved') ||
+  (github.event_name == 'issue_comment' && (
+    contains(github.event.comment.body, '@claude') ||
+    contains(github.event.comment.body, '@Claude')
+  )) ||
+  github.event_name == 'workflow_dispatch'
 ```
 
 ---

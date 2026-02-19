@@ -1,0 +1,49 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(bundle exec rspec*)",
+      "Bash(bin/rubocop*)",
+      "Bash(bin/brakeman*)",
+      "Bash(git add*)",
+      "Bash(git commit*)",
+      "Bash(git diff*)",
+      "Bash(git log*)",
+      "Bash(git show*)",
+      "Bash(git status)",
+      "Bash(git branch*)",
+      "Bash(git stash*)",
+      "Bash(bin/rails db:migrate)",
+      "Bash(bin/rails db:rollback)",
+      "Bash(bin/rails db:prepare)",
+      "Bash(bin/rails db:seed)",
+      "Bash(bin/rails generate*)",
+      "Bash(bin/rails routes*)",
+      "Bash(bin/rails assets:precompile*)",
+      "Bash(bin/rails runner*)",
+      "Bash(bundle install)",
+      "Bash(yarn install)",
+      "Bash(gh issue*)",
+      "Bash(gh pr*)"
+    ],
+    "deny": [
+      "Bash(git push --force*)",
+      "Bash(git reset --hard*)",
+      "Bash(git clean -f*)",
+      "Bash(bin/rails db:drop*)",
+      "Bash(bin/rails db:reset*)"
+    ]
+  },
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash .claude/hooks/post-edit-lint.sh"
+          }
+        ]
+      }
+    ]
+  }
+}

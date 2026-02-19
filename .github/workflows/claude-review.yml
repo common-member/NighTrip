@@ -1,0 +1,50 @@
+name: Claude PR Review
+
+on:
+  pull_request:
+    types: [opened, synchronize, ready_for_review, reopened]
+
+permissions:
+  contents: read
+  pull-requests: write
+  issues: write
+  id-token: write
+  actions: read
+
+jobs:
+  review:
+    if: |
+      github.event.pull_request.draft == false &&
+      github.actor != 'dependabot[bot]'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 1
+
+      - name: Claude Code Review
+        uses: anthropics/claude-code-action@v1
+        with:
+          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          use_sticky_comment: true
+          track_progress: true
+          include_fix_links: true
+          additional_permissions: "actions: read"
+          prompt: |
+            REPO: ${{ github.repository }}
+            PR NUMBER: ${{ github.event.pull_request.number }}
+
+            このPRをレビューしてください。以下の観点で確認:
+            - コード品質とRails/Hotwireのベストプラクティス
+            - バグの可能性
+            - セキュリティ上の問題（OWASP Top 10）
+            - N+1クエリなどのパフォーマンス問題
+            - テストの十分性（SDD: スペックが先に書かれているか）
+
+            問題を見つけたらインラインコメントで具体的に指摘してください。
+            重大な問題がなければ簡潔にApproveしてください。
+          claude_args: |
+            --max-turns 10

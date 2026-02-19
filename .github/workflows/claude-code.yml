@@ -2,11 +2,13 @@ name: Claude Code
 
 on:
   issues:
-    types: [labeled]
+    types: [opened, assigned, labeled]
   issue_comment:
     types: [created]
   pull_request_review_comment:
     types: [created]
+  pull_request_review:
+    types: [submitted]
   workflow_dispatch:
     inputs:
       prompt:
@@ -19,11 +21,14 @@ permissions:
   pull-requests: write
   issues: write
   id-token: write
+  actions: read
 
 jobs:
-  claude:
+  # Interactive mode: @claude mentions, approved label, assignee trigger
+  claude-interactive:
     if: |
       (github.event_name == 'issues' && github.event.label.name == 'approved') ||
+      (github.event_name == 'issues' && github.event.action == 'assigned') ||
       (github.event_name == 'issue_comment' && (
         contains(github.event.comment.body, '@claude') ||
         contains(github.event.comment.body, '@Claude')
@@ -32,7 +37,10 @@ jobs:
         contains(github.event.comment.body, '@claude') ||
         contains(github.event.comment.body, '@Claude')
       )) ||
-      github.event_name == 'workflow_dispatch'
+      (github.event_name == 'pull_request_review' && (
+        contains(github.event.review.body, '@claude') ||
+        contains(github.event.review.body, '@Claude')
+      ))
     runs-on: ubuntu-latest
     timeout-minutes: 60
 
@@ -49,13 +57,36 @@ jobs:
           anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
           trigger_phrase: "@claude"
           label_trigger: "approved"
-          prompt: ${{ github.event.inputs.prompt || '' }}
+          assignee_trigger: "claude"
+          track_progress: true
+          additional_permissions: "actions: read"
 
       - name: Update issue labels
-        if: success() && github.event_name == 'issues'
+        if: success() && github.event_name == 'issues' && github.event.label.name == 'approved'
         run: |
           gh issue edit ${{ github.event.issue.number }} \
             --remove-label "approved" \
             --add-label "in-progress"
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  # Automation mode: workflow_dispatch with prompt
+  claude-dispatch:
+    if: github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Run Claude Code
+        id: claude
+        uses: anthropics/claude-code-action@v1
+        with:
+          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          prompt: ${{ github.event.inputs.prompt }}
+          track_progress: true
+          additional_permissions: "actions: read"

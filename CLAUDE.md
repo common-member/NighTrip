@@ -64,6 +64,59 @@ spec/
 - `Bookmark` — User bookmarks for spots
 - `Tag` / `SpotTag` — Tagging system
 
+## GitHub Mobile Workflow
+
+Claude Code can be triggered directly from GitHub Mobile — no local setup needed.
+
+### Two Ways to Trigger Claude
+
+**1. Label trigger** — for new issues (feature requests, bug reports):
+1. Create issue via mobile using the template
+2. Add the `approved` label → Claude starts implementing automatically
+
+**2. Comment trigger** — for quick instructions on any issue or PR:
+- Type `@claude [instruction]` in any comment → Claude responds and acts
+
+### Available Slash Commands (type in any issue/PR comment)
+
+| Command | What It Does |
+|---------|-------------|
+| `/implement-feature [#issue or description]` | SDD workflow: explore → specs → implement → verify |
+| `/fix-issue [issue-number]` | Reproduce bug with failing test, then fix |
+| `/review-pr [pr-number]` | Full code review: Rails conventions, security, test coverage |
+| `/help` | Show all available commands |
+
+### Common Mobile Usage Examples
+
+```
+# Ask Claude to implement an approved issue
+@claude implement this feature
+
+# Ask Claude to fix a specific problem in a PR
+@claude fix the RuboCop offenses in app/controllers/spots_controller.rb
+
+# Get a full PR review before merging
+/review-pr
+
+# Ask Claude to explain code
+@claude how does the bookmark feature work?
+
+# Ask Claude to add missing specs
+@claude write system specs for the spot search flow
+```
+
+### Label Flow
+
+```
+[You] Create issue → proposal
+[You] Add label → approved
+[Claude] Starts work → in-progress
+[Claude] Opens PR → needs-review
+[You] Review & approve → auto-merge (optional)
+```
+
+---
+
 ## SDD Workflow — ALWAYS Follow This Order
 
 **IMPORTANT: Spec Driven Development is mandatory for all features.**

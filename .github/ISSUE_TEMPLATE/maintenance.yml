@@ -33,3 +33,11 @@ body:
       label: "補足（任意）"
     validations:
       required: false
+
+  - type: markdown
+    attributes:
+      value: |
+        ---
+        **Claude Code を使ってタスクを実行するには:**
+        このIssueを作成したら `approved` ラベルを付けるとClaudeが自動で作業を開始します。
+        または、コメントで `@claude [指示内容]` と書いてもOKです。

@@ -1,105 +1,349 @@
-# サービス名：[NighTrip（ナイトリップ）](https://nightrip.net/)
-### サービスURL：https://nightrip.net/
-[![NighTrip画像](app/assets/images/ogp-placeholder.png)](https://nightrip.net/)
+<div align="center">
 
-# 目次
-- [サービス概要](#サービス概要)<br>
-- [サービス開発背景](#サービス開発背景)<br>
-- [機能紹介](#機能紹介)<br>
-- [技術構成](#技術構成)<br>
-  - [使用技術](#使用技術)<br>
-  - [ER図](#er図)<br>
-  - [画面遷移図](#画面遷移図)<br>
-  - [講師の方へ](#講師の方へ)<br>
-<br>
+# 🌃 NighTrip（ナイトリップ）
 
-# サービス概要
-「NighTrip（ナイトリップ）」は、夜景特化型検索サービスです。<br>
-具体的には、以下のような価値を提供します。<br>
-- 夜景に関する投稿や投稿へのコメント<br>
-- 「夜景診断」でオススメの夜景スポットを診断<br>
-- 撮影した夜景をX（旧：Twitter）などのSNSで共有<br>
-- 「お気に入り機能」で気になる夜景スポットをお気に入りに保存<br>
-<br>
+**夜景スポットを探して、共有して、お気に入りに。**
 
-# サービス開発背景
-私は友達と夜にドライブするのが好きで、その際に夜景スポットをよく訪れていました。<br>
-特に印象的だった場所は神戸の掬星台で、美しい夜景を見ながら語り合う時間は格別です。<br>
-しかし、その一方で車内で「今から行く夜景スポットを探す」となると、決めるのに時間がかかったり、良いスポットを見逃してしまったりするという課題を感じました。<br>
-<br>
-この経験から、夜景を気軽に検索・投稿し、ユーザー同士が共有し合えるサービスを作りたいと思いました。<br>
-さらに、診断機能を利用してユーザーにおすすめの夜景スポットを提案したり、もっと便利で楽しい体験を届けたいと考えています。<br>
-<br>
-このサービスには、夜景というデジタルな情報では伝えきれないライブ体験をより気軽に訪れる機会を創出したいという私の思いが込められています。<br>
-<br>
+[![Ruby](https://img.shields.io/badge/Ruby-3.3.6-CC342D?logo=ruby&logoColor=white)](https://www.ruby-lang.org/)
+[![Rails](https://img.shields.io/badge/Rails-7.2-CC0000?logo=rubyonrails&logoColor=white)](https://rubyonrails.org/)
+[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-16-4169E1?logo=postgresql&logoColor=white)](https://www.postgresql.org/)
+[![Tailwind CSS](https://img.shields.io/badge/TailwindCSS-4.0-06B6D4?logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
+[![CI](https://github.com/common-member/NighTrip/actions/workflows/ci.yml/badge.svg)](https://github.com/common-member/NighTrip/actions/workflows/ci.yml)
 
-# 機能紹介
-| ユーザー登録 / ログイン |
-| :---: |
-| [![Image from Gyazo](https://i.gyazo.com/123f2441eadd295470884a12857fa944.gif)](https://gyazo.com/123f2441eadd295470884a12857fa944) |
-| <p align="left">『ユーザー名』『メールアドレス』『パスワード』『確認用パスワード』を入力してユーザー登録を行います。<br>ユーザー登録後は自動的にログイン処理が行われ、そのまますぐにサービスを利用できます。<br>また、Googleアカウントを用いたGoogleログインにも対応しています。<br></p> |
-<br>
+**[🌐 アプリを使ってみる → https://nightrip.net/](https://nightrip.net/)**
 
-| 新規投稿 |
-| :---: |
-| [![Image from Gyazo](https://i.gyazo.com/7ed0b0a822a7bb07df9d75581ec9047b.gif)](https://gyazo.com/7ed0b0a822a7bb07df9d75581ec9047b) |
-| <p align="left">新規投稿機能では、「スポット名」「都道府県」「位置情報」「公式サイト」「雰囲気」「タグ」「説明」「画像」の項目を入力して投稿することが可能です。<br>そのうち「スポット名」「都道府県」「位置情報」「雰囲気」「画像」は入力必須項目としており、夜景診断機能やGoogle Maps APIなどの各種機能で使用されます。<br></p> |
-<br>
+[![NighTrip OGP](app/assets/images/ogp-placeholder.png)](https://nightrip.net/)
 
-| コメント（非同期） |
-| :---: |
-| [![Image from Gyazo](https://i.gyazo.com/3788d4b8373d4bdc71c770f08157db6c.gif)](https://gyazo.com/3788d4b8373d4bdc71c770f08157db6c) |
-| <p align="left">各投稿にはコメントを付けることができ、コメントは非同期通信で処理されるため、画面全体の更新は発生せず、必要な部分のみが動的に反映されます。<br>編集や削除も同様に非同期で行われ、マイページで設定したコメントの背景色が反映されるため、お好みのカラーを選択して利用できます。<br></p> |
-<br>
+</div>
 
-| 夜景診断 |
-| :---: |
-| [![Image from Gyazo](https://i.gyazo.com/f708e0122f4d3f25eb3a27053d84df97.gif)](https://gyazo.com/f708e0122f4d3f25eb3a27053d84df97)|
-| <p align="left">3つの質問に回答いただいた内容に応じて、アプリがオススメの夜景スポットを提案してくれる機能です。<br>タグの入力には補完機能を実装しており、既存のタグが表示されるため、スムーズに入力できます。<br>また、タグの入力だけでなく、人気タグの候補も表示され、クリックで簡単に選択できるようになっており、ユーザーが直感的に操作しやすい設計になっています。<br></p> |
-<br>
+---
 
-| ランキング機能 |
-| :---: |
-| [![Image from Gyazo](https://i.gyazo.com/062c35f2a3840c0e9e66fa52c61d78e9.gif)](https://gyazo.com/062c35f2a3840c0e9e66fa52c61d78e9) |
-| <p align="left">ランキング機能では、ランキングやユーザーごとのお気に入り登録の総数を集計して上位表示しています。<br>ランキングに表示されている投稿のスポット名か画像をクリックしていただくことで、その投稿の詳細にアクセスできます。<br></p> |
-<br>
+## 目次
 
-| マイページ |
-| :---: |
-| [![Image from Gyazo](https://i.gyazo.com/9895aa54bc3fa90216285318eca26082.gif)](https://gyazo.com/9895aa54bc3fa90216285318eca26082) |
-| <p align="left">マイページでは「アカウント情報」「コメントの背景色の変更」「投稿したスポット」「コメントした投稿」が表示され、管理できます。<br>アカウント情報の編集ページからは、アカウント情報の編集や削除が可能です。<br>コメントの背景色は、自分が投稿に対して行ったコメントの背景を変更できる機能です。<br></p> |
-<br>
+- [サービス概要](#サービス概要)
+- [サービス開発背景](#サービス開発背景)
+- [主な機能](#主な機能)
+- [技術構成](#技術構成)
+  - [使用技術スタック](#使用技術スタック)
+  - [システムアーキテクチャ](#システムアーキテクチャ)
+  - [ER図](#er図)
+  - [画面遷移図](#画面遷移図)
+- [ローカル環境のセットアップ](#ローカル環境のセットアップ)
+- [環境変数](#環境変数)
+- [テスト](#テスト)
+- [講師の方へ](#講師の方へ)
 
-# 技術構成
+---
 
-## 使用技術
-| カテゴリ | 技術内容 |
-| --- | --- |
-| サーバーサイド | Ruby on Rails 7.2.2.1 ・ Ruby 3.3.6 |
-| フロントエンド | Hotwire（Turbo + Stimulus）・ JavaScript |
-| CSSフレームワーク | Tailwind CSS ・ daisyUI |
-| Web API | Google Maps API |
-| データベース | PostgreSQL |
-| ストレージ | Amazon S3 |
-| アプリケーションサーバー | Render |
-| バージョン管理 | Git ・ GitHub |
-| CI/CD | GitHub Actions |
-| 仮想化 | Docker |
-<br>
+## サービス概要
 
-## ER図
-[![Image from Gyazo](https://i.gyazo.com/e77865ebeafc4fac722a742ae551a4c6.png)](https://gyazo.com/e77865ebeafc4fac722a742ae551a4c6)
-[こちら（dbdiagram.io）](https://dbdiagram.io/d/NighTrip-6785ce446b7fa355c3c7cc11)でもご確認いただけます。
-<br>
+**NighTrip（ナイトリップ）** は、日本全国の夜景スポットを発見・投稿・共有できるコミュニティサービスです。
 
-## 画面遷移図
-[こちら(Figma)](https://www.figma.com/design/wJfx2YGnGh29NnKSyHBQgr/NighTrip?node-id=0-1&t=vJGRuuSqfAuQPLD2-1)でご確認いただけます。
-<br>
+夜景に特化した検索・投稿プラットフォームとして、以下の価値を提供します。
+
+| 📍 発見する | 📸 共有する | ⭐ 保存する |
+|:---:|:---:|:---:|
+| 都道府県・タグ・雰囲気で夜景スポットを検索 | スポット情報・写真・コメントを投稿・共有 | 気になるスポットをブックマークして管理 |
+
+> **「夜景を見たい」と思ったその瞬間に、最高のスポットへ辿り着ける体験を。**
+
+---
+
+## サービス開発背景
+
+友達と夜にドライブするのが好きで、夜景スポットを訪れる機会が多くありました。特に神戸の掬星台で見た夜景は忘れられません。
+
+しかし、「今から夜景スポットを探す」となると、スポット選びに時間がかかったり、良い場所を見逃してしまったりする課題がありました。
+
+> *既存のマップサービスでは「夜景専用」で検索・投稿できるプラットフォームがなかった。*
+
+この経験から、**夜景に特化した投稿・検索・診断機能を持つサービス**を開発しました。夜景体験をより多くの人と共有し、未知のスポットへの旅をサポートします。
+
+---
+
+## 主な機能
+
+### ユーザー登録 / ログイン
+
+| 機能 | 説明 |
+|:---:|:---|
+| [![ユーザー登録・ログイン](https://i.gyazo.com/123f2441eadd295470884a12857fa944.gif)](https://gyazo.com/123f2441eadd295470884a12857fa944) | メールアドレス＋パスワードでの登録のほか、**Googleアカウントによるソーシャルログイン**にも対応。登録後すぐにサービスを利用できます。 |
+
+---
+
+### スポット投稿
+
+| 機能 | 説明 |
+|:---:|:---|
+| [![新規投稿](https://i.gyazo.com/7ed0b0a822a7bb07df9d75581ec9047b.gif)](https://gyazo.com/7ed0b0a822a7bb07df9d75581ec9047b) | スポット名・都道府県・住所・雰囲気・タグ・写真などを入力して投稿。住所は **Google Maps API** で自動的に緯度経度に変換され、地図上にピンが表示されます。 |
+
+**入力項目（必須 *）:**
+
+- スポット名 *
+- 都道府県 *
+- 住所（位置情報）*
+- 雰囲気 *（静かに過ごせる / にぎやかで楽しい / 幻想的な雰囲気 / ロマンチックな空間 / 自然を感じる）
+- 写真 *
+- 公式サイトURL（任意）
+- タグ（最大3つ、任意）
+- 説明文（任意）
+
+---
+
+### コメント（リアルタイム更新）
+
+| 機能 | 説明 |
+|:---:|:---|
+| [![コメント](https://i.gyazo.com/3788d4b8373d4bdc71c770f08157db6c.gif)](https://gyazo.com/3788d4b8373d4bdc71c770f08157db6c) | **Turbo Streams** による非同期通信で、ページ全体をリロードせずにコメントを投稿・編集・削除できます。マイページで設定したカラーがコメント背景に反映されます。 |
+
+---
+
+### 夜景診断
+
+| 機能 | 説明 |
+|:---:|:---|
+| [![夜景診断](https://i.gyazo.com/f708e0122f4d3f25eb3a27053d84df97.gif)](https://gyazo.com/f708e0122f4d3f25eb3a27053d84df97) | 3つの質問に回答すると、あなたにぴったりの夜景スポットを提案。タグ入力には**オートコンプリート**と**人気タグ表示**を実装し、直感的に操作できます。 |
+
+---
+
+### ランキング
+
+| 機能 | 説明 |
+|:---:|:---|
+| [![ランキング](https://i.gyazo.com/062c35f2a3840c0e9e66fa52c61d78e9.gif)](https://gyazo.com/062c35f2a3840c0e9e66fa52c61d78e9) | ブックマーク数でスポットをランキング表示。人気のスポットを一目で発見できます。投稿者ランキングも同時表示。 |
+
+---
+
+### マイページ
+
+| 機能 | 説明 |
+|:---:|:---|
+| [![マイページ](https://i.gyazo.com/9895aa54bc3fa90216285318eca26082.gif)](https://gyazo.com/9895aa54bc3fa90216285318eca26082) | アカウント情報の編集・削除、コメント背景色のカスタマイズ、投稿スポット一覧、コメントした投稿一覧を管理できます。 |
+
+---
+
+### その他の機能
+
+| 機能 | 詳細 |
+|---|---|
+| 🔍 スポット検索 | 都道府県・タグ・雰囲気でフィルタリング |
+| 🗺️ マップ表示 | 各スポット詳細ページにGoogle Mapsでの位置表示 |
+| 🔖 ブックマーク | 気になるスポットをワンクリックで保存・一覧表示 |
+| 🔗 SNSシェア | X（旧Twitter）へのシェアリンク |
+| 🏷️ タグ付け | スポットに最大3タグ（オートコンプリート対応） |
+| 🎨 コメントカラー | ユーザーごとにコメント背景色をカスタマイズ |
+
+---
+
+## 技術構成
+
+### 使用技術スタック
+
+| カテゴリ | 技術 | バージョン |
+|---|---|---|
+| **バックエンド** | Ruby on Rails | 7.2.2.1 |
+| **言語** | Ruby | 3.3.6 |
+| **フロントエンド** | Hotwire（Turbo + Stimulus） | Turbo 8.0 |
+| **CSSフレームワーク** | Tailwind CSS / daisyUI | 4.0 / 4.12 |
+| **データベース** | PostgreSQL | 16 |
+| **画像ストレージ** | Amazon S3 | — |
+| **ホスティング** | Render | — |
+| **認証** | Devise + Google OAuth 2.0 | — |
+| **地図API** | Google Maps JavaScript API | — |
+| **ジオコーディング** | Geocoder gem | — |
+| **CI/CD** | GitHub Actions | — |
+| **コンテナ** | Docker | — |
+| **バージョン管理** | Git / GitHub | — |
+
+**主要Gem:**
+
+```
+devise               # 認証・セッション管理
+omniauth-google-oauth2  # Googleソーシャルログイン
+geocoder             # 住所 → 緯度経度変換
+ransack              # 高度な検索機能
+kaminari             # ページネーション
+aws-sdk-s3           # S3画像ストレージ
+image_processing     # 画像リサイズ・変換
+meta-tags            # OGP・SEOメタタグ
+brakeman             # セキュリティスキャン
+rubocop-rails-omakase # コードスタイル統一
+rspec-rails          # テストフレームワーク
+```
+
+---
+
+### システムアーキテクチャ
+
+```
+┌─────────────────────────────────────────────────────┐
+│                  ユーザーのブラウザ                    │
+│          Hotwire (Turbo Frames / Streams)            │
+│          Stimulus Controllers / Tailwind CSS         │
+└─────────────────┬───────────────────────────────────┘
+                  │ HTTP/HTTPS
+┌─────────────────▼───────────────────────────────────┐
+│              Render Web Service                      │
+│         Ruby on Rails 7.2 (Puma)                    │
+│  ┌──────────┐  ┌──────────┐  ┌──────────────────┐  │
+│  │Controllers│  │  Models  │  │    Views (ERB)   │  │
+│  │  (thin)  │→ │(business │→ │  Turbo Frames/   │  │
+│  │          │  │  logic)  │  │  Streams templates│  │
+│  └──────────┘  └──────────┘  └──────────────────┘  │
+└──────┬──────────────┬────────────────┬──────────────┘
+       │              │                │
+┌──────▼──────┐ ┌─────▼──────┐ ┌──────▼──────┐
+│  PostgreSQL  │ │  Amazon S3 │ │ Google APIs │
+│  (Render DB) │ │  (画像)    │ │  Maps/OAuth │
+└─────────────┘ └────────────┘ └─────────────┘
+```
+
+---
+
+### ER図
+
+[![ER図](https://i.gyazo.com/e77865ebeafc4fac722a742ae551a4c6.png)](https://gyazo.com/e77865ebeafc4fac722a742ae551a4c6)
+
+[dbdiagram.io で確認する](https://dbdiagram.io/d/NighTrip-6785ce446b7fa355c3c7cc11)
+
+**主なテーブル:**
+
+```
+users
+  ├── spots (1:N)          # 夜景スポット投稿
+  ├── comments (1:N)       # コメント
+  └── bookmarks (1:N)      # ブックマーク
+
+spots
+  ├── comments (1:N)       # スポットへのコメント
+  ├── bookmarks (1:N)      # スポットへのブックマーク
+  ├── taggings (1:N)       # タグ紐付け（中間テーブル）
+  │   └── tags (N:M)       # スポットタグ
+  └── prefecture (N:1)     # 都道府県
+
+prefectures              # 都道府県マスタ（地方別集計対応）
+```
+
+---
+
+### 画面遷移図
+
+[Figma で確認する](https://www.figma.com/design/wJfx2YGnGh29NnKSyHBQgr/NighTrip?node-id=0-1&t=vJGRuuSqfAuQPLD2-1)
+
+---
+
+## ローカル環境のセットアップ
+
+### 前提条件
+
+- Ruby 3.3.6
+- PostgreSQL 16+
+- Node.js 20+
+- Yarn
+
+### 手順
+
+```bash
+# 1. リポジトリをクローン
+git clone https://github.com/common-member/NighTrip.git
+cd NighTrip
+
+# 2. 依存関係のインストール
+bundle install
+yarn install
+
+# 3. 環境変数の設定（後述）
+cp .env.example .env
+# .envを編集して必要な値を設定
+
+# 4. データベースのセットアップ
+bin/rails db:prepare
+
+# 5. アセットのビルド
+bin/rails assets:precompile RAILS_ENV=development
+
+# 6. 開発サーバーの起動
+bin/dev
+```
+
+ブラウザで `http://localhost:3000` にアクセスしてください。
+
+---
+
+## 環境変数
+
+`.env` ファイルに以下の環境変数を設定してください:
+
+```bash
+# データベース
+DATABASE_URL=postgresql://localhost/nightrip_development
+
+# Rails
+RAILS_MASTER_KEY=<rails credentials key>
+SECRET_KEY_BASE=<generated secret>
+
+# Google APIs
+GOOGLE_MAPS_API_KEY=<Google Maps JavaScript API Key>
+GOOGLE_CLIENT_ID=<Google OAuth Client ID>
+GOOGLE_CLIENT_SECRET=<Google OAuth Client Secret>
+
+# Amazon S3（画像ストレージ）
+AWS_ACCESS_KEY_ID=<AWS Access Key>
+AWS_SECRET_ACCESS_KEY=<AWS Secret Key>
+AWS_BUCKET=<S3 Bucket Name>
+AWS_REGION=<S3 Region e.g. ap-northeast-1>
+```
+
+---
+
+## テスト
+
+このプロジェクトは **SDD（Spec Driven Development）** を採用しています。
+実装前に必ずRSpecで失敗するテストを書き、その後に実装します。
+
+```bash
+# 全テスト実行
+bundle exec rspec
+
+# モデルスペックのみ
+bundle exec rspec spec/models/
+
+# リクエストスペックのみ
+bundle exec rspec spec/requests/
+
+# システムスペックのみ
+bundle exec rspec spec/system/
+
+# コードスタイルチェック（自動修正）
+bin/rubocop -a
+
+# セキュリティスキャン
+bin/brakeman --no-pager
+```
+
+**テストカバレッジ:**
+
+| テスト種別 | 内容 |
+|---|---|
+| Model Spec | バリデーション・アソシエーション・スコープ・インスタンスメソッド |
+| Request Spec | HTTPレスポンス・認証・Turbo Streamレスポンス |
+| System Spec | Capybara + Seleniumによる E2E テスト |
+
+---
 
 ## 講師の方へ
-本アプリは、卒業制作のNighTripを新しく作り直したものになっております。<br>
-現在は、[proto-NighTrip](https://github.com/common-member/proto-NighTrip)として切り分けて保存しております。<br>
-ご了承ください。<br>
-なお、本件につきましては、富田講師にご相談させていただきました。<br>
-富田講師、ご対応いただきありがとうございました。🙇🙇🙇<br>
-<br>
+
+本アプリは、卒業制作のNighTripを新しく作り直したものになっております。
+旧バージョンは [proto-NighTrip](https://github.com/common-member/proto-NighTrip) として保存しております。
+
+本件につきましては、富田講師にご相談させていただきました。ご対応いただきありがとうございました。🙇
+
+---
+
+<div align="center">
+
+**NighTrip** — あなたの夜景体験を、世界と共有しよう。
+
+[🌐 https://nightrip.net/](https://nightrip.net/)
+
+</div>
